@@ -19,7 +19,6 @@ module.exports = function (app, express) {
 
   app.get('/api/event/:id',eventController.getEvent);
 
-
   app.post('/api/applyEvent',eventController.applyEvent);
 
 

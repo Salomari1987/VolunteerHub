@@ -1,16 +1,18 @@
-<nav class="navigation">
-    <ul>
-      <li>
-          <a class="selected" href="#/events">Events</a>
-      </li>
-       <li>
-          <a href="#/user/{{userId}}">User</a>
-      </li>
-      <li>
-        <a href="#/signin" ng-click="signout()">Log Out</a>
-      </li>
-    </ul>
-  </nav>
+<ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
+  <li role="presentation" >
+      <a  href="#/events">Events</a>
+  </li>
+   <li role="presentation">
+      <a href="#/user/{{userId}}">User</a>
+  </li>
+  <li role="presentation" class="active">
+        <a href="#/createEvent"> Create Event</a>
+  </li>
+  <li role="presentation">
+    <a href="#/signin" ng-click="signout()">Log Out</a>
+  </li>
+</ul>
+
 <div class="createEvent">
      <h1>Create Event</h1>
        <form name="createEventForm" method="post" ng-submit="addEvent()">    
@@ -25,7 +27,7 @@
             <option value="Medical">Medical</option>
             <option value="Social">Social</option>
            </select></p>
-            Event Poster: <input type="file" name="fileToUpload" id="fileToUpload" ng-model="event.poster"><br>
+            Event Poster: <input type="text" name="fileToUpload" id="fileToUpload" ng-model="event.poster"><br>
            <p class="submit"><input type="submit" name="commit" value="Create"></p>
        </form>
 </div>

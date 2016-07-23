@@ -9,43 +9,6 @@ var findAllusers = Q.nbind(User.find, User);
 
 module.exports = {
 
-  // allUser : function (req,res,next) {
-  //   findAllusers({})
-  //     .then(function (users) {
-  //       res.json(users);
-  //     })
-  //     .fail(function (err) {
-  //       next(err);
-  //     })
-  // },
-
-
-
-  // signin: function (req, res, next) {
-  //   var username = req.body.username;
-  //   var password = req.body.password;
-
-  //   findUser({userName: username})
-  //     .then(function (user) {
-  //       if (!user) {
-  //         next(new Error('User does not exist'));
-  //       } else {
-  //         return User.comparePasswords(password)
-  //           .then(function (foundUser) {
-  //             if (foundUser) {
-  //               var token = jwt.encode(user, 'secret');
-  //               res.json({token: token});
-  //             } else {
-  //               return next(new Error('No user'));
-  //             }
-  //           });
-  //       }
-  //     })
-  //     .fail(function (error) {
-  //       next(error);
-  //     });
-  // },
-
 
   // Test : Post
   // http://127.0.0.1:8000/api/users/signin
@@ -58,6 +21,7 @@ module.exports = {
   signin: function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
+
 
     User.findOne({userName: username})
       .exec(function (error, user) {
@@ -92,13 +56,29 @@ module.exports = {
   signup : function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
+    var firstName = req.body.firstName;
+    var lastName = req.body.lastName;
+    var email = req.body.email;
+    var dateOfBirth = req.body.dateOfBirth;
+    var gender = req.body.gender;
+    var phoneNumber = req.body.phoneNumber;
+    var skills = req.body.skills;
+    var picture = req.body.picture;    
 
     User.findOne({ userName: username })
       .exec(function(err, user) {
         if (!user) {
           var newUser = new User({
             userName: username,
-            password: password
+            password: password,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            dateOfBirth: dateOfBirth,
+            gender: gender,
+            phoneNumber: phoneNumber,
+            skills: [skills],
+            picture: picture
           });
           newUser.save(function(err, newUser) {
             console.log(newUser)

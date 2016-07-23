@@ -1,17 +1,19 @@
-<nav class="navigation">
-    <ul>
-      <li>
-          <a class="selected" href="#/events">Events</a>
-      </li>
-       <li>
-          <a href="#/user/{{userId}}">User</a>
-      </li>
-      <li>
-      	<a href="#/signin" ng-click="signout()">Log Out</a>
-      </li>
-    </ul>
-  </nav>
-<div >
+<ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
+  <li role="presentation" class="active"    >
+      <a  href="#/events">Events</a>
+  </li>
+   <li role="presentation">
+      <a href="#/user/{{userId}}">User</a>
+  </li>
+  <li role="presentation" >
+        <a href="#/createEvent"> Create Event</a>
+  </li>
+  <li role="presentation">
+    <a href="#/signin" ng-click="signout()">Log Out</a>
+  </li>
+</ul>
+
+
 	<p>Event Title: {{event.title}}</p>
   <p>Start Date: {{event.startDate}}</p>
 	<p>End Date: {{event.endDate}}</p>

@@ -1,26 +1,39 @@
-<nav class="navigation">
-    <ul>
-      <li>
-          <a class="selected" href="#/events">Events</a>
-      </li>
-       <li>
-          <a href="#/user/{{userId}}">User</a>
-      </li>
-      <li>
-        <a href="#/signin" ng-click="signout()">Log Out</a>
-      </li>
-    </ul>
-  </nav>
-<div class="events" ng-repeat="event in data.events">
-  <div class="event">
-      <div class="title"></div>
-      <ul>
-      	<li >
-      		<a href="#/event/{{event._id}}">{{event.title}}</a>
-      	</li>
-      </ul>
-      <div class="type">Type: {{event.type}}</div>
-      <div class="startDate">Start Date: {{event.startDate}}</div>
-      <div class="endDate">End Date: {{event.endDate}}</div>
+<ul class="nav nav-tabs nav-justified " style="margin-bottom: 10px;">
+  <li role="presentation" class="active"    >
+      <a  href="#/events">Events</a>
+  </li>
+   <li role="presentation">
+      <a href="#/user/{{userId}}">User</a>
+  </li>
+  <li role="presentation" >
+        <a href="#/createEvent"> Create Event</a>
+  </li>
+  <li role="presentation">
+    <a href="#/signin" ng-click="signout()">Log Out</a>
+  </li>
+</ul>
+
+<div class="container">
+  <div class="jumbotron" >
+    <div class="row" >
+      <div class="col-xs-6 jumbotron" ng-repeat="event in data.events">
+        <img  src="{{event.poster}}" 
+            style="float : right ;    margin-top: -2%" width="200px">
+            <ul>
+            	<li >
+            		<h2><a href="#/event/{{event._id}}">{{event.title}}</a></h2>
+            	</li>
+            </ul>
+            <p>Type: {{event.type}}</p>
+            <p>Start Date: {{event.startDate}}</p>
+            <p>End Date: {{event.endDate}}</p>
+            <p><a class="btn btn-primary btn-lg" href="#/event/{{event._id}}" role="button">More Details</a></p>
+      </div>
+      <div class="clear"></div>
+
+
+
+    </div>
   </div>
 </div>
+
