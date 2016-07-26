@@ -12,7 +12,6 @@
     "start": "./node_modules/.bin/nodemon --ignore node_modules server/server.js",
     "postinstall": "bower install"
   },
-  "pre-commit": "lint",
   "repository": {
     "type": "git",
     "url": "https://github.com/NereusTeam/NereusTeam.git"
