@@ -28,6 +28,7 @@ module.exports = function (app, express) {
   app.get('/api/organization/:id',organizationController.getOne);
   app.put('/api/organization/:id',organizationController.editProfile);
   app.put('/api/organization/add/:id',organizationController.addOpportunity);
+  app.put('/api/organization/close/:id',organizationController.closeOpportunity);
   app.delete('/api/organization/:id',organizationController.deleteOne);
 
   // If a request is sent somewhere other than the routes above,
