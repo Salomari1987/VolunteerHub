@@ -50,9 +50,9 @@ module.exports ={
   	editOpportunity : function (req,res,next) {
   		var opId = req.params.id;
   		var token = req.headers['x-access-token'];
-  		// if (!token){
-  		// 	next(new Error('No token'))
-  		// } else {
+  		if (!token){
+  			next(new Error('No token'))
+  		} else {
   			findOpportunity({_id:opId})
   			.then(function (opportunity) {
   				if(!opportunity) {
@@ -70,45 +70,94 @@ module.exports ={
   					res.json(opportunity);
   				}
   			})
-  		// }
+  		}
   	},
   	addOpening: function (req, res, next) {
   		var opportunityId = req.params.id
-  		var currOpening = {
-  			title: req.body.title,
-  			_owner: opportunityId,
-  			numberOfVolunteers: req.body.numberOfVolunteers,
-  			location: req.body.location,
-  			description: req.body.description,
-  			skillsRequired: req.body.skillsRequired,
-  			resources: req.body.resources
-  		}
-  		createOpening(currOpening)
-	  	.then(function (newOpening) {
-		    if (newOpening) {
-		    	findOpportunity ( { _id:opportunityId } )
-		    	.then(function (opportunity) {
-			    	if(!opportunity) {
-	  					next(new Error('Opportunity does not exist'));
-	  				} else {
-	  					opportunity.openings.push(newOpening._id)
-	  					opportunity.save();
-	  					return opportunity.openings
-	  				}
-	  			})
-	  			.then(function(openings) {
-	  				findAllOpening({'_id': { $in: openings}})
-			        .then(function(allOpenings){
-			          res.json(allOpenings);
-			        })
-	  			})
-	  			.fail(function(err){
-		        	next(err)
-		      	})
-		   	}})
-	    .fail(function (error) {
-	        next(error);
-	 	})
+  		var token = req.headers['x-access-token'];
+  		if (!token){
+  			next(new Error('No token'))
+  		} else {
+	  		var currOpening = {
+	  			title: req.body.title,
+	  			_owner: opportunityId,
+	  			numberOfVolunteers: req.body.numberOfVolunteers,
+	  			location: req.body.location,
+	  			description: req.body.description,
+	  			skillsRequired: req.body.skillsRequired,
+	  			resources: req.body.resources
+	  		}
+	  		createOpening(currOpening)
+		  	.then(function (newOpening) {
+			    if (newOpening) {
+			    	findOpportunity ( { _id:opportunityId } )
+			    	.then(function (opportunity) {
+				    	if(!opportunity) {
+		  					next(new Error('Opportunity does not exist'));
+		  				} else {
+		  					opportunity.openings.push(newOpening._id)
+		  					opportunity.save();
+		  					return opportunity.openings
+		  				}
+		  			})
+		  			.then(function(openings) {
+		  				findAllOpening({'_id': { $in: openings}})
+				        .then(function(allOpenings){
+				          res.json(allOpenings);
+				        })
+		  			})
+		  			.fail(function(err){
+			        	next(err)
+			      	})
+			   	}})
+		    .fail(function (error) {
+		        next(error);
+		 	})
+		}
+	},
+	closeOpening: function (req, res, next) {
+  		var opportunityId = req.params.id;
+  		var openingId = req.body.openingId
+  		var token = req.headers['x-access-token'];
+  		if (!token){
+  			next(new Error('No token'))
+  		} else {
+	  		var currOpening = {
+	  			title: req.body.title,
+	  			_owner: opportunityId,
+	  			numberOfVolunteers: req.body.numberOfVolunteers,
+	  			location: req.body.location,
+	  			description: req.body.description,
+	  			skillsRequired: req.body.skillsRequired,
+	  			resources: req.body.resources
+	  		}
+	  		createOpening(currOpening)
+		  	.then(function (newOpening) {
+			    if (newOpening) {
+			    	findOpportunity ( { _id:opportunityId } )
+			    	.then(function (opportunity) {
+				    	if(!opportunity) {
+		  					next(new Error('Opportunity does not exist'));
+		  				} else {
+		  					opportunity.openings.push(newOpening._id)
+		  					opportunity.save();
+		  					return opportunity.openings
+		  				}
+		  			})
+		  			.then(function(openings) {
+		  				findAllOpening({'_id': { $in: openings}})
+				        .then(function(allOpenings){
+				          res.json(allOpenings);
+				        })
+		  			})
+		  			.fail(function(err){
+			        	next(err)
+			      	})
+			   	}})
+		    .fail(function (error) {
+		        next(error);
+		 	})
+		}
 	},
   	getOpportunity : function (req,res,next) {
   		var id=(req.params.id).toString();
