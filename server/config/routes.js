@@ -1,6 +1,7 @@
 var userController = require('../users/userController.js');
 var eventController = require('../events/eventController.js');
 var organizationController = require('../organizations/organizationController.js');
+var opportunityController = require('../opportunities/OpportunityController.js');
 var helpers = require('./helpers.js'); // our custom middleware
 
 module.exports = function (app, express) {
@@ -13,15 +14,14 @@ module.exports = function (app, express) {
 
   app.get('/api/user/:id',userController.getUser);
 
-  app.get('/api/opportunities',eventController.allOpportunities);
+  app.get('/api/opportunities',opportunityController.allOpportunities);
   
-  app.post('/api/createOpportunity',eventController.newOpportunity);
+  app.post('/api/createOpportunity',opportunityController.newOpportunity);
 
-  app.get('/api/Opportunity/:id',eventController.getOppurtinity);
+  app.get('/api/opportunity/:id',opportunityController.getOpportunity);
 
-  app.post('/api/applyOpportunity',eventController.applyOpportunity);
-
-
+  app.put('/api/opportunity/:id',opportunityController.editOpportunity);
+  app.put('/api/opportunity/addOpening/:id',opportunityController.addOpening);
   // Organization Routes
   app.post('/api/organization',organizationController.createOrg);
   app.get('/api/organization',organizationController.getAll);
@@ -30,6 +30,11 @@ module.exports = function (app, express) {
   app.put('/api/organization/add/:id',organizationController.addOpportunity);
   app.put('/api/organization/close/:id',organizationController.closeOpportunity);
   app.delete('/api/organization/:id',organizationController.deleteOne);
+
+  //app.get('/api/users',userController.allUser);
+
+  // app.get('/api/links/', linksController.allLinks);
+  // app.post('/api/links/', linksController.newLink);
 
   // If a request is sent somewhere other than the routes above,
   // send it through our custom error handler
