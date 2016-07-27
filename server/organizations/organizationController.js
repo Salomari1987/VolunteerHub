@@ -2,6 +2,7 @@ var Organization = require('./organizationModel.js');
 
 module.exports = {
 
+  // a function for creating new organizations
   createOrg : function(req, res) {
     var EIN = req.body.EIN ;
     var name = req.body.name ;
@@ -38,6 +39,7 @@ module.exports = {
     });
   },
 
+  // a function for getting the details of organization by the id of that organization
   getOne : function(req,res){
     Organization.findOne({_id: req.params.id.toString()})
     .exec(function(err, organization){
@@ -49,6 +51,7 @@ module.exports = {
     });
   },
 
+  // a function for editing the profile of the organization
   editProfile : function(req,res){
     Organization.findOne({_id: req.params.id.toString()})
     .exec(function(error, organization){
@@ -78,6 +81,22 @@ module.exports = {
           }
         });
       }
+    });
+  },
+
+  // a function for deleting an organization from the database
+  deleteOne : function(req,res){
+    Organization.findOne({ _id : req.params.id.toString() }, function(err, organization){
+      if (err) {
+        res.status(500).send(err);
+      }
+      organization.remove(function(err,table) {
+        if(err){
+          res.status(500).send('Unable to delete organization')
+        } else {
+          res.status(201).send('Organization Successfully Removed');
+        }
+      });
     });
   }
 };
