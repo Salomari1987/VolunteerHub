@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 
 
 
+
 // connect to mongo database named "VolunteerHub"
 mongoose.connect('mongodb://localhost/VolunteerHub');
 db = mongoose.connection;
