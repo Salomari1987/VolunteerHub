@@ -90,12 +90,24 @@ angular.module('VolunteerHub.services', [])
     .then(function (resp) {
       return resp.data;
     });
-  }
+  };
+
+  var editProfile = function(organization){
+    return $http({
+      method: 'PUT',
+      url: '/api/organization/'+organization['_id'],
+      data : organization
+    })
+    .then(function (resp){
+      return resp;
+    });
+  };
 
   return {
     createOrg: createOrg,
     getAll: getAll,
-    getOne: getOne
+    getOne: getOne,
+    editProfile: editProfile
   };
 })
 .factory('Auth', function ($http, $location, $window) {
