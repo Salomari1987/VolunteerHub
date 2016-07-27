@@ -24,6 +24,7 @@ module.exports = function (app, express) {
 
   // Organization Routes
   app.post('/api/organization',organizationController.createOrg);
+  app.get('/api/organization',organizationController.getAll);
   app.get('/api/organization/:id',organizationController.getOne);
   app.put('/api/organization/:id',organizationController.editProfile);
   app.delete('/api/organization/:id',organizationController.deleteOne);
