@@ -96,6 +96,25 @@ module.exports = {
     });
   },
 
+  // a function to add an oppotunity to the organization
+  addOpportunity : function(req,res){
+    Organization.update({ _id: req.params.id.toString() },{ $pull: { currentOpportunities: req.body.eventId } },
+      function(err){
+        if(err){
+          res.status(500).send(err);  
+        }
+    });
+    Organization.update({ _id: req.params.id.toString() },{ $push: { currentOpportunities: req.body.eventId } },
+      function (err) {
+        if(err){
+          res.status(500).send(err);
+        }
+        else{
+          res.status(201).send('Updated Successfully');
+        }
+    });
+  },
+
   // a function for deleting an organization from the database
   deleteOne : function(req,res){
     Organization.findOne({ _id : req.params.id.toString() }, function(err, organization){
