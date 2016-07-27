@@ -7,6 +7,18 @@ angular.module('Khitwa', [
   'Khitwa.user',
   'ngRoute'
 ])
+.controller("HeaderController", function($scope, $location, Auth) {
+  //Sets isActive to true or false for highlighting the buttons in the nav panel
+  $scope.isActive = function (viewLocation) { 
+      return viewLocation === $location.path();
+  };
+  // $scope.logOut = function (){
+  //   Auth.signout();
+  // }
+  // $scope.logIn = function (){
+  //   $location.path('/signin');
+  // }
+})
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
     .when('/signin', {
