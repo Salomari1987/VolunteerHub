@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 var opportunitySchema = new mongoose.Schema({
   title : {
@@ -8,7 +9,6 @@ var opportunitySchema = new mongoose.Schema({
   _organizer : { 
   	type: mongoose.Schema.Types.ObjectId,
   	ref: 'Organization',
-    required: true
   },
   startDate : {
     type: String,
@@ -19,11 +19,11 @@ var opportunitySchema = new mongoose.Schema({
   // locationId : String,
   type : [String],
   description : String,
-  requiredSkills : [String],
+  skillsRequired : [String],
   poster : String,
   openings: [{ type: Schema.Types.ObjectId, ref: 'Opening' }]
 });
-var Opportunity=mongoose.model('Event', eventSchema);
+var Opportunity = mongoose.model('Opportunity', opportunitySchema);
 
 
 // var newEvent=new Event({
