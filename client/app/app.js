@@ -1,10 +1,10 @@
-angular.module('Khitwa', [
-  'Khitwa.services',
-  'Khitwa.createEvent',
-  'Khitwa.auth',
-  'Khitwa.event',
-  'Khitwa.events',
-  'Khitwa.user',
+angular.module('VolunteerHub', [
+  'VolunteerHub.services',
+  'VolunteerHub.createEvent',
+  'VolunteerHub.auth',
+  'VolunteerHub.event',
+  'VolunteerHub.events',
+  'VolunteerHub.user',
   'ngRoute'
 ])
 .controller("HeaderController", function($scope, $location, Auth) {
