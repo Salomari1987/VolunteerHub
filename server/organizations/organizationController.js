@@ -120,25 +120,29 @@ module.exports = {
 
   // a function to close an opportunity
   closeOpportunity : function(req,res){
-    Organization.update({ _id: req.params.id.toString() },{ $pull: { currentOpportunities: req.body.eventId } },
+    Organization.update({ _id: req.params.id.toString() },
+      { $pull: { currentOpportunities: req.body.opportunityId } },
       function(err){
         if(err){
           res.status(500).send(err);  
         }
     });
-    Organization.update({ _id: req.params.id.toString() },{ $pull: { pastOpportunities: req.body.eventId } },
+    Organization.update({ _id: req.params.id.toString() },
+      { $pull: { pastOpportunities: req.body.opportunityId } },
       function(err){
         if(err){
           res.status(500).send(err);  
         }
     });
-    Organization.update({ _id: req.params.id.toString() },{ $push: { pastOpportunities: req.body.eventId } },
-      function (err) {
+    Organization.findOneAndUpdate({ _id: req.params.id.toString() },
+      { $push: { pastOpportunities: req.body.opportunityId } },
+      { new: true },
+      function (err, savedOrg) {
         if(err){
           res.status(500).send(err);
         }
         else{
-          res.status(201).send('Closed Successfully');
+          res.status(201).send(JSON.stringify(savedOrg));
         }
     });
   },
