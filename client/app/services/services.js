@@ -82,6 +82,7 @@ angular.module('VolunteerHub.services', [])
     });
   };
 
+  // a function to get single organization's info
   var getOne = function(id){
     return $http({
       method: 'GET',
@@ -92,6 +93,7 @@ angular.module('VolunteerHub.services', [])
     });
   };
 
+  // a function to edit the info of an organization
   var editProfile = function(organization){
     return $http({
       method: 'PUT',
@@ -103,11 +105,26 @@ angular.module('VolunteerHub.services', [])
     });
   };
 
+  // a function to add an opportunity to an organiztion
+  var addOpportunity = function(orgId, opportunityId){
+    return $http({
+      method: 'PUT',
+      url: '/api/organization/add/'+orgId,
+      data : {
+        opportunityId: opportunityId
+      }
+    })
+    .then(function (resp){
+      return resp;
+    });
+  };
+
   return {
     createOrg: createOrg,
     getAll: getAll,
     getOne: getOne,
-    editProfile: editProfile
+    editProfile: editProfile,
+    addOpportunity: addOpportunity
   };
 })
 .factory('Auth', function ($http, $location, $window) {
