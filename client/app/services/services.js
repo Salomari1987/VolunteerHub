@@ -58,6 +58,46 @@ angular.module('VolunteerHub.services', [])
 	};
 })
 
+.factory('Organizations', function($http){
+
+  // a function to add an organization in the database
+  var createOrg = function(organization){
+    return $http({
+      method: 'POST',
+      url: '/api/organization'
+    })
+    .then(function (resp) {
+      return JSON.parse(resp);
+    });
+  };
+
+  // a function to get all organizations
+  var getAll = function(){
+    return $http({
+      method: 'GET',
+      url: '/api/organization'
+    })
+    .then(function (resp) {
+      return JSON.parse(resp.data);
+    });
+  };
+
+  var getOne = function(id){
+    return $http({
+      method: 'GET',
+      url: '/api/organization/'+id
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  }
+
+  return {
+    createOrg: createOrg,
+    getAll: getAll,
+    getOne: getOne
+  };
+})
 .factory('Auth', function ($http, $location, $window) {
   // Don't touch this Auth service!!!
   // it is responsible for authenticating our user
