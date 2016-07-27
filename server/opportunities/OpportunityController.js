@@ -47,10 +47,6 @@ module.exports ={
 		        next(error);
 		      });
   	},
-
-
-  	//Test : Get
-  	//http://127.0.0.1:8000/api/event/5790db44f97a940c03550a89
   	editOpportunity : function (req,res,next) {
   		var opId = req.params.id;
   		var token = req.headers['x-access-token'];
@@ -97,18 +93,18 @@ module.exports ={
 	  				} else {
 	  					opportunity.openings.push(newOpening._id)
 	  					opportunity.save();
-	  					res.json(opportunity) 
+	  					return opportunity.openings
 	  				}
 	  			})
-	  			// .then(function(openings) {
-	  			// 	findAllOpening({'_id': { $in: openings}})
-			   //      .then(function(allOpenings){
-			   //        res.json(allOpenings);
-			   //      })
-	  			// })
-	  			// .fail(function(err){
-		    //     	next(err)
-		    //   	})
+	  			.then(function(openings) {
+	  				findAllOpening({'_id': { $in: openings}})
+			        .then(function(allOpenings){
+			          res.json(allOpenings);
+			        })
+	  			})
+	  			.fail(function(err){
+		        	next(err)
+		      	})
 		   	}})
 	    .fail(function (error) {
 	        next(error);
@@ -124,16 +120,4 @@ module.exports ={
 			next(error);
 		})
   	}
-
-
-  	// Test : Post
-  	// http://127.0.0.1:8000/api/applyEvent
-  	// body :
- 	// {
-	//   "userId" : "5791c28d6b44ec0c052b6c79",
-	//   "eventId" : "5791c53e990f8c9c16839fbd"
-	// }
-
-
-
 }
