@@ -9,6 +9,7 @@ var app = express();
 // connect to mongo database named "VolunteerHub"
 mongoose.connect('mongodb://localhost/VolunteerHub');
 db = mongoose.connection;
+
 db.once('open',function () {
 	console.log('mongoDB is open');
 });
