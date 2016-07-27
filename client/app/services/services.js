@@ -119,12 +119,27 @@ angular.module('VolunteerHub.services', [])
     });
   };
 
+  // a function to close a finished opportunity that belongs to an organiztion
+  var closeOpportunity = function(orgId, opportunityId){
+    return $http({
+      method: 'PUT',
+      url: '/api/organization/close/'+orgId,
+      data : {
+        opportunityId: opportunityId
+      }
+    })
+    .then(function (resp){
+      return resp;
+    });
+  };
+
   return {
     createOrg: createOrg,
     getAll: getAll,
     getOne: getOne,
     editProfile: editProfile,
-    addOpportunity: addOpportunity
+    addOpportunity: addOpportunity,
+    closeOpportunity: closeOpportunity
   };
 })
 .factory('Auth', function ($http, $location, $window) {
