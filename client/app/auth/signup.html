@@ -1,46 +1,23 @@
-<!-- <center><div id='signup'>
-  <h1>Sign up</h1>
-    <form name="signupForm" method="post" ng-submit='signup()'>
-        <fieldset>
-              <p>User Name: <input type='text' id='userName' ng-model="user.username"></p>
-              <p>First Name: <input type='text' id='firstName' ng-model="user.firstName"></p>
-              <p>Last Name: <input type='text' id='lastName' ng-model="user.lastName"></p>
-              <p>Password: <input type="password" id='password' ng-model="user.password"></p>
-              <p>Email: <input type="email" id="email" ng-model="user.email"></p>
-              <p>Date of Birth: <input type="date" id="dateOfBirth" ng-model="user.dateOfBirth"></p>
-              <p>Gender: <input type="radio" id="gender" value="Male" checked ng-model='user.gender'>Male</p>
-              <p><input type="radio" id="gender" value="female"> Female</p>
-              <p><input type="radio" id="gender" value="other"> Other</p>
-              <p>Phone Number: <input type="tel" id="phoneNumber" ng-model="user.phoneNumber"></p>
-              <p>skills: <input type="text" id="skills" ng-model="user.skills"></p>
-              <p>Picture: <input type="file" name="fileToUpload" id="fileToUpload" ng-model="user.picture"></p>
-              <input type="submit" name="submit" id="submit">
-          </fieldset>
-    </form>
-  <a href="#/signin">Already have an account? <strong>Signin</strong> ...</a>
+<div class="wrapper">
+  <div  class="form-signin">       
+      <h3 class="form-signin-heading">Please Sign up</h3>
+      <hr class="colorgraph"><br>
+      <form name="signinForm" ng-submit='signup()'>
+        <input type='text' id='userName' ng-model="user.username" placeholder="User name">
+        <input type='text' id='firstName' ng-model="user.firstName" placeholder="First Name">
+        <input type='text' id='lastName' ng-model="user.lastName" placeholder="Last Name">
+        <input type="password" id='password' ng-model="user.password" placeholder="Password">
+        <input type="email" id="email" ng-model="user.email" placeholder="Email">
+        <input type="date" id="dateOfBirth" ng-model="user.dateOfBirth" placeholder="Date of Birth">
+        <input type="radio" id="gender" value="Male" checked ng-model='user.gender'>Male
+        <input type="radio" id="gender" value="female"> Female
+        <input type="tel" id="phoneNumber" ng-model="user.phoneNumber" placeholder="Phone Number">
+        <input type="text" id="skills" ng-model="user.skills" placeholder="skills">
+        <input type="text" name="fileToUpload" id="fileToUpload" ng-model="user.picture" placeholder="Picture Url">
+        <br>
+        <button class="btn btn-lg btn-primary btn-block so3ad"  type="submit"  name="Submit" value="Login" ">Sign up</button>
+    </form>   
+    <br>
+     
+  </div>     
 </div>
-</center> -->
-
-      <div class="wrapper">
-        <div  class="form-signin">       
-            <h3 class="form-signin-heading">Please Sign up</h3>
-            <hr class="colorgraph"><br>
-            <form name="signinForm" ng-submit='signup()'>
-              <input type='text' id='userName' ng-model="user.username" placeholder="User name">
-              <input type='text' id='firstName' ng-model="user.firstName" placeholder="First Name">
-              <input type='text' id='lastName' ng-model="user.lastName" placeholder="Last Name">
-              <input type="password" id='password' ng-model="user.password" placeholder="Password">
-              <input type="email" id="email" ng-model="user.email" placeholder="Email">
-              <input type="date" id="dateOfBirth" ng-model="user.dateOfBirth" placeholder="Date of Birth">
-              <input type="radio" id="gender" value="Male" checked ng-model='user.gender'>Male
-              <input type="radio" id="gender" value="female"> Female
-              <input type="tel" id="phoneNumber" ng-model="user.phoneNumber" placeholder="Phone Number">
-              <input type="text" id="skills" ng-model="user.skills" placeholder="skills">
-              <input type="text" name="fileToUpload" id="fileToUpload" ng-model="user.picture" placeholder="Picture Url">
-              <br>
-              <button class="btn btn-lg btn-primary btn-block so3ad"  type="submit"  name="Submit" value="Login" ">Sign up</button>
-          </form>   
-          <br>
-           
-        </div>     
-      </div>

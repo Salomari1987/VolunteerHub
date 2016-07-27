@@ -1,36 +1,72 @@
-<ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
-  <li role="presentation"     >
-      <a  href="#/events">Events</a>
-  </li>
-   <li role="presentation" class="active">
-      <a href="#/user/{{userId}}">User</a>
-  </li>
-  <li role="presentation" >
-        <a href="#/createEvent"> Create Event</a>
-  </li>
-  <li role="presentation">
-    <a href="#/signin" ng-click="signout()">Log Out</a>
+<div class="container">
+  <table>
+    <tr>
+      <td><img src="http://andrewbtran.github.io/JRN-418/class6/cat.jpg" class="userPic"/> <td>
+      <td class="skillTable"><table>
+    <tr>
+      <h2 class="profHeader"><strong>Skills</strong></h2></tr>
+    <tr>
+      <span ng-repeat="skill in user.skills">| {{skill}} |</span>
+    </tr>
+    <tr>
+      <h2 class="profHeader"><strong>Causes/Interests</strong></h2></tr>
+    <tr>
+      <span ng-repeat="cause in user.cause">{{cause}} </span>
+    </tr>
+    </table></td>
+      <td class="profRating">
+        <div><h2>Organizer 5/5</h2></div>
+        <div><h2>Volunteer 5/5</h2></div>
+      </td>
+    </tr>
+  </table>
+  <div>
+    <h3>{{user.firstName}} {{user.lastName}}</h3>
+   	<p>Email: {{user.email}}</p>
+    <p>Date Of Birth: {{user.dateOfBirth}}</p>
+    <p>Phone Number: {{user.phoneNumber}}</p>
+  </div>
+    
+  <ul class="nav nav-tabs">
+  <li class="active"><a href="/user/:id/#suggestions" data-toggle="tab" aria-expanded="true">Suggestions</a></li>
+  <li class=""><a href="/user/:id/#current" data-toggle="tab" aria-expanded="false">Current Events</a></li>
+  <li class=""><a href="/user/:id/#past" data-toggle="tab" aria-expanded="false">Past Events</a></li>
+  <li class=""><a href="/user/:id/#favorites" data-toggle="tab" aria-expanded="false">Favorites</a></li>
+    </ul>
   </li>
 </ul>
- 	<p>User Name: {{user.userName}}</p>
-  <p>First Name: {{user.firstName}}</p>
-  <p>Last Name: {{user.lastName}}</p>
- 	<p>Email: {{user.email}}</p>
-  <p>Date Of Birth: {{user.dateOfBirth}}</p>
-  <p>Gender: {{user.gender}}</p>
-  <p>Phone Number: {{user.phoneNumber}}</p>
-  <p>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade active in" id="suggestions">
     <ul>
-      <li ng-repeat="skill in user.skills">
-        {{skill}}
-      </li>
-    </ul>
-  </p>
-  <p>
-    <ul>
-      <li ng-repeat="event in user.events">
+      <li ng-repeat="event in user.events" class="events">
           {{event}}
       </li>
+      <li>event</li><li>event</li><li>event</li>
     </ul>
-  </p>
+  </div>
+  <div class="tab-pane fade" id="current">
+    <ul>
+      <li ng-repeat="event in user.events" class="events">
+          {{event}}
+      </li>
+      <li>event</li><li>event</li><li>event</li>
+    </ul>
+  </div>
+  <div class="tab-pane fade" id="past">
+    <ul>
+      <li ng-repeat="event in user.events" class="events">
+          {{event}}
+      </li>
+      <li>event</li><li>event</li><li>event</li>
+    </ul>
+  </div>
+  <div class="tab-pane fade" id="favorites">
+    <ul>
+      <li ng-repeat="event in user.events" class="events">
+          {{event}}
+      </li>
+      <li>event</li><li>event</li><li>event</li>
+    </ul>
+  </div>
+</div>
  </div>

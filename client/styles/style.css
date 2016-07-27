@@ -121,3 +121,24 @@ input[type="password"] {
   font-size: 40px;
   color: #333
   }
+
+.userPic {
+  height: auto%;
+  width: 300px;
+}
+
+.container {
+  padding: 20px;
+}
+
+.profHeader {
+  margin-bottom: 20px;
+}
+
+.skillTable {
+  padding-left: 50px; 
+}
+
+.profRating {
+  padding-left: 100px
+}

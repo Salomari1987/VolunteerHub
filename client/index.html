@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="Khitwa">
+<html ng-app="VolunteerHub">
 <head>
 	<title>VolunteerHub</title>
 	<link data-require="bootsrap@" data-server="3.3.1" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -12,7 +12,10 @@
 
 
 
+	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/sandstone/bootstrap.min.css"/>
+
 </head>
+
 <body ng-controller="HeaderController">
 
   <!-- navbar -->
@@ -20,7 +23,7 @@
 
     <!-- navbar dropdown menu when the screen resizes to mobile size -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#green-x-navbar">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#volunteerHub-navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -28,29 +31,20 @@
         </button>
 
         <!-- homepage button -->
-        <a class="navbar-brand" href="#/">iGrow</a>
+        <a class="navbar-brand" href="#/">VolunteerHub</a>
       </div>
 
-      <!-- navigation buttons for different screens -->
-      <div class="collapse navbar-collapse" id="green-x-navbar">
+      <!-- navigation buttons for different screens --> 
+      <div class="collapse navbar-collapse" id="volunteerHub-navbar">
         <ul class="nav navbar-nav">
-        <li ng-class="{ active: isActive('/plants')}">
-         <a href='#/plants'>Browse Plants</a>
+        <li ng-class="{ active: isActive('/user')}">
+         <a href='#/user'>Volunteers</a>
          </li>
-         <li ng-class="{ active: isActive('/mygarden')}">
-         <a href='#/mygarden'>My Garden</a>
+         <li ng-class="{ active: isActive('/organizations')}">
+         <a href='#/originazations'>Organizations</a>
          </li>
-         <li>
-         <a href='#/' data-toggle="tab">Categories</a>
-         </li>
-         <li ng-class="{ active: isActive('/newplant')}">
-         <a href='#/newplant' data-toggle="tab">Create a Plant</a>
-         </li>
-         <li>
-         <a href='#/' data-toggle="tab">Nearby Stores</a>
-         </li>
-          <li>
-         <a href='#/' data-toggle="tab">Contact us</a>
+         <li ng-class="{ active: isActive('/opportunities')}">
+         <a href='#/opportunities' data-toggle="tab">Opportunities</a>
          </li>
          </ul>
         <form class="navbar-form navbar-right">
@@ -59,7 +53,8 @@
         </form>
       </div>
 
-    </div>      
+    </div> 
+      
 	<div ng-view></div>
 
 <script src="lib/angular/angular.js"></script>
