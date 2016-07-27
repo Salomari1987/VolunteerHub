@@ -4,29 +4,29 @@ module.exports = {
 
   // a function for creating new organizations
   createOrg : function(req, res) {
-    var EIN = req.body.EIN ;
-    var name = req.body.name ;
-    var causes_area = req.body.causes_area ;
-    var locations = req.body.locations ;
-    var missionStatement = req.body.missionStatement ;
-    var contactInfo = req.body.contactInfo ;
-    var rate = req.body.rate ;
-    var picture = req.body.picture ;
-    var currentOpportunities = req.body.currentOpportunities ;
-    var pastOpportunities = req.body.pastOpportunities ;
-    var owners = req.body.owners ;
+    var EIN = req.body.EIN;
+    var name = req.body.name;
+    var causes_area = req.body.causes_area;
+    var locations = req.body.locations;
+    var missionStatement = req.body.missionStatement;
+    var contactInfo = req.body.contactInfo;
+    var rate = req.body.rate;
+    var picture = req.body.picture;
+    var currentOpportunities = req.body.currentOpportunities;
+    var pastOpportunities = req.body.pastOpportunities;
+    var owners = req.body.owners;
 
     var newOrg = Organization({
-      EIN : EIN ,
-      name : name ,
-      causes_area : causes_area ,
-      locations : locations ,
-      missionStatement : missionStatement ,
-      contactInfo : contactInfo ,
-      rate : rate ,
-      picture : picture ,
-      currentOpportunities : currentOpportunities ,
-      pastOpportunities : pastOpportunities ,
+      EIN : EIN,
+      name : name,
+      causes_area : causes_area,
+      locations : locations,
+      missionStatement : missionStatement,
+      contactInfo : contactInfo,
+      rate : rate,
+      picture : picture,
+      currentOpportunities : currentOpportunities,
+      pastOpportunities : pastOpportunities,
       owners : owners
     });
 
