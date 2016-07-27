@@ -10,38 +10,26 @@ var UserSchema = new mongoose.Schema({
 	userName: {
     type: String,
     required: true,
-    //unique: true
+    unique: true
   },
   password: {
     type: String,
-    //required: true
+    required: true
   },
   firstName: {
   	type: String,
-  	//required: true
+  	required: true
   },
   lastName: {
   	type: String,
-  	//required: true
+  	required: true
   },
-  email: {
-  	type: String,
-  	//required: true
-  },
-  dateOfBirth: {
-  	type: String
-  },
-  gender: {
-  	type: String
-  },
-  phoneNumber: {
-  	type: String,
-  	//required: true
-  },
-  skills: {
-  	type: [String],
-  	//required: true
-  },
+  email: String,
+  dateOfBirth: String,
+  gender: String,
+  phoneNumber: String,
+  skills: [String],
+  causes: [String],
   rate: Number,
   picture: String,
   salt: String,
