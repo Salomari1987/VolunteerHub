@@ -89,7 +89,7 @@ module.exports = {
           if(err){
             res.status(500).send(error);
           } else {
-            res.status(201).send('Info Updated!');
+            res.status(201).send(JSON.stringify(savedOrg));
           }
         });
       }
