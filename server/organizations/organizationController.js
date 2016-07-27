@@ -51,6 +51,18 @@ module.exports = {
     });
   },
 
+  // a function for getting all the organizations
+  getAll : function(req,res){
+    Organization.find({})
+    .exec(function(error, organizations){
+      if(error){
+        res.status(500).send(error);
+      } else {
+        res.status(200).send(JSON.stringify(organizations));
+      }
+    });
+  },
+
   // a function for editing the profile of the organization
   editProfile : function(req,res){
     Organization.findOne({_id: req.params.id.toString()})
