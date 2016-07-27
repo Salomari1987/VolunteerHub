@@ -6,7 +6,7 @@ var user=require('./events/eventModel.js');
 var app = express();
 
 // connect to mongo database named "khatwa"
-mongoose.connect('mongodb://localhost/Khitwa');
+mongoose.connect('mongodb://localhost/VolunteerHub');
 db=mongoose.connection;
 db.once('open',function () {
 	console.log('mongo db is open');
@@ -17,7 +17,7 @@ require('./config/middleware.js')(app, express);
 require('./config/routes.js')(app, express);
 
 // start listening to requests on port 8000
-app.listen(8000);
+app.listen(8080);
 console.log('listen to ');
 
 // export our app for testing and flexibility, required by index.js

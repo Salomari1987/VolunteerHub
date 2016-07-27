@@ -1,6 +1,6 @@
-//var linksController = require('../users/userController.js');
 var userController = require('../users/userController.js');
 var eventController = require('../events/eventController.js');
+var organizationController = require('../organizations/organizationController.js');
 var helpers = require('./helpers.js'); // our custom middleware
 
 module.exports = function (app, express) {
@@ -22,11 +22,12 @@ module.exports = function (app, express) {
   app.post('/api/applyEvent',eventController.applyEvent);
 
 
-
-  //app.get('/api/users',userController.allUser);
-
-  // app.get('/api/links/', linksController.allLinks);
-  // app.post('/api/links/', linksController.newLink);
+  // Organization Routes
+  app.post('/api/organization',organizationController.createOrg);
+  app.get('/api/organization',organizationController.getAll);
+  app.get('/api/organization/:id',organizationController.getOne);
+  app.put('/api/organization/:id',organizationController.editProfile);
+  app.delete('/api/organization/:id',organizationController.deleteOne);
 
   // If a request is sent somewhere other than the routes above,
   // send it through our custom error handler
