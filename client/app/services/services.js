@@ -133,13 +133,25 @@ angular.module('VolunteerHub.services', [])
     });
   };
 
+  // a function to delete an existing organization
+  var deleteOne = function(id){
+    return $http({
+      method: 'DELETE',
+      url: '/api/organization/'+id
+    })
+    .then(function (resp){
+      return resp;
+    });
+  };
+
   return {
     createOrg: createOrg,
     getAll: getAll,
     getOne: getOne,
     editProfile: editProfile,
     addOpportunity: addOpportunity,
-    closeOpportunity: closeOpportunity
+    closeOpportunity: closeOpportunity,
+    deleteOne: deleteOne
   };
 })
 .factory('Auth', function ($http, $location, $window) {
