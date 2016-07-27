@@ -115,6 +115,31 @@ module.exports = {
     });
   },
 
+  // a function to close an opportunity
+  closeOpportunity : function(req,res){
+    Organization.update({ _id: req.params.id.toString() },{ $pull: { currentOpportunities: req.body.eventId } },
+      function(err){
+        if(err){
+          res.status(500).send(err);  
+        }
+    });
+    Organization.update({ _id: req.params.id.toString() },{ $pull: { pastOpportunities: req.body.eventId } },
+      function(err){
+        if(err){
+          res.status(500).send(err);  
+        }
+    });
+    Organization.update({ _id: req.params.id.toString() },{ $push: { pastOpportunities: req.body.eventId } },
+      function (err) {
+        if(err){
+          res.status(500).send(err);
+        }
+        else{
+          res.status(201).send('Closed Successfully');
+        }
+    });
+  },
+
   // a function for deleting an organization from the database
   deleteOne : function(req,res){
     Organization.findOne({ _id : req.params.id.toString() }, function(err, organization){
