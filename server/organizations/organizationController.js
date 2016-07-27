@@ -98,19 +98,22 @@ module.exports = {
 
   // a function to add an oppotunity to the organization
   addOpportunity : function(req,res){
-    Organization.update({ _id: req.params.id.toString() },{ $pull: { currentOpportunities: req.body.eventId } },
+    Organization.update({ _id: req.params.id.toString() },
+      { $pull: { currentOpportunities: req.body.opportunityId } },
       function(err){
         if(err){
           res.status(500).send(err);  
         }
     });
-    Organization.update({ _id: req.params.id.toString() },{ $push: { currentOpportunities: req.body.eventId } },
-      function (err) {
+    Organization.findOneAndUpdate({ _id: req.params.id.toString() },
+      { $push: { currentOpportunities: req.body.opportunityId } },
+      { new: true },
+      function (err, savedOrg){
         if(err){
           res.status(500).send(err);
         }
         else{
-          res.status(201).send('Updated Successfully');
+          res.status(201).send(JSON.stringify(savedOrg));
         }
     });
   },
