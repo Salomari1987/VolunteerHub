@@ -52,7 +52,7 @@ module.exports ={
   	//Test : Get
   	//http://127.0.0.1:8000/api/event/5790db44f97a940c03550a89
   	editOpportunity : function (req,res,next) {
-  		var opId = req.body.opId;
+  		var opId = req.params.id;
   		var token = req.headers['x-access-token'];
   		// if (!token){
   		// 	next(new Error('No token'))
@@ -97,18 +97,18 @@ module.exports ={
 	  				} else {
 	  					opportunity.openings.push(newOpening._id)
 	  					opportunity.save();
-	  					return opportunity.openings
+	  					res.json(opportunity) 
 	  				}
 	  			})
-	  			.then(function(openings) {
-	  				findAllOpening({'_id': { $in: openings}})
-			        .then(function(allOpenings){
-			          res.json(allOpenings);
-			        })
-	  			})
-	  			.fail(function(err){
-		        	next(err)
-		      	})
+	  			// .then(function(openings) {
+	  			// 	findAllOpening({'_id': { $in: openings}})
+			   //      .then(function(allOpenings){
+			   //        res.json(allOpenings);
+			   //      })
+	  			// })
+	  			// .fail(function(err){
+		    //     	next(err)
+		    //   	})
 		   	}})
 	    .fail(function (error) {
 	        next(error);
