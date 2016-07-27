@@ -9,6 +9,7 @@ var opportunitySchema = new mongoose.Schema({
   _organizer : { 
   	type: mongoose.Schema.Types.ObjectId,
   	ref: 'Organization',
+    required : true
   },
   startDate : {
     type: String,
@@ -21,7 +22,8 @@ var opportunitySchema = new mongoose.Schema({
   description : String,
   skillsRequired : [String],
   poster : String,
-  openings: [{ type: Schema.Types.ObjectId, ref: 'Opening' }]
+  currOpenings: [{ type: Schema.Types.ObjectId, ref: 'Opening' }],
+  closedOpenings: [{ type: Schema.Types.ObjectId, ref: 'Opening' }]
 });
 var Opportunity = mongoose.model('Opportunity', opportunitySchema);
 
