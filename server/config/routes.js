@@ -1,5 +1,4 @@
 var userController = require('../users/userController.js');
-var eventController = require('../events/eventController.js');
 var organizationController = require('../organizations/organizationController.js');
 var opportunityController = require('../opportunities/OpportunityController.js');
 var helpers = require('./helpers.js'); // our custom middleware
