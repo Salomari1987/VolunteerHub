@@ -1,9 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
-var User=require('./users/userModel.js');
-var Opportunity=require('./opportunities/opportunityModel.js');
-var Opening=require('./openings/OpeningModel.js');
 var app = express();
+
 
 
 
