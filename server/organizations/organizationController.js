@@ -30,10 +30,22 @@ module.exports = {
     });
 
     newOrg.save(function(error, newOrg){
-      if(error){
+      if(newOrg){
+        res.status(201).send(JSON.stringify(newOrg));
+      } else {
         res.status(500).send('An error occured');
       }
-      res.status(200).send(JSON.stringify(newOrg));
     });
-  }  
+  },
+
+  getOne : function(req,res){
+    Organization.findOne({_id: req.params.id.toString()})
+    .exec(function(err, organization){
+      if(organization){
+        res.status(200).send(JSON.stringify(organization));
+      } else{
+        res.status(500).send('No such organization exists');
+      }
+    });
+  }
 };
