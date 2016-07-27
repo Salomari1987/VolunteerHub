@@ -1,4 +1,4 @@
-angular.module('Khitwa.auth', [])
+angular.module('VolunteerHub.auth', [])
 
 .controller('AuthController', function ($scope, $window, $location, Auth) {
   $scope.user = {};

@@ -1,4 +1,4 @@
-angular.module('Khitwa.createEvent', [])
+angular.module('VolunteerHub.createEvent', [])
 //user can create event
 .controller('CreateEventCtrl', function ($scope, $location, Events, Auth) {
 	$scope.signout = function(){
