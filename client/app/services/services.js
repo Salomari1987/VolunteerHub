@@ -1,4 +1,4 @@
-angular.module('Khitwa.services', [])
+angular.module('VolunteerHub.services', [])
 
 .factory('Events', function ($http) {
 	var getEvents = function () {

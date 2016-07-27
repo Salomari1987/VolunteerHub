@@ -1,4 +1,4 @@
-angular.module('Khitwa.event', [])
+angular.module('VolunteerHub.event', [])
 .controller('EventCtrl', function ($scope, Events,$window, $routeParams, Auth) {
 	$scope.signout = function(){
 		Auth.signout();
