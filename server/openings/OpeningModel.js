@@ -6,7 +6,7 @@ var openingSchema = new mongoose.Schema({
   	type : String,
   	required : true
   },
-  _owner : { 
+  _opportunity: { 
   	type: mongoose.Schema.Types.ObjectId,
   	ref: 'Opportunity',
     required: true
@@ -16,7 +16,12 @@ var openingSchema = new mongoose.Schema({
   description : String,
   skillsrequired : [String],
   resources: [String],
-  volunteers : [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  pendingApps: [{ type:mongoose.Schema.Types.ObjectId, ref:'User' }],
+  volunteers : [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  status: {
+    type: String,
+    enum: ['Active', 'Closed']
+  }
 });
 var Opening = mongoose.model( 'Opening', openingSchema );
 
