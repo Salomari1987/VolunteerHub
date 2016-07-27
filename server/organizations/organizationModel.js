@@ -1,9 +1,6 @@
 var mongoose = require('mongoose');
 
-var bcrypt = require('bcrypt-nodejs');
-var SALT_WORK_FACTOR = 10;
 var Schema = mongoose.Schema;
-
 
 var OrganizationSchema = new mongoose.Schema({
 	EIN: String,
@@ -17,7 +14,6 @@ var OrganizationSchema = new mongoose.Schema({
   currentOpportunities : [{ type: Schema.Types.ObjectId, ref: 'Opportunity' }],
   pastOpportunities : [{ type: Schema.Types.ObjectId, ref: 'Opportunity' }],
   owners: [{ type: Schema.Types.ObjectId, ref: 'Volunteer' }]
-  salt: String
 });
 
 var Organization = mongoose.model('Organization' , OrganizationSchema);
