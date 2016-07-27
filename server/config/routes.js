@@ -13,13 +13,13 @@ module.exports = function (app, express) {
 
   app.get('/api/user/:id',userController.getUser);
 
-  app.get('/api/events',eventController.allEvents);
+  app.get('/api/opportunities',eventController.allOpportunities);
   
-  app.post('/api/createEvent',eventController.newEvent);
+  app.post('/api/createOpportunity',eventController.newOpportunity);
 
-  app.get('/api/event/:id',eventController.getEvent);
+  app.get('/api/Opportunity/:id',eventController.getOppurtinity);
 
-  app.post('/api/applyEvent',eventController.applyEvent);
+  app.post('/api/applyOpportunity',eventController.applyOpportunity);
 
 
   // Organization Routes
