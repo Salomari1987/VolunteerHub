@@ -86,6 +86,16 @@ module.exports = {
   			})
 		})
 	},
+	getOpening : function (req,res,next) {
+  		var id=(req.params.id).toString();
+  		findOpening{_id: id}) 
+  		.then (function(opening) {
+		  	res.status(200).send(opening);
+		})
+		.fail(function(error) {
+			next(error);
+		})
+  	},
 applyOpportunity :function (req , res , next) {
   		var userId=req.body.userId.toString();
   		// var eventId=req.body.eventId;
