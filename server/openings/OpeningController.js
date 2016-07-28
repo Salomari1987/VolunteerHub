@@ -1,9 +1,8 @@
-var Opening=require('./OpeningModel.js');
 // var User=require('../users/userModel.js');
 var Q = require('q');
 var jwt = require('jwt-simple');
-
 var Opportunity=require('../opportunities/OpportunityModel.js');
+var Opening=require('./OpeningModel.js');
 
 var findOpportunity = Q.nbind(Opportunity.findOne, Opportunity);
 var createOpportunity = Q.nbind(Opportunity.create, Opportunity);
