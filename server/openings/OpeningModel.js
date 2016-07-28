@@ -20,7 +20,8 @@ var openingSchema = new mongoose.Schema({
   volunteers : [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   status: {
     type: String,
-    enum: ['Active', 'Closed']
+    enum: ['Active', 'Closed'],
+    required:true
   }
 });
 var Opening = mongoose.model( 'Opening', openingSchema );

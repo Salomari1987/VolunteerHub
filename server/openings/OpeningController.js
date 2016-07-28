@@ -11,15 +11,15 @@ var findAllOpportunities = Q.nbind(Opportunity.find, Opportunity);
 var updateOpportunity = Q.nbind(Opportunity.update, Opportunity);
 var updateOneOpportunity = Q.nbind(Opportunity.findOneAndUpdate, Opportunity);
 
-
-var findOpening = Q.nbind(Opportunity.findOne, Opening);
+var updateOneOpening = Q.nbind(Opening.findOneAndUpdate, Opening);
+var findOpening = Q.nbind(Opening.findOne, Opening);
 var createOpening = Q.nbind(Opening.create, Opening);
 var findAllOpenings = Q.nbind(Opening.find, Opening);
 
 module.exports = {
 
 	allOpenings : function (req,res,next) {
-	findAllOpenings({})
+	findAllOpenings({status:"Active"})
 		.then(function (openings) {
 			res.json(openings);
 		})
@@ -83,6 +83,8 @@ module.exports = {
 		  	.then(function (opening) {
 			    if (opening) {
 			    	opening.status = "Closed";
+			    	opening.save();
+			    	console.log(opening)
 			    	updateOpportunity({ _id: opportunityId }, { $pull: { currOpenings: openingId } })
 			    	.fail(function (err) {
 				    	next(err)
@@ -90,7 +92,14 @@ module.exports = {
 		  			updateOneOpportunity({ _id: opportunityId}, { $push: { closedOpenings: openingId } },
       				{ new: true })
       				.then(function(opportunity){
-      					res.json(opportunity);
+      					console.log(opportunity)
+						return opportunity.closedOpenings;
+      				})
+      				.then(function(closed){
+      					findAllOpenings({'_id': { $in: closed}})
+				        .then(function(allOpenings){
+				          res.json(allOpenings);
+				        })
       				})
       				.fail(function(err){
       					next(err);
