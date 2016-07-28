@@ -2,25 +2,25 @@ var userController = require('../users/userController.js');
 var organizationController = require('../organizations/organizationController.js');
 var opportunityController = require('../opportunities/OpportunityController.js');
 var helpers = require('./helpers.js'); // our custom middleware
+var openingController = require('../openings/OpeningController.js');
 
 module.exports = function (app, express) {
 
   app.post('/api/users/signin', userController.signin);
-
   app.post('/api/users/signup', userController.signup);
-  
   app.get('/api/users/signedin', userController.checkAuth);
-
   app.get('/api/user/:id',userController.getUser);
 
+  //opportunities routes
   app.get('/api/opportunities',opportunityController.allOpportunities);
-  
-  app.post('/api/createOpportunity',opportunityController.newOpportunity);
-
   app.get('/api/opportunity/:id',opportunityController.getOpportunity);
-
   app.put('/api/opportunity/:id',opportunityController.editOpportunity);
-  app.put('/api/opportunity/addOpening/:id',opportunityController.addOpening);
+
+  //Openings Routes
+  app.get('/api/openings',openingController.allOpenings);
+  app.put('/api/openings/addOpening/:id',openingController.addOpening);
+  app.put('/api/openings/closeOpening/:id',openingController.closeOpening);
+
   // Organization Routes
   app.post('/api/organization',organizationController.createOrg);
   app.get('/api/organization',organizationController.getAll);
