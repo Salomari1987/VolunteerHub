@@ -2,7 +2,7 @@ var Opportunity=require('./OpportunityModel.js');
 var User=require('../users/userModel.js');
 var Q = require('q');
 var jwt = require('jwt-simple');
-var Opening = require('../openings/openingModel')
+var Opening = require('../openings/OpeningController.js')
 
 var findOpportunity = Q.nbind(Opportunity.findOne, Opportunity);
 var createOpportunity = Q.nbind(Opportunity.create, Opportunity);
@@ -24,29 +24,6 @@ module.exports ={
 			})
 	},
 
-	newOpportunity: function (req, res, next) {
-	  	var tempOpportunity = {
-			title : req.body.title,
-			_organizer : req.body._organizer,
-			startDate : req.body.startDate,
-			endDate : req.body.endDate,
-			location : req.body.location,
-			// locationId : req.body.locationId,
-			type : req.body.type,
-			description : req.body.description,
-  			skillsRequired: req.body.skillsRequired,
-			poster : req.body.poster
-	  	}
-	  	createOpportunity(tempOpportunity)
-	  		.then(function (createdOpporunity) {
-		        if (createdOpporunity) {
-		          res.json(createdOpporunity);
-		        }
-		      })
-		      .fail(function (error) {
-		        next(error);
-		      });
-  	},
   	editOpportunity : function (req,res,next) {
   		var opId = req.params.id;
   		var token = req.headers['x-access-token'];
@@ -72,93 +49,9 @@ module.exports ={
   			})
   		}
   	},
-  	addOpening: function (req, res, next) {
-  		var opportunityId = req.params.id
-  		var token = req.headers['x-access-token'];
-  		if (!token){
-  			next(new Error('No token'))
-  		} else {
-	  		var currOpening = {
-	  			title: req.body.title,
-	  			_owner: opportunityId,
-	  			numberOfVolunteers: req.body.numberOfVolunteers,
-	  			location: req.body.location,
-	  			description: req.body.description,
-	  			skillsRequired: req.body.skillsRequired,
-	  			resources: req.body.resources
-	  		}
-	  		createOpening(currOpening)
-		  	.then(function (newOpening) {
-			    if (newOpening) {
-			    	findOpportunity ( { _id:opportunityId } )
-			    	.then(function (opportunity) {
-				    	if(!opportunity) {
-		  					next(new Error('Opportunity does not exist'));
-		  				} else {
-		  					opportunity.openings.push(newOpening._id)
-		  					opportunity.save();
-		  					return opportunity.openings
-		  				}
-		  			})
-		  			.then(function(openings) {
-		  				findAllOpening({'_id': { $in: openings}})
-				        .then(function(allOpenings){
-				          res.json(allOpenings);
-				        })
-		  			})
-		  			.fail(function(err){
-			        	next(err)
-			      	})
-			   	}})
-		    .fail(function (error) {
-		        next(error);
-		 	})
-		}
-	},
-	closeOpening: function (req, res, next) {
-  		var opportunityId = req.params.id;
-  		var openingId = req.body.openingId
-  		var token = req.headers['x-access-token'];
-  		if (!token){
-  			next(new Error('No token'))
-  		} else {
-	  		var currOpening = {
-	  			title: req.body.title,
-	  			_owner: opportunityId,
-	  			numberOfVolunteers: req.body.numberOfVolunteers,
-	  			location: req.body.location,
-	  			description: req.body.description,
-	  			skillsRequired: req.body.skillsRequired,
-	  			resources: req.body.resources
-	  		}
-	  		createOpening(currOpening)
-		  	.then(function (newOpening) {
-			    if (newOpening) {
-			    	findOpportunity ( { _id:opportunityId } )
-			    	.then(function (opportunity) {
-				    	if(!opportunity) {
-		  					next(new Error('Opportunity does not exist'));
-		  				} else {
-		  					opportunity.openings.push(newOpening._id)
-		  					opportunity.save();
-		  					return opportunity.openings
-		  				}
-		  			})
-		  			.then(function(openings) {
-		  				findAllOpening({'_id': { $in: openings}})
-				        .then(function(allOpenings){
-				          res.json(allOpenings);
-				        })
-		  			})
-		  			.fail(function(err){
-			        	next(err)
-			      	})
-			   	}})
-		    .fail(function (error) {
-		        next(error);
-		 	})
-		}
-	},
+  	//TODO remove opportunity
+  	//TODO get openings
+  	
   	getOpportunity : function (req,res,next) {
   		var id=(req.params.id).toString();
   		findOpportunity({_id: id}) 
@@ -170,3 +63,26 @@ module.exports ={
 		})
   	}
 }
+	// newOpportunity: function (req, res, next) {
+	//   	var tempOpportunity = {
+	// 		title : req.body.title,
+	// 		_organizer : req.body._organizer,
+	// 		startDate : req.body.startDate,
+	// 		endDate : req.body.endDate,
+	// 		location : req.body.location,
+	// 		// locationId : req.body.locationId,
+	// 		type : req.body.type,
+	// 		description : req.body.description,
+ //  			skillsRequired: req.body.skillsRequired,
+	// 		poster : req.body.poster
+	//   	}
+	//   	createOpportunity(tempOpportunity)
+	//   		.then(function (createdOpporunity) {
+	// 	        if (createdOpporunity) {
+	// 	          res.json(createdOpporunity);
+	// 	        }
+	// 	      })
+	// 	      .fail(function (error) {
+	// 	        next(error);
+	// 	      });
+ //  	},
