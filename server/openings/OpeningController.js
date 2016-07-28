@@ -86,6 +86,29 @@ module.exports = {
   			})
 		})
 	},
+	editOpening : function (req,res,next) {
+  		var opId = req.params.id;
+  		var token = req.headers['x-access-token'];
+  		if (!token){
+  			next(new Error('No token'))
+  		} else {
+  			findOpening({_id:opId})
+  			.then(function (opening) {
+  				if(!opening) {
+  					next(new Error('opening does not exist'));
+  				} else {
+  					opening.title = req.body.title || opening.title;
+  					opening.numberOfVolunteers = req.body.numberOfVolunteers || opening.numberOfVolunteers;
+  					opening.location = req.body.location || opening.location;
+  					opening.description = req.body.description || opening.description;
+  					opening.skillsrequired = req.body.skillsrequired || opening.skillsrequired;
+  					opening.resources = req.body.resources || opening.resources;
+            opening.save();
+  					res.json(opening);
+  				}
+  			})
+  		}
+  	},
 	getOpening : function (req,res,next) {
   		var id=(req.params.id).toString();
   		findOpening{_id: id}) 
