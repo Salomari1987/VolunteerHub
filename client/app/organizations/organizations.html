@@ -1,0 +1,50 @@
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="/user/:id/#all" data-toggle="tab" aria-expanded="true">All Organizations</a>
+  </li>
+  <li class="">
+    <a href="/user/:id/#my" data-toggle="tab" aria-expanded="false">My Organizations</a>
+  </li>
+  <li class="">
+    <a href="/user/:id/#new" data-toggle="tab" aria-expanded="false">Create Organization</a>
+  </li>
+</ul>
+
+<div id="myTabContent" class="tab-content">
+  
+  <div class="tab-pane fade active in" id="all">
+    <ul>
+      <div class="jumbotron organizationsView" ng-repeat="organization in data.organizations">
+        <img ng-src="{{organization.picture}}" class="col-sm-12 col-xs-12" />
+        <div>
+          <h2><a href="#/organizations/{{organization._id}}">{{organization.name}}</a></h2>
+          <p>Causes Area: {{organization.causes_area}}</p>
+          <p>Rating: {{organization.rate}}/10</p>
+          <p><a class="btn btn-default btn-lg" href="#/organizations/{{organization._id}}" role="button">More Details</a></p>
+        </div>
+      </div>
+    </ul>
+  </div>
+
+  <div class="tab-pane fade" id="my">
+    <ul>
+      <div class="jumbotron organizationsView" ng-repeat="organization in data.organizations" ng-if="organization.owners.indexOf('579912ffbb14051c34ea2d67')!==-1">
+        <img ng-src="{{organization.picture}}" class="col-sm-12 col-xs-12" />
+        <div>
+          <h2><a href="#/organizations/{{organization._id}}">{{organization.name}}</a></h2>
+          <p>Causes Area: {{organization.causes_area}}</p>
+          <p>Rating: {{organization.rate}}/10</p>
+          <p><a class="btn btn-default btn-lg" href="#/organizations/{{organization._id}}" role="button">More Details</a></p>
+        </div>
+      </div>
+    </ul>
+  </div>
+  
+  <div class="tab-pane fade" id="new">
+    <ul>
+      <li>event3</li><li>event3</li><li>event3</li>
+    </ul>
+  </div>
+
+</div>
+
