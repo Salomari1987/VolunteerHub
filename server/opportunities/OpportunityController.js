@@ -3,7 +3,9 @@ var User=require('../users/userModel.js');
 var Q = require('q');
 var jwt = require('jwt-simple');
 var Opening = require('../openings/OpeningController.js')
+var Organization=require('../organizations/organizationModel.js');
 
+var updateOrganization = Q.nbind(Organization.update, Organization);
 var findOpportunity = Q.nbind(Opportunity.findOne, Opportunity);
 var createOpportunity = Q.nbind(Opportunity.create, Opportunity);
 var findAllOpportunities = Q.nbind(Opportunity.find, Opportunity);
@@ -11,6 +13,7 @@ var findAllOpportunities = Q.nbind(Opportunity.find, Opportunity);
 var findOpening = Q.nbind(Opening.findOne, Opening);
 var createOpening = Q.nbind(Opening.create, Opening);
 var findAllOpening = Q.nbind(Opening.find, Opening);
+)
 
 module.exports ={
 
@@ -49,9 +52,44 @@ module.exports ={
   			})
   		}
   	},
-  	//TODO remove opportunity
-  	//TODO get openings
-  	
+	getCurrOpenings: function (req,res,next) {
+		var id = (req.params.id).toString();
+		findOpportunity({_id:id})
+		.then(function(opportunity){
+			return opportunity.currOpenings
+		})
+		.then(function(current){
+			findAllOpenings({'_id': { $in: current}})
+	        .then(function(cOpenings){
+	          res.json(cOpenings);
+	        })
+			.fail(function(err){
+				next(err);
+			})
+		})
+		.fail(function (err) {
+	        next(err);
+	 	})
+	},
+	getClosedOpenings: function (req,res,next) {
+		var id = (req.params.id).toString();
+		findOpportunity({_id:id})
+		.then(function(opportunity){
+			return opportunity.closedOpenings
+		})
+		.then(function(closed){
+			findAllOpenings({'_id': { $in: closed }})
+	        .then(function(cOpenings){
+	          res.json(cOpenings);
+	        })
+			.fail(function(err){
+				next(err);
+			})
+		})
+		.fail(function (err) {
+	        next(err);
+	 	})
+	},
   	getOpportunity : function (req,res,next) {
   		var id=(req.params.id).toString();
   		findOpportunity({_id: id}) 
@@ -62,22 +100,43 @@ module.exports ={
 			next(error);
 		})
   	},
-  	deleteOne : function(req,res){
+  	deleteOne : function(req,res, next){
 	  	var id=(req.params.id).toString();
+	  	var orgId;
 	    findOpportunity({ _id : id})
 	    .then(function(opportunity){
-	    	opportunity.remove(function(err,table) {
-		        if(err){
-		          res.status(500).send('Unable to delete organization')
-		        } else {
-		          res.status(201).send('Organization Successfully Removed');
-	        	}
-	      	});
+	    	orgId = opportunity._organizer;
+	    	Opening.remove({_id:{$in: opportunity.currOpenings}}, function(err, removed){
+	    		if(err){
+	    			console.log("Couldn't remove current openings");
+	    		} else {
+	    			Opening.remove({_id:{$in: opportunity.closedOpenings}}, function(err, removed){
+	    				if(err){
+			    			console.log("Couldn't remove closed openings");
+			    		} else {
+			    			opportunity.remove(function(err,table) {
+					        if(err){
+					          res.status(500).send('Unable to delete organization')
+					        } else {
+					      		updateOrganization({ _id: orgId }, { $pull: { currentOpportunities: id } })
+						    	.fail(function (err) {
+						    		updateOrganization({ _id: orgId }, { $pull: { pastOpportunities: id } })
+							    	.fail(function (err) {
+							    		next(err)
+							    	})
+					  			})
+		          				res.status(201).send('Opportunity Successfully Removed');
+				        		}
+				      		});
+			    		}
+	    			})
+	    		}
+	    	})
 	    })
 	    .fail(function(err){
 			next(error);
 	    })
-	  }
+	  },
 }
 	// newOpportunity: function (req, res, next) {
 	//   	var tempOpportunity = {
