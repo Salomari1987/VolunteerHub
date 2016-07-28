@@ -182,25 +182,25 @@ module.exports ={
 	  },
 }
 	// newOpportunity: function (req, res, next) {
-	//   	var tempOpportunity = {
-	// 		title : req.body.title,
-	// 		_organizer : req.body._organizer,
-	// 		startDate : req.body.startDate,
-	// 		endDate : req.body.endDate,
-	// 		location : req.body.location,
-	// 		// locationId : req.body.locationId,
-	// 		type : req.body.type,
-	// 		description : req.body.description,
- //  			skillsRequired: req.body.skillsRequired,
-	// 		poster : req.body.poster
-	//   	}
-	//   	createOpportunity(tempOpportunity)
-	//   		.then(function (createdOpporunity) {
-	// 	        if (createdOpporunity) {
-	// 	          res.json(createdOpporunity);
-	// 	        }
-	// 	      })
-	// 	      .fail(function (error) {
-	// 	        next(error);
-	// 	      });
- //  	},
+	  // 	var tempOpportunity = {
+			// title : req.body.title,
+			// _organizer : req.body._organizer,
+			// startDate : req.body.startDate,
+			// endDate : req.body.endDate,
+			// location : req.body.location,
+			// // locationId : req.body.locationId,
+			// type : req.body.type,
+			// description : req.body.description,
+  	// 		skillsRequired: req.body.skillsRequired,
+			// poster : req.body.poster
+	  // 	}
+	  // 	createOpportunity(tempOpportunity)
+	  // 		.then(function (createdOpporunity) {
+		 //        if (createdOpporunity) {
+		 //          res.json(createdOpporunity);
+		 //        }
+		 //      })
+		 //      .fail(function (error) {
+		 //        next(error);
+		 //      });
+  	},
