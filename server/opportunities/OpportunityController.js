@@ -13,7 +13,6 @@ var findAllOpportunities = Q.nbind(Opportunity.find, Opportunity);
 var findOpening = Q.nbind(Opening.findOne, Opening);
 var createOpening = Q.nbind(Opening.create, Opening);
 var findAllOpening = Q.nbind(Opening.find, Opening);
-)
 
 module.exports ={
 

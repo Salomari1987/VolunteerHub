@@ -63,6 +63,7 @@ module.exports = {
 		 	})
 		}
 	},
+
 	deleteOne : function(req,res, next){
 		var id = (req.params.id).toString();
 		findOpening({_id:id})
@@ -85,6 +86,7 @@ module.exports = {
   			})
 		})
 	},
+
 	editOpening : function (req,res,next) {
 		var opId = req.params.id;
 		var token = req.headers['x-access-token'];
@@ -108,6 +110,7 @@ module.exports = {
 			})
 		}
 	},
+
   applyToOpening: function (req,res,next){
 
   },
@@ -116,12 +119,12 @@ module.exports = {
   },
 	getOpening : function (req,res,next) {
   		var id=(req.params.id).toString();
-  		findOpening{_id: id}) 
+  		findOpening({_id: id}) 
   		.then (function(opening) {
 		  	res.status(200).send(opening);
 		})
 		.fail(function(error) {
 			next(error);
 		})
-  	},
+  },
 }
