@@ -10,6 +10,7 @@ module.exports = function (app, express) {
   app.post('/api/users/signup', userController.signup);
   app.get('/api/users/signedin', userController.checkAuth);
   app.get('/api/user/:id',userController.getUser);
+  app.get('/api/user/',userController.getAll);
 
   //Opportunities routes
   app.get('/api/opportunities',opportunityController.allOpportunities);

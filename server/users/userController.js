@@ -10,14 +10,6 @@ var findAllusers = Q.nbind(User.find, User);
 module.exports = {
 
 
-  // Test : Post
-  // http://127.0.0.1:8000/api/users/signin
-  // body :
-  // {
-  //   "username" : "admin",
-  //   "password" : "admin"
-  // }
-
   signin: function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
@@ -45,13 +37,6 @@ module.exports = {
       });
   },
 
-
-  // Test 'Post'
-  // http://127.0.0.1:8000/api/users/signup
-  // Body : {
-  //     "username" : "tawfik",
-  //     "password" : "admin"
-  // }
 
   signup : function(req, res) {
     var username = req.body.username;
@@ -117,13 +102,21 @@ module.exports = {
   },
 
   getUser : function (req,res,next) {
-    
-    console.log(req.params.id);
+
     var id=(req.params.id).toString();
     User.findOne({_id : id}, function (err , user) {
       if(err)
         res.status(500).send(err);
       res.json(user);
+    })
+  },
+
+  getAll : function (req, res, next){
+    User.find({}, function(err, users) {
+      if(err){
+        res.status(500).send(err);
+      }
+      res.json(users)
     })
   }   
 
