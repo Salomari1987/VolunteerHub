@@ -28,7 +28,7 @@
 
   <div class="tab-pane fade" id="my">
     <ul>
-      <div class="jumbotron organizationsView" ng-repeat="organization in data.organizations" ng-if="organization.owners.indexOf('579912ffbb14051c34ea2d67')!==-1">
+      <div class="jumbotron organizationsView" ng-repeat="organization in data.organizations" ng-if="organization.owners.indexOf(userId)!==-1">
         <img ng-src="{{organization.picture}}" class="col-sm-12 col-xs-12" />
         <div>
           <h2><a href="#/organizations/{{organization._id}}">{{organization.name}}</a></h2>
