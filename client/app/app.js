@@ -5,6 +5,8 @@ angular.module('VolunteerHub', [
   'VolunteerHub.event',
   'VolunteerHub.events',
   'VolunteerHub.user',
+  'VolunteerHub.organizations',
+  'VolunteerHub.organizationProfile',
   'ngRoute'
 ])
 .controller("HeaderController", function($scope, $location, Auth) {
@@ -48,6 +50,16 @@ angular.module('VolunteerHub', [
     .when('/user/:id', {
       templateUrl: 'app/user/user.html',
       controller: 'UserCtrl',
+      authenticate: true
+    })
+    .when('/organizations', {
+      templateUrl: 'app/organizations/organizations.html',
+      controller: 'organizationsController',
+      authenticate: true
+    })
+    .when('/organizations/:id', {
+      templateUrl: 'app/organizations/organizationProfile.html',
+      controller: 'organizationProfileController',
       authenticate: true
     })
     .otherwise({ redirectTo: '/events' });

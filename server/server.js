@@ -6,6 +6,8 @@ var user=require('./events/eventModel.js');
 var app = express();
 
 
+
+
 // connect to mongo database named "VolunteerHub"
 mongoose.connect('mongodb://localhost/VolunteerHub');
 db=mongoose.connection;

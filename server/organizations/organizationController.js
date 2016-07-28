@@ -4,29 +4,29 @@ module.exports = {
 
   // a function for creating new organizations
   createOrg : function(req, res) {
-    var EIN = req.body.EIN ;
-    var name = req.body.name ;
-    var causes_area = req.body.causes_area ;
-    var locations = req.body.locations ;
-    var missionStatement = req.body.missionStatement ;
-    var contactInfo = req.body.contactInfo ;
-    var rate = req.body.rate ;
-    var picture = req.body.picture ;
-    var currentOpportunities = req.body.currentOpportunities ;
-    var pastOpportunities = req.body.pastOpportunities ;
-    var owners = req.body.owners ;
+    var EIN = req.body.EIN;
+    var name = req.body.name;
+    var causes_area = req.body.causes_area;
+    var locations = req.body.locations;
+    var missionStatement = req.body.missionStatement;
+    var contactInfo = req.body.contactInfo;
+    var rate = req.body.rate;
+    var picture = req.body.picture;
+    var currentOpportunities = req.body.currentOpportunities;
+    var pastOpportunities = req.body.pastOpportunities;
+    var owners = req.body.owners;
 
     var newOrg = Organization({
-      EIN : EIN ,
-      name : name ,
-      causes_area : causes_area ,
-      locations : locations ,
-      missionStatement : missionStatement ,
-      contactInfo : contactInfo ,
-      rate : rate ,
-      picture : picture ,
-      currentOpportunities : currentOpportunities ,
-      pastOpportunities : pastOpportunities ,
+      EIN : EIN,
+      name : name,
+      causes_area : causes_area,
+      locations : locations,
+      missionStatement : missionStatement,
+      contactInfo : contactInfo,
+      rate : rate,
+      picture : picture,
+      currentOpportunities : currentOpportunities,
+      pastOpportunities : pastOpportunities,
       owners : owners
     });
 
@@ -89,10 +89,61 @@ module.exports = {
           if(err){
             res.status(500).send(error);
           } else {
-            res.status(201).send('Info Updated!');
+            res.status(201).send(JSON.stringify(savedOrg));
           }
         });
       }
+    });
+  },
+
+  // a function to add an oppotunity to the organization
+  addOpportunity : function(req,res){
+    Organization.update({ _id: req.params.id.toString() },
+      { $pull: { currentOpportunities: req.body.opportunityId } },
+      function(err){
+        if(err){
+          res.status(500).send(err);  
+        }
+    });
+    Organization.findOneAndUpdate({ _id: req.params.id.toString() },
+      { $push: { currentOpportunities: req.body.opportunityId } },
+      { new: true },
+      function (err, savedOrg){
+        if(err){
+          res.status(500).send(err);
+        }
+        else{
+          res.status(201).send(JSON.stringify(savedOrg));
+        }
+    });
+  },
+
+  // a function to close an opportunity
+  closeOpportunity : function(req,res){
+    Organization.update({ _id: req.params.id.toString() },
+      { $pull: { currentOpportunities: req.body.opportunityId } },
+      function(err){
+        if(err){
+          res.status(500).send(err);  
+        }
+    });
+    Organization.update({ _id: req.params.id.toString() },
+      { $pull: { pastOpportunities: req.body.opportunityId } },
+      function(err){
+        if(err){
+          res.status(500).send(err);  
+        }
+    });
+    Organization.findOneAndUpdate({ _id: req.params.id.toString() },
+      { $push: { pastOpportunities: req.body.opportunityId } },
+      { new: true },
+      function (err, savedOrg) {
+        if(err){
+          res.status(500).send(err);
+        }
+        else{
+          res.status(201).send(JSON.stringify(savedOrg));
+        }
     });
   },
 
