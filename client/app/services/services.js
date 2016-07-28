@@ -78,7 +78,7 @@ angular.module('VolunteerHub.services', [])
       url: '/api/organization'
     })
     .then(function (resp) {
-      return JSON.parse(resp.data);
+      return resp.data;
     });
   };
 
