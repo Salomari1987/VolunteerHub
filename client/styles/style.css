@@ -142,3 +142,23 @@ input[type="password"] {
 .profRating {
   padding-left: 100px
 }
+
+.organizationsView {
+  width: 80%;
+  float: left;
+  margin-top: 2%;
+}
+
+.organizationsView img {
+  max-width: 20%;
+  max-height: 20%;
+  min-width: 200px;
+  min-height: 100px;
+  float: left;
+}
+
+.organizationsView div {
+  margin-left: 2%;
+  width : 60%;
+  float: left;
+}
