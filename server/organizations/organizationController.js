@@ -155,6 +155,7 @@ module.exports = {
       }
       organization.remove(function(err,table) {
         if(err){
+          //TODO delete opportunities
           res.status(500).send('Unable to delete organization')
         } else {
           res.status(201).send('Organization Successfully Removed');
