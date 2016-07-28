@@ -38,25 +38,9 @@ var UserSchema = new mongoose.Schema({
 
 });
 
-// var User=mongoose.model('User', UserSchema);
-
-
-
-// User.comparePasswords = function (candidatePassword) {
-//   var savedPassword = this.password;
-//   return Q.Promise(function (resolve, reject) {
-//     bcrypt.compare(candidatePassword, savedPassword, function (err, isMatch) {
-//       if (err) {
-//         reject(err);
-//       } else {
-//         resolve(isMatch);
-//       }
-//     });
-//   });
-// };
-
 
 var User = mongoose.model('User' , UserSchema);
+
 User.comparePassword = function(candidatePassword, savedPassword, res, cb){
   bcrypt.compare( candidatePassword, savedPassword, function(err, isMatch){
     if(err){
@@ -97,11 +81,4 @@ UserSchema.pre('save', function (next) {
 });
 
 
-// var newUser=new User({
-//   userName : 'tawfik'
-// });
-
-// newUser.save(function (err,newEntry) {
-//   console.log(newEntry);
-// })
 module.exports = User;
