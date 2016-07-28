@@ -61,7 +61,23 @@ module.exports ={
 		.fail(function(error) {
 			next(error);
 		})
-  	}
+  	},
+  	deleteOne : function(req,res){
+	  	var id=(req.params.id).toString();
+	    findOpportunity({ _id : id})
+	    .then(function(opportunity){
+	    	opportunity.remove(function(err,table) {
+		        if(err){
+		          res.status(500).send('Unable to delete organization')
+		        } else {
+		          res.status(201).send('Organization Successfully Removed');
+	        	}
+	      	});
+	    })
+	    .fail(function(err){
+			next(error);
+	    })
+	  }
 }
 	// newOpportunity: function (req, res, next) {
 	//   	var tempOpportunity = {

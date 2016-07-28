@@ -76,9 +76,9 @@ module.exports = {
   		var opportunityId = req.params.id.toString();
   		var openingId = req.body.openingId
   		var token = req.headers['x-access-token'];
-  		// if (!token){
-  		// 	next(new Error('No token'))
-  		// } else {
+  		if (!token){
+  			next(new Error('No token'))
+  		} else {
   			findOpening({_id:openingId})
 		  	.then(function (opening) {
 			    if (opening) {
@@ -108,7 +108,7 @@ module.exports = {
 		    .fail(function (error) {
 		        next(error);
 		 	})
-		// }
+		}
 	},
 applyOpportunity :function (req , res , next) {
   		var userId=req.body.userId.toString();

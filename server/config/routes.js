@@ -15,8 +15,10 @@ module.exports = function (app, express) {
   app.get('/api/opportunities',opportunityController.allOpportunities);
   app.get('/api/opportunity/:id',opportunityController.getOpportunity);
   app.put('/api/opportunity/:id',opportunityController.editOpportunity);
-
+  app.delete('/api/opportunity/:id',opportunityController.deleteOne);
+  
   //Openings Routes
+  
   app.get('/api/openings',openingController.allOpenings);
   app.put('/api/openings/addOpening/:id',openingController.addOpening);
   app.put('/api/openings/closeOpening/:id',openingController.closeOpening);
