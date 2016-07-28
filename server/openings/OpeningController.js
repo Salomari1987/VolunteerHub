@@ -87,28 +87,34 @@ module.exports = {
 		})
 	},
 	editOpening : function (req,res,next) {
-  		var opId = req.params.id;
-  		var token = req.headers['x-access-token'];
-  		if (!token){
-  			next(new Error('No token'))
-  		} else {
-  			findOpening({_id:opId})
-  			.then(function (opening) {
-  				if(!opening) {
-  					next(new Error('opening does not exist'));
-  				} else {
-  					opening.title = req.body.title || opening.title;
-  					opening.numberOfVolunteers = req.body.numberOfVolunteers || opening.numberOfVolunteers;
-  					opening.location = req.body.location || opening.location;
-  					opening.description = req.body.description || opening.description;
-  					opening.skillsrequired = req.body.skillsrequired || opening.skillsrequired;
-  					opening.resources = req.body.resources || opening.resources;
-            opening.save();
-  					res.json(opening);
-  				}
-  			})
-  		}
-  	},
+		var opId = req.params.id;
+		var token = req.headers['x-access-token'];
+		if (!token){
+			next(new Error('No token'))
+		} else {
+			findOpening({_id:opId})
+			.then(function (opening) {
+				if(!opening) {
+					next(new Error('opening does not exist'));
+				} else {
+					opening.title = req.body.title || opening.title;
+					opening.numberOfVolunteers = req.body.numberOfVolunteers || opening.numberOfVolunteers;
+					opening.location = req.body.location || opening.location;
+					opening.description = req.body.description || opening.description;
+					opening.skillsrequired = req.body.skillsrequired || opening.skillsrequired;
+					opening.resources = req.body.resources || opening.resources;
+          opening.save();
+					res.json(opening);
+				}
+			})
+		}
+	},
+  applyToOpening: function (req,res,next){
+
+  },
+  approveVolunteer: function (req,res,next){
+
+  },
 	getOpening : function (req,res,next) {
   		var id=(req.params.id).toString();
   		findOpening{_id: id}) 
@@ -119,30 +125,4 @@ module.exports = {
 			next(error);
 		})
   	},
-applyOpportunity :function (req , res , next) {
-  		var userId=req.body.userId.toString();
-  		// var eventId=req.body.eventId;
-
-
-
-  		// User.update({ _id: userId },{ $pull: { opportunities: opportunityId } },function(err) {if(err) console.log(err)});
-  		// User.update({ _id: userId },{ $push: { opportunities: opportunityId } }
-  		// 	, function (err) {
-  		// 		if(err)
-  		// 			console.log(err);
-  		// 		else
-  		// 			console.log('add it');
-  		// 	});
-  		// Opportunity.update({ _id: opportunityId },{ $pull: { users: userId } },function(err) {if(err) console.log(err)});
-  		// Opportunity.findOneAndUpdate({ _id: opportunityId },{ $push: { users: userId } } , { new : true}
-  		// 	, function (err , event) {
-  		// 		if(err)
-  		// 			console.log(err);
-  		// 		else{
-  		// 			console.log('add it');
-  		// 			res.json(opportunity);
-  		// 		}
-  		// 	});
-
-	}
 }

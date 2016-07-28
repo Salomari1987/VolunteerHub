@@ -23,7 +23,9 @@ module.exports = function (app, express) {
   
   app.get('/api/openings',openingController.allOpenings);
   app.put('/api/openings/closeOpening/:id',openingController.closeOpening);
-  app.delete('/api/openings/openings/:id',openingController.deleteOne);
+  app.delete('/api/openings/:id',openingController.deleteOne);
+  app.get('/api/openings/:id',openingController.getOpening);
+  app.put('/api/openings/:id',openingController.editOpening);
 
   // Organization Routes
   app.post('/api/organization',organizationController.createOrg);
