@@ -27,54 +27,9 @@ module.exports = {
 			next(err);
 		})
 	},
-	addOpening: function (req, res, next) {
-  		var opportunityId = req.params.id
-  		var token = req.headers['x-access-token'];
-  		if (!token){
-  			next(new Error('No token'))
-  		} else {
-	  		var currOpening = {
-	  			title: req.body.title,
-	  			_opportunity: opportunityId,
-	  			numberOfVolunteers: req.body.numberOfVolunteers,
-	  			location: req.body.location,
-	  			description: req.body.description,
-	  			skillsRequired: req.body.skillsRequired,
-	  			resources: req.body.resources,
-	  			status: 'Active'
-	  		}
-	  		createOpening(currOpening)
-		  	.then(function (newOpening) {
-			    if (newOpening) {
-			    	findOpportunity ( { _id:opportunityId } )
-			    	.then(function (opportunity) {
-				    	if(!opportunity) {
-		  					next(new Error('Opportunity does not exist'));
-		  				} else {
-		  					opportunity.currOpenings.push(newOpening._id)
-		  					opportunity.save();
-		  					console.log(opportunity)
-		  					return opportunity.currOpenings
-		  				}
-		  			})
-		  			.then(function(openings) {
-		  				findAllOpenings({'_id': { $in: openings}})
-				        .then(function(allOpenings){
-				          res.json(allOpenings);
-				        })
-		  			})
-		  			.fail(function(err){
-			        	next(err)
-			      	})
-			   	}})
-		    .fail(function (error) {
-		        next(error);
-		 	})
-		}
-	},
+	
 	closeOpening: function (req, res, next) {
-  		var opportunityId = req.params.id.toString();
-  		var openingId = req.body.openingId
+  		var openingId = req.params.id.toString();
   		var token = req.headers['x-access-token'];
   		if (!token){
   			next(new Error('No token'))
@@ -82,6 +37,7 @@ module.exports = {
   			findOpening({_id:openingId})
 		  	.then(function (opening) {
 			    if (opening) {
+			    	var opportunityId = opening._opportunity;
 			    	opening.status = "Closed";
 			    	opening.save();
 			    	updateOpportunity({ _id: opportunityId }, { $pull: { currOpenings: openingId } })

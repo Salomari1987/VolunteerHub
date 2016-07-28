@@ -16,12 +16,14 @@ module.exports = function (app, express) {
   app.get('/api/opportunity/:id',opportunityController.getOpportunity);
   app.put('/api/opportunity/:id',opportunityController.editOpportunity);
   app.delete('/api/opportunity/:id',opportunityController.deleteOne);
-  
+  app.get('/api/opportunity/currentopenings', opportunityController.getCurrOpenings);
+  app.get('/api/opportunity/closedopenings', opportunityController.getClosedOpenings);
+  app.put('/api/opportunity/addOpening/:id',opportunityController.addOpening);
   //Openings Routes
   
   app.get('/api/openings',openingController.allOpenings);
-  app.put('/api/openings/addOpening/:id',openingController.addOpening);
   app.put('/api/openings/closeOpening/:id',openingController.closeOpening);
+  app.delete('/api/openings/openings/:id',openingController.deleteOne);
 
   // Organization Routes
   app.post('/api/organization',organizationController.createOrg);
