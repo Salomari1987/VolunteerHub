@@ -84,7 +84,6 @@ module.exports = {
 			    if (opening) {
 			    	opening.status = "Closed";
 			    	opening.save();
-			    	console.log(opening)
 			    	updateOpportunity({ _id: opportunityId }, { $pull: { currOpenings: openingId } })
 			    	.fail(function (err) {
 				    	next(err)
@@ -92,7 +91,6 @@ module.exports = {
 		  			updateOneOpportunity({ _id: opportunityId}, { $push: { closedOpenings: openingId } },
       				{ new: true })
       				.then(function(opportunity){
-      					console.log(opportunity)
 						return opportunity.closedOpenings;
       				})
       				.then(function(closed){
@@ -109,6 +107,28 @@ module.exports = {
 		        next(error);
 		 	})
 		}
+	},
+	deleteOne : function(req,res, next){
+		var id = (req.params.id).toString();
+		findOpening({_id:id})
+		.then(function(opening){
+			var opportunityId = opening._opportunity
+			updateOpportunity({ _id: opportunityId }, { $pull: { currOpenings: openingId } })
+			.fail(function (err) {
+				console.log(err)
+		  	})
+	    	updateOpportunity({ _id: opportunityId }, { $pull: { closedOpenings: openingId } })
+	    	.fail(function (err) {
+				console.log(err)
+  			})
+  			opening.remove(function(err, removed){
+  				if(err){
+		          res.status(500).send('Unable to delete opening')
+		        } else {
+		          res.status(201).send('Opening Successfully Removed');
+		        }
+  			})
+		})
 	},
 applyOpportunity :function (req , res , next) {
   		var userId=req.body.userId.toString();
