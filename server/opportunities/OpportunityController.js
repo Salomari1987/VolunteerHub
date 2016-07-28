@@ -2,7 +2,7 @@ var Opportunity=require('./OpportunityModel.js');
 var User=require('../users/userModel.js');
 var Q = require('q');
 var jwt = require('jwt-simple');
-var Opening = require('../openings/OpeningController.js')
+var Opening = require('../openings/OpeningModel.js')
 var Organization=require('../organizations/organizationModel.js');
 
 var updateOrganization = Q.nbind(Organization.update, Organization);
@@ -12,7 +12,7 @@ var findAllOpportunities = Q.nbind(Opportunity.find, Opportunity);
 
 var findOpening = Q.nbind(Opening.findOne, Opening);
 var createOpening = Q.nbind(Opening.create, Opening);
-var findAllOpening = Q.nbind(Opening.find, Opening);
+var findAllOpenings = Q.nbind(Opening.find, Opening);
 
 module.exports ={
 
@@ -26,11 +26,11 @@ module.exports ={
 			})
 	},
 	addOpening: function (req, res, next) {
-  		var opportunityId = req.params.id
-  		var token = req.headers['x-access-token'];
-  		if (!token){
-  			next(new Error('No token'))
-  		} else {
+  		var opportunityId = req.params.id.toString();
+  		// var token = req.headers['x-access-token'];
+  		// if (!token){
+  		// 	next(new Error('No token'))
+  		// } else {
 	  		var currOpening = {
 	  			title: req.body.title,
 	  			_opportunity: opportunityId,
@@ -41,10 +41,12 @@ module.exports ={
 	  			resources: req.body.resources,
 	  			status: 'Active'
 	  		}
+	  		console.log(currOpening)
 	  		createOpening(currOpening)
 		  	.then(function (newOpening) {
+		  		console.log(newOpening)
 			    if (newOpening) {
-			    	findOpportunity ( { _id:opportunityId } )
+			    	findOpportunity ( { "_id":opportunityId } )
 			    	.then(function (opportunity) {
 				    	if(!opportunity) {
 		  					next(new Error('Opportunity does not exist'));
@@ -68,14 +70,14 @@ module.exports ={
 		    .fail(function (error) {
 		        next(error);
 		 	})
-		}
+		// }
 	},
   	editOpportunity : function (req,res,next) {
   		var opId = req.params.id;
-  		var token = req.headers['x-access-token'];
-  		if (!token){
-  			next(new Error('No token'))
-  		} else {
+  		// var token = req.headers['x-access-token'];
+  		// if (!token){
+  		// 	next(new Error('No token'))
+  		// } else {
   			findOpportunity({_id:opId})
   			.then(function (opportunity) {
   				if(!opportunity) {
@@ -93,21 +95,22 @@ module.exports ={
   					res.json(opportunity);
   				}
   			})
-  		}
+  		// }
   	},
 	getCurrOpenings: function (req,res,next) {
 		var id = (req.params.id).toString();
-		findOpportunity({_id:id})
+		findOpportunity({'_id':id})
 		.then(function(opportunity){
 			return opportunity.currOpenings
 		})
 		.then(function(current){
+			console.log(current)
 			findAllOpenings({'_id': { $in: current}})
 	        .then(function(cOpenings){
-	          res.json(cOpenings);
+	          	res.json(cOpenings);
 	        })
 			.fail(function(err){
-				next(err);
+				res.send(204);
 			})
 		})
 		.fail(function (err) {
@@ -116,17 +119,17 @@ module.exports ={
 	},
 	getClosedOpenings: function (req,res,next) {
 		var id = (req.params.id).toString();
-		findOpportunity({_id:id})
+		findOpportunity({'_id':id})
 		.then(function(opportunity){
 			return opportunity.closedOpenings
 		})
 		.then(function(closed){
 			findAllOpenings({'_id': { $in: closed }})
 	        .then(function(cOpenings){
-	          res.json(cOpenings);
+	          	 res.json(cOpenings);
 	        })
 			.fail(function(err){
-				next(err);
+				res.send(204);
 			})
 		})
 		.fail(function (err) {
@@ -203,4 +206,4 @@ module.exports ={
 		 //      .fail(function (error) {
 		 //        next(error);
 		 //      });
-  	},
+  	// },
