@@ -162,3 +162,19 @@ input[type="password"] {
   width : 60%;
   float: left;
 }
+
+input::-webkit-input-placeholder {
+color: #3e3f3a !important;
+}
+ 
+input:-moz-placeholder { /* Firefox 18- */
+color: #3e3f3a !important;  
+}
+ 
+input::-moz-placeholder {  /* Firefox 19+ */
+color: #3e3f3a !important;  
+}
+ 
+input:-ms-input-placeholder {  
+color: #3e3f3a !important;  
+}
