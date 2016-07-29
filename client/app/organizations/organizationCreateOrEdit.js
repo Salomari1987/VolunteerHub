@@ -23,6 +23,7 @@ angular.module('VolunteerHub.organizationCreateEdit', [])
 				picture: 'http://i.imgur.com/FlEXhZo.jpg?1',
 				causes_area: [],
 				locations: [],
+				rate: 0,
 				contactInfoKeys: ['Phonenumber','email'],
 				contactInfo: {
 					Phonenumber: '',
@@ -78,6 +79,7 @@ angular.module('VolunteerHub.organizationCreateEdit', [])
 	};
 
 	$scope.create = function(){
+		$scope.newOrg.owners = [window.userId];
 		Organizations.createOrg($scope.newOrg)
 		.then(function(result){
 			$location.path('/organizations/profile/'+result.data._id);
