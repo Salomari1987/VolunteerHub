@@ -12,6 +12,8 @@ angular.module('VolunteerHub', [
 ])
 .controller("HeaderController", function($scope, $location, Auth) {
 
+  $scope.Auth = Auth.isAuth;
+
   if(Auth.isAuth){
     window.userId = window.localStorage.getItem('userId');
   } else {
