@@ -1,6 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
-
+var sendEmail = require('./emailNotifications.js');
 
 // connect to mongo database named "VolunteerHub"
 mongoose.connect('mongodb://localhost/VolunteerHub');
@@ -39,6 +39,14 @@ app.on('SIGTERM', function(){
 app.on('exit', function(){
 	server.close();
 })
+
+// sending a test email
+var mailOptions = {
+  to: 'bader_khalifeh@hotmail.com',
+  subject: 'This is a test ',
+  text: 'Hello bader, this is a test email'
+};
+//sendEmail(mailOptions);
 
 // export our app for testing and flexibility, required by index.js
 module.exports = app;
