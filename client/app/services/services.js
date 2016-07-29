@@ -58,10 +58,9 @@ angular.module('VolunteerHub.services', [])
 
 	return {
     getUser : getUser,
-    getAll : getAll,
+    getAll : getAll
     createEvent: createEvent,
     getOne: getOne, 
-    joinEvent : joinEvent,
     editOpportunity: editOpportunity
 	};
 })

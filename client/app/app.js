@@ -84,8 +84,18 @@ angular.module('VolunteerHub', [
       controller: 'organizationProfileController',
       authenticate: true
     })
-    .otherwise({ redirectTo: '/organizations' });
 
+    .when('/opportunities/create', {
+      templateUrl: 'app/createOpportunity/createOpportunity.html',
+      controller: 'opportunityCreateOrEditController',
+      authenticate: true
+    })
+    .when('/opportunities/edit/:id', {
+      templateUrl: 'app/createOpportunity/createOpportunity.html',
+      controller: 'opportunityCreateOrEditController',
+      authenticate: true
+    })
+    .otherwise({ redirectTo: '/organizations' });
     $httpProvider.interceptors.push('AttachTokens');
 })
 
