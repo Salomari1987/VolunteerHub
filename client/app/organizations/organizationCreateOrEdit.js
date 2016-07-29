@@ -6,6 +6,8 @@ angular.module('VolunteerHub.organizationCreateEdit', [])
 
 	$scope.changedFlag = false;
 
+	$scope.routeParams = $routeParams;
+
 	$scope.initialize = function(){
 		if($routeParams.id){
 			Organizations.getOne($routeParams.id)
@@ -18,7 +20,14 @@ angular.module('VolunteerHub.organizationCreateEdit', [])
 			});
 		} else {
 			$scope.newOrg = {
-				picture: 'http://i.imgur.com/FlEXhZo.jpg?1'
+				picture: 'http://i.imgur.com/FlEXhZo.jpg?1',
+				causes_area: [],
+				locations: [],
+				contactInfoKeys: ['Phonenumber','email'],
+				contactInfo: {
+					Phonenumber: '',
+					email: ''
+				}
 			}
 		}
 	};
@@ -62,6 +71,16 @@ angular.module('VolunteerHub.organizationCreateEdit', [])
 		Organizations.editProfile($scope.newOrg)
 		.then(function(result){
 			$location.path('/organizations/profile/'+$scope.newOrg._id);
+		})
+		.catch(function(error){
+			console.log(error);
+		});
+	};
+
+	$scope.create = function(){
+		Organizations.createOrg($scope.newOrg)
+		.then(function(result){
+			$location.path('/organizations/profile/'+result.data._id);
 		})
 		.catch(function(error){
 			console.log(error);

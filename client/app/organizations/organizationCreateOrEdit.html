@@ -63,15 +63,17 @@
           <label for="key">{{key}}</label>
           <input name='key' type="text"
           ng-model="newOrg.contactInfo[key]"
-          placeholder="Enter your {key} here" value="{newOrg.contactInfo[key]}"/><br><br>
+          placeholder="Enter your {{key}} here" value="{newOrg.contactInfo[key]}"/><br><br>
           </div>
       </div><br><br>
     </div>
 
     <div class="center-block">
-      <input type="button" ng-click="save()" class="btn btn-default"
+      <input ng-if="routeParams.id" type="button" ng-click="save()" class="btn btn-default"
         value="Save"/>
-        <input type="button" ng-click="cancel()" class="btn btn-default"
+      <input ng-if="!routeParams.id" type="button" ng-click="create()" class="btn btn-default"
+        value="Create"/>
+      <input type="button" ng-click="cancel()" class="btn btn-default"
         value="Cancel"/>
     </div>
     
