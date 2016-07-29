@@ -105,8 +105,7 @@ module.exports = {
 
   getUser : function (req,res,next) {
 
-    var id=(req.params.id).toString();
-    User.findOne({_id : id}, function (err , user) {
+    User.findOne({userName: req.params.userName}, function (err , user) {
       if(err)
         res.status(500).send(err);
       res.json(user);

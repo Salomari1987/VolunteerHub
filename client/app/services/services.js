@@ -2,10 +2,10 @@ angular.module('VolunteerHub.services', [])
 
 .factory('Users', function ($http) {
 
-  var getUser = function(userID){
+  var getUser = function(userName){
     return $http({
       method : 'GET',
-      url : '/api/user/'+userID
+      url : '/api/user/'+userName
     })
     .then(function(res){
       return res.data;

@@ -5,7 +5,7 @@ angular.module('VolunteerHub.user', [])
 		Auth.signout();
 	}
 	$scope.showUser = function (){
-		Events.getUser($routeParams.id)
+		Events.getUser($routeParams.userName)
 		.then(function(user){
 			$scope.user = user;
 		})
