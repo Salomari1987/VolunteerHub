@@ -1,5 +1,67 @@
 <ul class="nav nav-tabs">
+  <li class="active">
+    <a href="/organizations/profile/:id/#profile" data-toggle="tab" aria-expanded="true">Profile</a>
+  </li>
+  <li class="">
+    <a href="/organizations/profile/:id/#opportunities" data-toggle="tab" aria-expanded="false">Opportunities</a>
+  </li>
   <li>
-    <a href="#/organizations/edit/{{data.organization._id}}">Edit Profile</a>
+    <a href="#/organizations/edit/{{organization._id}}">Edit Profile</a>
   </li>
 </ul>
+
+<div id="myTabContent" class="tab-content">
+  
+  <div class="tab-pane fade active in" id="profile">
+  
+	  <div class="col-lg-3 col-md-3 col-sm-6">
+	    <img ng-src="{{organization.picture}}"><br>
+	  </div>
+
+	  <div class="col-lg-6 col-md-6 col-sm-6">
+	    <h3>
+	    <div>
+	      <p>Name : {{organization.name}}</p><br><br>
+	    </div>
+
+	    <div>
+	      <p>EIN : {{organization.EIN}}</p><br><br>
+	    </div>
+
+	    <div>
+	      <p>Mission Statement : {{organization.missionStatement}}</p><br><br>
+	    </div>
+
+	    <div>
+	      <p>Causes Area :</p>
+	      <ul>
+	        <li ng-repeat="cause in organization.causes_area">{{cause}}</li>
+	      </ul><br><br>
+	    </div>
+
+	    <div>
+	      <p>Locations :</p>
+	      <ul>
+	        <li ng-repeat="location in organization.locations">{{location}}</li>
+	      </ul><br><br>
+	    </div>
+
+	    <div>
+	      <p>Contact Info :</p>
+	      <ul>
+	        <li ng-repeat="key in organization.contactInfoKeys">
+	        	<p>{{key}} : {{organization.contactInfo[key]}}</p>
+	        </li>
+	      </ul><br><br>
+	    </div>
+	    
+	    </h3>
+	  </div>
+  </div>
+
+  <div class="tab-pane fade" id="opportunities">
+	On Hold until salah finishes his part
+  	
+  </div>
+
+</div>
