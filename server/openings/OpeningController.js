@@ -112,7 +112,7 @@ module.exports = {
 
   applyToOpening: function (req,res,next){
     var openingId = req.params.id.toString();
-    var user = req.body
+    var user = req.body;
     var token = req.headers['x-access-token'];
     if (!token){
       next(new Error('No token'))
@@ -140,15 +140,91 @@ module.exports = {
                                       res.json(opening);
                                     }
                                   });
-        
         }
       })
     }
   },
   approveVolunteer: function (req,res,next){
-
+    var openingId = req.params.id.toString();
+    var applicantId = req.body.applicantId;
+    var token = req.headers['x-access-token'];
+    if (!token){
+      next(new Error('No token'))
+    } else {
+      var user = jwt.decode(token, 'secret');
+      findOneUser( { userName: user.username } )
+      .then( function( user ){
+        if(!user){
+          next(new Error('User does not exist'));
+        } else {
+          Opening.update({ _id: openingId },
+              { $pull: { pendingApps: applicantId } },
+              function(err) {
+                if(err) 
+                  console.log(err)
+              });
+          Opening.update({ _id: openingId },
+              { $pull: { volunteers: applicantId } },
+              function(err) {
+                if(err) 
+                  console.log(err)
+              });
+          Opening.findOneAndUpdate({ _id: openingId },
+                                  { $push: { volunteers: applicantId } }, 
+                                  { new : true}, 
+                                  function (err , opening) {
+                                    if(err)
+                                      console.log(err);
+                                    else{
+                                      console.log('add it');
+                                      res.json(opening);
+                                    }
+                                  });
+        }
+      })
+    }
   },
-	getOpening : function (req,res,next) {
+  rejectVolunteer: function (req,res,next){
+    var openingId = req.params.id.toString();
+    var applicantId = req.body.applicantId;
+    var token = req.headers['x-access-token'];
+    if (!token){
+      next(new Error('No token'))
+    } else {
+      var user = jwt.decode(token, 'secret');
+      findOneUser( { userName: user.username } )
+      .then( function( user ){
+        if(!user){
+          next(new Error('User does not exist'));
+        } else {
+          Opening.update({ _id: openingId },
+              { $pull: { pendingApps: applicantId } },
+              function(err) {
+                if(err) 
+                  console.log(err)
+              });
+          Opening.update({ _id: openingId },
+              { $pull: { volunteers: applicantId } },
+              function(err) {
+                if(err) 
+                  console.log(err)
+              });
+          Opening.findOneAndUpdate({ _id: openingId },
+                                  { $push: { rejectedApps: applicantId } }, 
+                                  { new : true}, 
+                                  function (err , opening) {
+                                    if(err)
+                                      console.log(err);
+                                    else{
+                                      console.log('add it');
+                                      res.json(opening);
+                                    }
+                                  });
+        }
+      })
+    }
+  },
+	getOpening: function (req,res,next) {
 		var id=(req.params.id).toString();
 		findOpening({_id: id}) 
 		.then (function(opening) {
@@ -157,5 +233,5 @@ module.exports = {
 		.fail(function(error) {
 			next(error);
 		})
-  },
+  }
 }

@@ -27,6 +27,8 @@ module.exports = function (app, express) {
   app.get('/api/openings/:id',openingController.getOpening);
   app.put('/api/openings/:id',openingController.editOpening);
   app.put('/api/openings/apply/:id',openingController.applyToOpening);
+  app.put('/api/openings/approve/:id',openingController.approveVolunteer);
+  app.put('/api/openings/reject/:id',openingController.rejectVolunteer);
 
   // Organization Routes
   app.post('/api/organization',organizationController.createOrg);
