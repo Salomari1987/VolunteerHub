@@ -18,6 +18,7 @@ var openingSchema = new mongoose.Schema({
   resources: [String],
   pendingApps: [{ type:mongoose.Schema.Types.ObjectId, ref:'User' }],
   volunteers : [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  rejectedApps: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   status: {
     type: String,
     enum: ['Active', 'Closed'],

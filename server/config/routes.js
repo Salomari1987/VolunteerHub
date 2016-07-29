@@ -11,7 +11,7 @@ module.exports = function (app, express) {
   app.get('/api/users/signedin', userController.checkAuth);
   app.get('/api/user/:id',userController.getUser);
 
-  //opportunities routes
+  //Opportunities routes
   app.get('/api/opportunities',opportunityController.allOpportunities);
   app.get('/api/opportunity/:id',opportunityController.getOpportunity);
   app.put('/api/opportunity/:id',opportunityController.editOpportunity);
@@ -19,13 +19,14 @@ module.exports = function (app, express) {
   app.get('/api/opportunity/currentopenings/:id', opportunityController.getCurrOpenings);
   app.get('/api/opportunity/closedopenings/:id', opportunityController.getClosedOpenings);
   app.put('/api/opportunity/addOpening/:id',opportunityController.addOpening);
-  //Openings Routes
   
+  //Openings Routes
   app.get('/api/openings',openingController.allOpenings);
   app.put('/api/openings/closeOpening/:id',openingController.closeOpening);
   app.delete('/api/openings/:id',openingController.deleteOne);
   app.get('/api/openings/:id',openingController.getOpening);
   app.put('/api/openings/:id',openingController.editOpening);
+  app.put('/api/openings/apply/:id',openingController.applyToOpening);
 
   // Organization Routes
   app.post('/api/organization',organizationController.createOrg);

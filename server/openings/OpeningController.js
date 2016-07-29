@@ -3,6 +3,9 @@ var Q = require('q');
 var jwt = require('jwt-simple');
 var Opportunity=require('../opportunities/OpportunityModel.js');
 var Opening=require('./OpeningModel.js');
+var User = require('../users/userModel.js')
+
+var findOneUser = Q.nbind(User.findOne, User);
 
 var findOpportunity = Q.nbind(Opportunity.findOne, Opportunity);
 var createOpportunity = Q.nbind(Opportunity.create, Opportunity);
@@ -33,11 +36,11 @@ module.exports = {
   		if (!token){
   			next(new Error('No token'))
   		} else {
-  			findOpening({_id:openingId})
+  			findOpening({"_id":openingId})
 		  	.then(function (opening) {
 			    if (opening) {
 			    	var opportunityId = opening._opportunity;
-			    	opening.status = "Closed";
+            opening.status = "Closed";
 			    	opening.save();
 			    	updateOpportunity({ _id: opportunityId }, { $pull: { currOpenings: openingId } })
 			    	.fail(function (err) {
@@ -66,34 +69,30 @@ module.exports = {
 
 	deleteOne : function(req,res, next){
 		var id = (req.params.id).toString();
-		findOpening({_id:id})
+		findOpening({'_id':id})
 		.then(function(opening){
 			var opportunityId = opening._opportunity
-			updateOpportunity({ _id: opportunityId }, { $pull: { currOpenings: openingId } })
-			.fail(function (err) {
-				console.log(err)
-		  	})
-	    	updateOpportunity({ _id: opportunityId }, { $pull: { closedOpenings: openingId } })
-	    	.fail(function (err) {
-				console.log(err)
-  			})
-  			opening.remove(function(err, removed){
-  				if(err){
-		          res.status(500).send('Unable to delete opening')
-		        } else {
-		          res.status(201).send('Opening Successfully Removed');
-		        }
-  			})
+			updateOpportunity({ '_id': opportunityId }, { $pull: { currOpenings: openingId } })
+	    updateOpportunity({ '_id': opportunityId }, { $pull: { closedOpenings: openingId } })
+
+			opening.remove(function(err, removed){
+				if(err){
+	          res.status(500).send('Unable to delete opening')
+	        } else {
+            console.log(removed, 3)
+	          res.status(201).send('Opening Successfully Removed');
+	        }
+			})
 		})
 	},
 
 	editOpening : function (req,res,next) {
-		var opId = req.params.id;
+		var openingId = req.params.id.toString();
 		var token = req.headers['x-access-token'];
 		if (!token){
 			next(new Error('No token'))
 		} else {
-			findOpening({_id:opId})
+			findOpening({_id:openingId})
 			.then(function (opening) {
 				if(!opening) {
 					next(new Error('opening does not exist'));
@@ -112,16 +111,48 @@ module.exports = {
 	},
 
   applyToOpening: function (req,res,next){
-
+    var openingId = req.params.id.toString();
+    var user = req.body
+    var token = req.headers['x-access-token'];
+    if (!token){
+      next(new Error('No token'))
+    } else {
+      var user = jwt.decode(token, 'secret');
+      findOneUser( { userName: user.username } )
+      .then( function( user ){
+        if(!user){
+          next(new Error('User does not exist'));
+        } else {
+          Opening.update({ _id: openingId },
+                        { $pull: { pendingApps: user._id } },
+                        function(err) {
+                          if(err) 
+                            console.log(err)
+                        });
+          Opening.findOneAndUpdate({ _id: openingId },
+                                  { $push: { pendingApps: user._id } }, 
+                                  { new : true}, 
+                                  function (err , opening) {
+                                    if(err)
+                                      console.log(err);
+                                    else{
+                                      console.log('add it');
+                                      res.json(opening);
+                                    }
+                                  });
+        
+        }
+      })
+    }
   },
   approveVolunteer: function (req,res,next){
 
   },
 	getOpening : function (req,res,next) {
-  		var id=(req.params.id).toString();
-  		findOpening({_id: id}) 
-  		.then (function(opening) {
-		  	res.status(200).send(opening);
+		var id=(req.params.id).toString();
+		findOpening({_id: id}) 
+		.then (function(opening) {
+	  	res.status(200).send(opening);
 		})
 		.fail(function(error) {
 			next(error);
