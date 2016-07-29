@@ -1,4 +1,5 @@
 angular.module('VolunteerHub.organizations', [])
+
 .controller('organizationsController', function ($scope, Organizations) {
 
 	$scope.data = {};

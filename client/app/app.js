@@ -7,6 +7,7 @@ angular.module('VolunteerHub', [
   'VolunteerHub.user',
   'VolunteerHub.organizations',
   'VolunteerHub.organizationProfile',
+  'VolunteerHub.organizationCreateEdit',
   'ngRoute'
 ])
 .controller("HeaderController", function($scope, $location, Auth) {
@@ -57,7 +58,17 @@ angular.module('VolunteerHub', [
       controller: 'organizationsController',
       authenticate: true
     })
-    .when('/organizations/:id', {
+    .when('/organizations/create', {
+      templateUrl: 'app/organizations/organizationCreateOrEdit.html',
+      controller: 'organizationCreateOrEditController',
+      authenticate: true
+    })
+    .when('/organizations/edit/:id', {
+      templateUrl: 'app/organizations/organizationCreateOrEdit.html',
+      controller: 'organizationCreateOrEditController',
+      authenticate: true
+    })
+    .when('/organizations/profile/:id', {
       templateUrl: 'app/organizations/organizationProfile.html',
       controller: 'organizationProfileController',
       authenticate: true
