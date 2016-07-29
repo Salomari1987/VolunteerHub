@@ -69,7 +69,11 @@ angular.module('VolunteerHub.organizationCreateEdit', [])
 	};
 
 	$scope.cancel = function(){
-		$location.path('/organizations/profile/'+$scope.newOrg._id);
+		if($routeParams.id){
+			$location.path('/organizations/profile/'+$scope.newOrg._id);
+		} else {
+			$location.path('/organizations');
+		}
 	};
 
 	$scope.initialize();
