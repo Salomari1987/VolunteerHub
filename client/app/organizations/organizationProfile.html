@@ -6,7 +6,7 @@
     <a href="/organizations/profile/:id/#opportunities" data-toggle="tab" aria-expanded="false">Opportunities</a>
   </li>
   <li>
-    <a href="#/organizations/edit/{{organization._id}}">Edit Profile</a>
+    <a href="#/organizations/edit/{{organization._id}}" ng-if="Auth()&&organization.owners.indexOf(userId)!==-1">Edit Profile</a>
   </li>
 </ul>
 
