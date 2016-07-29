@@ -22,15 +22,15 @@ module.exports ={
 				res.json(opportunities);
 			})
 			.fail(function (err) {
-				//next(err);
+				next(err);
 			})
 	},
 	addOpening: function (req, res, next) {
   		var opportunityId = req.params.id.toString();
-  		// var token = req.headers['x-access-token'];
-  		// if (!token){
-  		// 	next(new Error('No token'))
-  		// } else {
+  		var token = req.headers['x-access-token'];
+  		if (!token){
+  			next(new Error('No token'))
+  		} else {
 	  		var currOpening = {
 	  			title: req.body.title,
 	  			_opportunity: opportunityId,
@@ -70,14 +70,14 @@ module.exports ={
 		    .fail(function (error) {
 		        next(error);
 		 	})
-		// }
+		}
 	},
   	editOpportunity : function (req,res,next) {
   		var opId = req.params.id;
-  		// var token = req.headers['x-access-token'];
-  		// if (!token){
-  		// 	next(new Error('No token'))
-  		// } else {
+  		var token = req.headers['x-access-token'];
+  		if (!token){
+  			next(new Error('No token'))
+  		} else {
   			findOpportunity({_id:opId})
   			.then(function (opportunity) {
   				if(!opportunity) {
@@ -95,7 +95,7 @@ module.exports ={
   					res.json(opportunity);
   				}
   			})
-  		// }
+  		}
   	},
 	getCurrOpenings: function (req,res,next) {
 		var id = (req.params.id).toString();
@@ -184,26 +184,3 @@ module.exports ={
 	    })
 	  },
 }
-	// newOpportunity: function (req, res, next) {
-	  // 	var tempOpportunity = {
-			// title : req.body.title,
-			// _organizer : req.body._organizer,
-			// startDate : req.body.startDate,
-			// endDate : req.body.endDate,
-			// location : req.body.location,
-			// // locationId : req.body.locationId,
-			// type : req.body.type,
-			// description : req.body.description,
-  	// 		skillsRequired: req.body.skillsRequired,
-			// poster : req.body.poster
-	  // 	}
-	  // 	createOpportunity(tempOpportunity)
-	  // 		.then(function (createdOpporunity) {
-		 //        if (createdOpporunity) {
-		 //          res.json(createdOpporunity);
-		 //        }
-		 //      })
-		 //      .fail(function (error) {
-		 //        next(error);
-		 //      });
-  	// },
