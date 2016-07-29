@@ -1,4 +1,8 @@
 angular.module('VolunteerHub.services', [])
+<<<<<<< b361b680f38b78e12b71c0b4d97bae8dae207c96
+=======
+
+>>>>>>> Create opportunity
 .factory('Opportunities', function ($http) {
 	var getEvents = function () {
 		return $http({
