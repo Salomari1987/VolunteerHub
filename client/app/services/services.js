@@ -64,10 +64,11 @@ angular.module('VolunteerHub.services', [])
   var createOrg = function(organization){
     return $http({
       method: 'POST',
-      url: '/api/organization'
+      url: '/api/organization',
+      data: organization
     })
     .then(function (resp) {
-      return JSON.parse(resp);
+      return resp;
     });
   };
 
