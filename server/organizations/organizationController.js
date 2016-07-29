@@ -1,4 +1,11 @@
 var Organization = require('./organizationModel.js');
+var Q = require('q');
+var jwt = require('jwt-simple');
+var Opportunity=require('../opportunities/OpportunityModel.js');
+
+var findOpportunity = Q.nbind(Opportunity.findOne, Opportunity);
+var createOpportunity = Q.nbind(Opportunity.create, Opportunity);
+var findAllOpportunities = Q.nbind(Opportunity.find, Opportunity);
 
 module.exports = {
 
@@ -98,26 +105,44 @@ module.exports = {
 
   // a function to add an oppotunity to the organization
   addOpportunity : function(req,res){
-    Organization.update({ _id: req.params.id.toString() },
-      { $pull: { currentOpportunities: req.body.opportunityId } },
-      function(err){
-        if(err){
-          res.status(500).send(err);  
-        }
-    });
-    Organization.findOneAndUpdate({ _id: req.params.id.toString() },
-      { $push: { currentOpportunities: req.body.opportunityId } },
-      { new: true },
-      function (err, savedOrg){
-        if(err){
-          res.status(500).send(err);
-        }
-        else{
-          res.status(201).send(JSON.stringify(savedOrg));
-        }
-    });
+    var tempOpportunity = {
+      title : req.body.title,
+      _organizer : req.params.id,
+      startDate : req.body.startDate,
+      endDate : req.body.endDate,
+      location : req.body.location,
+      type : req.body.type,
+      description : req.body.description,
+        skillsRequired: req.body.skillsRequired,
+      poster : req.body.poster
+      }
+      createOpportunity(tempOpportunity)
+      .then(function (createdOpporunity) {
+          if (createdOpporunity) {
+            Organization.update({ _id: req.params.id.toString() },
+              { $pull: { currentOpportunities: createdOpporunity._id } },
+              function(err){
+                if (err) {
+                  res.status(500).send(err);  
+                }
+            });
+            Organization.findOneAndUpdate({ _id: req.params.id.toString() },
+              { $push: { currentOpportunities: createdOpporunity._id } },
+              { new: true },
+              function (err, savedOrg){
+                if(err){
+                  res.status(500).send(err);
+                } else {
+                  res.status(201).send(JSON.stringify(savedOrg));
+                }
+            });
+          }
+        })
+      .fail(function (error) {
+        next(error);
+      });
+  
   },
-
   // a function to close an opportunity
   closeOpportunity : function(req,res){
     Organization.update({ _id: req.params.id.toString() },
@@ -155,6 +180,7 @@ module.exports = {
       }
       organization.remove(function(err,table) {
         if(err){
+          //TODO delete opportunities
           res.status(500).send('Unable to delete organization')
         } else {
           res.status(201).send('Organization Successfully Removed');
