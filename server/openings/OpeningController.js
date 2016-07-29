@@ -144,6 +144,7 @@ module.exports = {
       })
     }
   },
+
   approveVolunteer: function (req,res,next){
     var openingId = req.params.id.toString();
     var applicantId = req.body.applicantId;
@@ -184,6 +185,7 @@ module.exports = {
       })
     }
   },
+
   rejectVolunteer: function (req,res,next){
     var openingId = req.params.id.toString();
     var applicantId = req.body.applicantId;
@@ -224,6 +226,7 @@ module.exports = {
       })
     }
   },
+  
 	getOpening: function (req,res,next) {
 		var id=(req.params.id).toString();
 		findOpening({_id: id}) 
