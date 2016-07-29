@@ -17,7 +17,7 @@ var opportunitySchema = new mongoose.Schema({
   endDate : String,
   location : String,
   // locationId : String,
-  type : [String],
+  causesArea : [String],
   description : String,
   skillsRequired : [String],
   poster : String,
