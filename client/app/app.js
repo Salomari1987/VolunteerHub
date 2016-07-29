@@ -48,7 +48,7 @@ angular.module('VolunteerHub', [
       controller: 'AuthController'
     })
     .when('/users', {
-      templateUrl: 'app/users/users.html',
+      templateUrl: 'app/user/users.html',
       controller: 'usersController',
     })
     // add routes when needed for pages
