@@ -1,10 +1,8 @@
 angular.module('VolunteerHub', [
   'VolunteerHub.services',
-  'VolunteerHub.createEvent',
   'VolunteerHub.auth',
-  'VolunteerHub.event',
-  'VolunteerHub.events',
   'VolunteerHub.user',
+  'VolunteerHub.users',
   'VolunteerHub.organizations',
   'VolunteerHub.organizationProfile',
   'VolunteerHub.organizationCreateEdit',
@@ -41,23 +39,12 @@ angular.module('VolunteerHub', [
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
     })
-    // add routes when needed for pages
-    .when('/event/:id', {
-      templateUrl: 'app/event/event.html',
-      controller: 'EventCtrl',
+    .when('/users', {
+      templateUrl: 'app/users/users.html',
+      controller: 'usersController',
       authenticate: true
     })
-    .when('/events', {
-      templateUrl: 'app/events/events.html',
-      controller: 'EventsCtrl',
-      authenticate: true
-    })
-    .when('/createEvent', {
-      templateUrl: 'app/createEvent/createEvent.html',
-      controller: 'CreateEventCtrl',
-      authenticate: true
-    })
-    .when('/user/:id', {
+    .when('/user/:userName', {
       templateUrl: 'app/user/user.html',
       controller: 'UserCtrl',
       authenticate: true
@@ -72,17 +59,12 @@ angular.module('VolunteerHub', [
       controller: 'organizationCreateOrEditController',
       authenticate: true
     })
-    .when('/organizations/edit/:id', {
-      templateUrl: 'app/organizations/organizationCreateOrEdit.html',
-      controller: 'organizationCreateOrEditController',
-      authenticate: true
-    })
     .when('/organizations/profile/:id', {
       templateUrl: 'app/organizations/organizationProfile.html',
       controller: 'organizationProfileController',
       authenticate: true
     })
-    .otherwise({ redirectTo: '/events' });
+    .otherwise({ redirectTo: '/users' });
     $httpProvider.interceptors.push('AttachTokens');
 })
 

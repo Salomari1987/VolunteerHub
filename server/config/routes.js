@@ -6,10 +6,13 @@ var openingController = require('../openings/OpeningController.js');
 
 module.exports = function (app, express) {
 
+  //User routes
   app.post('/api/users/signin', userController.signin);
   app.post('/api/users/signup', userController.signup);
   app.get('/api/users/signedin', userController.checkAuth);
-  app.get('/api/user/:id',userController.getUser);
+  app.get('/api/user/:userName', userController.getUser);
+  app.get('/api/users/', userController.getAll);
+  app.put('/api/user/:userName/edit', userController.editUser);
 
   //Opportunities routes
   app.get('/api/opportunities',opportunityController.allOpportunities);
@@ -42,10 +45,6 @@ module.exports = function (app, express) {
   app.put('/api/organization/close/:id',organizationController.closeOpportunity);
   app.delete('/api/organization/:id',organizationController.deleteOne);
 
-  //app.get('/api/users',userController.allUser);
-
-  // app.get('/api/links/', linksController.allLinks);
-  // app.post('/api/links/', linksController.newLink);
 
   // If a request is sent somewhere other than the routes above,
   // send it through our custom error handler
