@@ -48,6 +48,7 @@ module.exports = {
     var gender = req.body.gender;
     var phoneNumber = req.body.phoneNumber;
     var skills = req.body.skills;
+    var causes = req.body.causes;
     var picture = req.body.picture;    
 
     User.findOne({ userName: username })
@@ -63,6 +64,7 @@ module.exports = {
             gender: gender,
             phoneNumber: phoneNumber,
             skills: [skills],
+            causes: [causes],
             picture: picture
           });
           newUser.save(function(err, newUser) {
@@ -117,6 +119,34 @@ module.exports = {
         res.status(500).send(err);
       }
       res.json(users)
+    })
+  },
+
+  // a function that allows for the user to edit their basic info
+  editUser: function(req, res, next){
+    User.findOne({_id: req.params.id.toString()}, function(err, user){
+      if(err){
+        res.status(500).send(err);
+      } else if (!user){
+        res.status(500).send(new Error ('User does not exist'));
+      } else {
+
+        user.firstName = req.body.firstName || user.firstName;
+        user.lastName = req.body.lastname || user.lastName;
+        user.dateOfBirth = req.body.dateOfBirth || user.dateOfBirth;
+        user.phoneNumber = req.body.phoneNumber || user.phoneNumber;
+        user.skills = req.body.skills || user.skills;
+        user.causes = req.body.causes || user.causes;
+        user.picture = req.body.picture || user.picture;
+
+        user.save(function(err, savedUser){
+          if(err){
+            res.status(500).send(error);
+          } else {
+            res.status(201).send(JSON.stringify(savedUser));
+          }
+        });
+      }
     })
   }   
 
