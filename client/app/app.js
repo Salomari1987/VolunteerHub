@@ -1,6 +1,5 @@
 angular.module('VolunteerHub', [
   'VolunteerHub.services',
-  'VolunteerHub.createEvent',
   'VolunteerHub.auth',
   'VolunteerHub.user',
   'VolunteerHub.users',
@@ -43,7 +42,7 @@ angular.module('VolunteerHub', [
       controller: 'usersController',
       authenticate: true
     })
-    .when('/user/:id', {
+    .when('/user/:userName', {
       templateUrl: 'app/user/user.html',
       controller: 'UserCtrl',
       authenticate: true

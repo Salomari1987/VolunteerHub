@@ -1,12 +1,15 @@
 angular.module('VolunteerHub.user', [])
-.controller('UserCtrl', function ($scope, $window, Users, $routeParams, Auth) {
+.controller('UserCtrl', function ($scope, $window, $location, Users, $routeParams, Auth) {
 
 	$scope.signout = function(){
 		Auth.signout();
 	}
 	$scope.showUser = function (){
-		Events.getUser($routeParams.userName)
+		Users.getUser($routeParams.userName)
 		.then(function(user){
+			if(!user){
+				$location.path('/404');
+			}
 			$scope.user = user;
 		})
 		.catch(function (error) {
