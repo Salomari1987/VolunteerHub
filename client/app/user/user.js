@@ -1,5 +1,5 @@
 angular.module('VolunteerHub.user', [])
-.controller('UserCtrl', function ($scope, $window, Events, $routeParams, Auth) {
+.controller('UserCtrl', function ($scope, $window, Users, $routeParams, Auth) {
 
 	$scope.signout = function(){
 		Auth.signout();

@@ -1,32 +1,6 @@
 angular.module('VolunteerHub.services', [])
 
-.factory('Events', function ($http) {
-	var getEvents = function () {
-		return $http({
-			method: 'GET',
-			url: '/api/events'
-		})
-		.then(function (res) {
-			return res.data;
-		});
-  }
-  var createEvent = function (event) {
-      return $http({
-        method: 'POST',
-        url: '/api/createEvent',
-        data: event
-      })
-    }
-//need fixing: how to get an event based on their id
-  var getEvent = function(eventId){
-    return $http({
-      method: 'GET',
-      url: '/api/event/'+eventId
-    })
-    .then(function(resp){
-      return resp.data;
-    });
-  }
+.factory('Users', function ($http) {
 
   var getUser = function(userID){
     return $http({
@@ -36,25 +10,21 @@ angular.module('VolunteerHub.services', [])
     .then(function(res){
       return res.data;
     })
-  }  
+  }
 
-  var joinEvent = function (userID, EventId) {
+  var getAll = function(){
     return $http({
-      method : 'POST',
-      url : '/api/applyEvent',
-      data : { userId : userID, eventId : EventId }
+      method : 'GET',
+      url : '/api/user/'
     })
     .then(function(res){
       return res.data;
     })
-  }
+  }      
 
 	return {
-		getEvents: getEvents,
-    createEvent: createEvent,
-    getEvent: getEvent, 
     getUser : getUser,
-    joinEvent : joinEvent
+    getAll : getAll
 	};
 })
 
