@@ -11,16 +11,23 @@ angular.module('VolunteerHub', [
   'ngRoute'
 ])
 .controller("HeaderController", function($scope, $location, Auth) {
+
+  if(Auth.isAuth){
+    window.userId = window.localStorage.getItem('userId');
+  } else {
+    window.userId = null;
+  }
+
   //Sets isActive to true or false for highlighting the buttons in the nav panel
   $scope.isActive = function (viewLocation) { 
       return viewLocation === $location.path();
   };
-  // $scope.logOut = function (){
-  //   Auth.signout();
-  // }
-  // $scope.logIn = function (){
-  //   $location.path('/signin');
-  // }
+  $scope.logOut = function (){
+    Auth.signout();
+  }
+  $scope.logIn = function (){
+    $location.path('/signin');
+  }
 })
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider

@@ -186,11 +186,13 @@ angular.module('VolunteerHub.services', [])
   };
 
   var isAuth = function () {
-    return !!$window.localStorage.getItem('com.Khitwa');
+    return !!$window.localStorage.getItem('com.VolunteerHub');
   };
 
   var signout = function () {
-    $window.localStorage.removeItem('com.Khitwa');
+    $window.localStorage.removeItem('com.VolunteerHub');
+    $window.localStorage.removeItem('userId');
+    window.userId = null;
     $location.path('/signin');
   };
 
