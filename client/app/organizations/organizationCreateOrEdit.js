@@ -1,6 +1,6 @@
 angular.module('VolunteerHub.organizationCreateEdit', [])
 
-.controller('organizationCreateOrEditController', function ($scope, $routeParams, Organizations) {
+.controller('organizationCreateOrEditController', function ($scope, $routeParams, $location, Organizations) {
 
 	$scope.newOrg = {};
 
@@ -11,6 +11,7 @@ angular.module('VolunteerHub.organizationCreateEdit', [])
 			Organizations.getOne($routeParams.id)
 			.then(function(organization){
 				$scope.newOrg = organization;
+				$scope.newOrg.contactInfoKeys = Object.keys($scope.newOrg.contactInfo);
 			})
 			.catch(function(error){
 				console.log(error);
@@ -34,7 +35,6 @@ angular.module('VolunteerHub.organizationCreateEdit', [])
 			reader.addEventListener('load', ()=>{
 				var imgData = reader.result.slice(23);
 				// sending the decoded image to IMGUR to get a link for that image
-				console.log(imgData);
 				uploadToIMGUR(IMGUR_CLIENT_ID, imgData, function(result){
 					$scope.newOrg.picture = result.link;
 					$scope.changedFlag = true;
@@ -44,6 +44,32 @@ angular.module('VolunteerHub.organizationCreateEdit', [])
 			reader.readAsDataURL(file);
 		})
 		fileBt.click();
+	};
+
+	$scope.removeItem = function(array, item){
+		$scope.changedFlag = true;
+		var index = array.indexOf(item);
+		array.splice(index,1);
+	};
+
+	$scope.addItem = function(array, item){
+		$scope.changedFlag = true;
+		array.push(item);
+		item = '';
+	};
+
+	$scope.save = function(){
+		Organizations.editProfile($scope.newOrg)
+		.then(function(result){
+			$location.path('/organizations/profile/'+$scope.newOrg._id);
+		})
+		.catch(function(error){
+			console.log(error);
+		});
+	};
+
+	$scope.cancel = function(){
+		$location.path('/organizations/profile/'+$scope.newOrg._id);
 	};
 
 	$scope.initialize();
