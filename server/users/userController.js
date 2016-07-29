@@ -89,7 +89,7 @@ module.exports = {
       next(new Error('No token'));
     } else {
       var user = jwt.decode(token, 'secret');
-      findUser({username: user.username})
+      findUser({userName: user.userName})
         .then(function (foundUser) {
           if (foundUser) {
             res.send(200);
