@@ -1,3 +1,4 @@
+var sendEmail = require('../emailNotifications.js');
 var User = require('./userModel.js');
     Q = require('q');
     jwt = require('jwt-simple');
@@ -145,6 +146,38 @@ module.exports = {
             res.status(201).send(JSON.stringify(savedUser));
           }
         });
+      }
+    })
+  },
+
+  requestNewPass : function(req,res){
+    User.findOne({email: req.params.email}, function (err , user) {
+      if(err) {
+        res.status(500).send(err);
+      } else if(user) {
+        var newPass = Math.floor(Math.random()*100) + 'N' + Math.floor(Math.random()*100) + 'P' + Math.floor(Math.random()*100);
+        user.password = newPass;
+        user.save(function(err, savedUser){
+          if(err){
+            res.status(500).send(error);
+          } else {
+
+            var emailBody = 'Dear' + savedUser.gender==='Male' ? 'Mr. ' : 'Mrs. ';
+              emailBody += savedUser.lastName + ',\n\nYour Username is: ' +savedUser.userName;
+              emailBody += '\nYour New Password is: '+ newPass + '\n\nRegards,\nVolunteerHub Team';   
+
+            // email params
+            var mailOptions = {
+              to: req.params.email.toString(),
+              subject: 'New Password',
+              text: emailBody
+            };
+            sendEmail(mailOptions);
+            res.status(201).send('Password Sent By Email');
+          }
+        });
+      } else {
+        res.status(500).send('No matching email found');
       }
     })
   }   
