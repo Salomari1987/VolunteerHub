@@ -103,6 +103,15 @@ angular.module('VolunteerHub.services', [])
 	};
 })
 .factory('Openings', function($http){
+  var getOpenings = function(opportunityId){
+    return $http({
+      method: 'GET',
+      url: '/api/opportunity/currentopenings/'+opportunityId
+    })
+    .then(function (res) {
+      return res.data;
+    });
+  }  
   var getAll = function (){
     return $http({
       method:'GET',
@@ -111,6 +120,15 @@ angular.module('VolunteerHub.services', [])
     .then(function(resp){
       return resp.data
     })
+  }
+  var getOne = function(openingId){
+    return $http({
+      method: 'GET',
+      url: '/api/openings/'+openingId
+    })
+    .then(function(resp){
+      return resp.data;
+    });
   }
   var editOpening = function(opening){
     return $http({
@@ -132,10 +150,22 @@ angular.module('VolunteerHub.services', [])
       return resp;
     });
   }
+  var applyToOpening = function (openingId){
+    return $http({
+      method:'PUT',
+      url: '/api/openings/apply/'+openingId
+    })
+    .then(function(resp){
+      return resp;
+    })
+  };
   return {
     getAll:getAll,
     editOpening: editOpening,
-    createOpening: createOpening
+    createOpening: createOpening,
+    getOne: getOne,
+    getOpenings: getOpenings,
+    applyToOpening: applyToOpening
   }
 })
 .factory('Organizations', function($http){

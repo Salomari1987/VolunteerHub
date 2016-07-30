@@ -117,7 +117,8 @@ module.exports = {
       next(new Error('No token'))
     } else {
       var user = jwt.decode(token, 'secret');
-      findOneUser( { userName: user.username } )
+      console.log(user)
+      findOneUser( { _id: user._id } )
       .then( function( user ){
         if(!user){
           next(new Error('User does not exist'));
