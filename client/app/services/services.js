@@ -33,10 +33,21 @@ angular.module('VolunteerHub.services', [])
     })
   }     
 
+  var requestPass = function(email){
+    return $http({
+      method : 'GET',
+      url : '/api/users/requestPass/'+email
+    })
+    .then(function(res){
+      return res;
+    })
+  }
+
   return {
     getUser : getUser,
     getAll : getAll,
-    editUser : editUser
+    editUser : editUser,
+    requestPass: requestPass
   }
 
 })

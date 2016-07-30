@@ -1,17 +1,27 @@
 <div class = "container">
-      <div class="wrapper">
-        <div action="index.html"  method="post" name="Login_Form" class="form-signin">       
-            <h3 class="form-signin-heading">Please Sign In</h3>
-            <hr class="colorgraph"><br>
-            <form name="signinForm" ng-submit='signin()'>
-	            <input type="text" ng-model='user.username' class="form-control" placeholder="Username" required="" autofocus="" />
-	            <input type="password" ng-model='user.password' class="form-control" placeholder="Password" required=""/>  
-	            <span  id="errorSpan" style=" color:red ; text-align:center ; display: none; ">error</span>
-            <button class="btn btn-default btn-block"  type="submit"  name="Submit" value="Login">Sign in</button>        
-	        </form>   
-	        <br>
-	        <a href="#/signup" style="color: #3e3f3a;">Don't have an account? <strong>Signup</strong> ...</a>
-           
-        </div>     
+  <div class="wrapper">
+    <div action="index.html"  method="post" name="Login_Form" class="form-signin">       
+      <h3 class="form-signin-heading">Please Sign In</h3>
+      <hr class="colorgraph"><br>
+      <form name="signinForm" ng-submit='signin()'>
+	      <input type="text" ng-model='user.username' class="form-control" placeholder="Username" required="" autofocus="" />
+	      <input type="password" ng-model='user.password' class="form-control" placeholder="Password" required=""/>  
+	      <span  id="errorSpan" style=" color:red ; text-align:center ; display: none; ">error</span>
+        <button class="btn btn-default btn-block"  type="submit"  name="Submit" value="Login">Sign in</button>
+      </form>  
+	    <br>
+      <a href="#/signup" style="color: #3e3f3a;">Don't have an account? <strong>Signup</strong> ...</a><br>
+      <a href="javascript:;" data-target="#request" data-toggle="tab" aria-expanded="false" style="color: #3e3f3a;">Forgot your password? <strong>Reset</strong> ...</a><br>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade" id="request">
+          <form name="forgotPassForm" ng-submit='forgotPass()'>
+            <br>
+            <input type="email" ng-model='user.email' class="form-control" placeholder="Please Enter Your Email" required="" autofocus="" />
+            <button class="btn btn-default btn-block"  type="submit"  name="Submit" value="Forgot">Request New Password</button>
+          </form>
+          <br><p style="color: red;">{{msg}}</p>
+        </div>
       </div>
+    </div>     
+  </div>
 </div>

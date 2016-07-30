@@ -13,6 +13,7 @@ module.exports = function (app, express) {
   app.get('/api/user/:userName', userController.getUser);
   app.get('/api/users/', userController.getAll);
   app.put('/api/user/:userName/edit', userController.editUser);
+  app.get('/api/users/requestPass/:email', userController.requestNewPass);
 
   //Opportunities routes
   app.get('/api/opportunities/:id',opportunityController.getOpportunityByOrgId);
