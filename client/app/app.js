@@ -69,7 +69,7 @@ angular.module('VolunteerHub', [
       controller: 'organizationProfileController',
       authenticate: true
     })
-    .otherwise({ redirectTo: '/users' });
+    .otherwise({ redirectTo: '/organizations' });
     $httpProvider.interceptors.push('AttachTokens');
 })
 
