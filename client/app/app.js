@@ -2,6 +2,8 @@ angular.module('VolunteerHub', [
   'VolunteerHub.services',
   'VolunteerHub.opportunityCreateEdit',
   'VolunteerHub.auth',
+  'VolunteerHub.event',
+  'VolunteerHub.opportunities',
   'VolunteerHub.user',
   'VolunteerHub.users',
   'VolunteerHub.organizations',
@@ -49,9 +51,9 @@ angular.module('VolunteerHub', [
       controller: 'usersController',
       authenticate: true
     })
-    .when('/events', {
-      templateUrl: 'app/events/events.html',
-      controller: 'EventsCtrl',
+    .when('/opportunities', {
+      templateUrl: 'app/opportunities/opportunities.html',
+      controller: 'OpportunitiesCtrl',
       // authenticate: true
     })
     .when('/createEvent', {
@@ -84,7 +86,6 @@ angular.module('VolunteerHub', [
       controller: 'organizationProfileController',
       authenticate: true
     })
-
     .when('/opportunities/create', {
       templateUrl: 'app/createOpportunity/createOpportunity.html',
       controller: 'opportunityCreateOrEditController',
@@ -96,6 +97,7 @@ angular.module('VolunteerHub', [
       authenticate: true
     })
     .otherwise({ redirectTo: '/organizations' });
+
     $httpProvider.interceptors.push('AttachTokens');
 })
 

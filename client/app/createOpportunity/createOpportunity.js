@@ -1,7 +1,7 @@
 angular.module('VolunteerHub.opportunityCreateEdit', [])
 
 .controller('opportunityCreateOrEditController', function ($scope, $routeParams, $location, Opportunities) {
-
+	//TODO to send organization name and use a seperate function for create than edit
 	$scope.newOpportunity = {};
 
 	$scope.changedFlag = false;

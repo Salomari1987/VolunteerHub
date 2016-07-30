@@ -1,13 +1,10 @@
 angular.module('VolunteerHub.services', [])
-<<<<<<< b361b680f38b78e12b71c0b4d97bae8dae207c96
-=======
 
->>>>>>> Create opportunity
 .factory('Opportunities', function ($http) {
-	var getEvents = function () {
+	var getOpportunities = function () {
 		return $http({
 			method: 'GET',
-			url: '/api/events'
+			url: '/api/opportunities'
 		})
 		.then(function (res) {
 			return res.data;
