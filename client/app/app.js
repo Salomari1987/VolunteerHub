@@ -145,7 +145,9 @@ angular.module('VolunteerHub', [
   // if it's not valid, we then redirect back to signin/signup
   $rootScope.$on('$routeChangeStart', function (evt, next, current) {
     if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
-      if(next.$$route.controller === 'organizationCreateOrEditController'){
+      if(next.$$route.controller === 'organizationCreateOrEditController' 
+        || next.$$route.controller === 'opportunityCreateOrEditController' 
+        || next.$$route.controller === 'organizationCreateOrEditController' ){
         $location.path('/signin');
       }
     }

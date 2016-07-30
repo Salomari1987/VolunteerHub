@@ -67,7 +67,7 @@
         <div class="form-group col-lg-8">
           <input type="text" class="form-control" placeholder="Search" ng-model="search">
         </div>
-        <div class="col-lg-4" >
+        <div class="col-lg-4" ng-if="Auth()&&organization.owners.indexOf(userId)!==-1">
         	<a role="button" class="btn btn-default" style="margin-top: 1.5%;" href="#/opportunities/create/{{organization._id}}">+ New Opportunity</a>
         </div>
       </form>
