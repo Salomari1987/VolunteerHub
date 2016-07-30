@@ -3,7 +3,7 @@
     <a href="/user/:id/#all" data-toggle="tab" aria-expanded="true">All Organizations</a>
   </li>
   <li class="">
-    <a href="/user/:id/#my" data-toggle="tab" aria-expanded="false">My Organizations</a>
+    <a href="/user/:id/#my" data-toggle="tab" aria-expanded="false" ng-if="userId!==null">My Organizations</a>
   </li>
   <li class="">
     <a href="#/organizations/create">Create Organization</a>
