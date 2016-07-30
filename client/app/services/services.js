@@ -126,7 +126,7 @@ angular.module('VolunteerHub.services', [])
     return $http({
       method: 'PUT',
       url: '/api/opportunity/addOpening/'+ newOpening['_opportunity'],
-      data: newOpportunity
+      data: newOpening
     })
     .then(function (resp) {
       return resp;

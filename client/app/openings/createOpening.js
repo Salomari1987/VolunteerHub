@@ -39,7 +39,7 @@ angular.module('VolunteerHub.openingCreateEdit', [])
 	$scope.save = function(){
 		openingId = $routeParams.id;
 		$scope.newOpening._id = openingId;
-		Openings.editOpportunity($scope.newOpening)
+		Openings.editOpening($scope.newOpening)
 		.then(function(result){
 			$location.path('/opportunity/'+$scope.newOpening._opportunity);
 		})
@@ -50,7 +50,7 @@ angular.module('VolunteerHub.openingCreateEdit', [])
 	$scope.create = function(){
 		var  opportunityId = $routeParams.opId
 		$scope.newOpening._opportunity = opportunityId;
-		Openings.createOpportunity($scope.newOpening)
+		Openings.createOpening($scope.newOpening)
 		.then(function(result){
 			$location.path('/opportunity/'+$scope.newOpening._opportunity);
 		})
