@@ -1,6 +1,6 @@
 angular.module('VolunteerHub.users', [])
 
-.controller('usersController', function ($scope, Users) {
+.controller('usersController', function ($scope,$location, Users) {
 
 	$scope.data = {};
 
@@ -13,6 +13,10 @@ angular.module('VolunteerHub.users', [])
 			console.log(error);
 		});
 	};
+
+	$scope.redirect = function(userName){
+		$location.path('/user/'+userName)
+	}
 
 	$scope.initialize();
 
