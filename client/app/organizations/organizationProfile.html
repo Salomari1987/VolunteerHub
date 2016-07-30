@@ -60,9 +60,7 @@
   </div>
 
   <div class="tab-pane fade" id="opportunities">
-
-
-	<div class="row">
+	  <div class="row">
       <form class="form-search" role="search">
         <div class="form-group col-lg-8">
           <input type="text" class="form-control" placeholder="Search" ng-model="search">
@@ -72,7 +70,7 @@
         </div>
       </form>
     </div>
-	<div class="row">
+	  <div class="row">
       <div id='container'>
       <!-- create multiple accordion elements for all organizations -->
         <div class='panel-group' id='accordion' role='tablist' aria-mutliselectable='true' > 
@@ -88,12 +86,12 @@
               <div id='{{opportunity._id}}' class='panel-collapse collapse' role='tabpanel' aria-labelledby='opportunity._id' aria-expanded='false'>
                 <div class='panel-body'>
                   <div class='col-lg-3 col-md-3 col-sm-3'>
-                    <img ng-src='{{opportunity.picture}}' style="width:30%;"> 
+                    <img ng-src='{{opportunity.poster}}' style="width:30%;"> 
                   </div>
                   <div class='col-lg-6 col-md-6 col-sm-6'>
                     <p>Causes: 
                       <ul>
-                      <li ng-repeat="cause in opportunity.causes_area">{{cause}}</li>
+                      <li ng-repeat="cause in opportunity.causesArea">{{cause}}</li>
                       </ul>
                     </p>
                     <br>
@@ -109,19 +107,6 @@
         </div>
       </div> 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-	On Hold until salah finishes his part
-  	
   </div>
 
 </div>
