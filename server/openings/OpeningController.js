@@ -112,7 +112,6 @@ module.exports = {
 
   applyToOpening: function (req,res,next){
     var openingId = req.params.id.toString();
-    var user = req.body;
     var token = req.headers['x-access-token'];
     if (!token){
       next(new Error('No token'))
