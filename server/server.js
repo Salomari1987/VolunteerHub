@@ -2,7 +2,8 @@ var express = require('express');
 var mongoose = require('mongoose');
 
 // connect to mongo database named "VolunteerHub"
-mongoose.connect('mongodb://localhost/VolunteerHub');
+var mongoURI =  process.env.MONGODB_URI || 'mongodb://localhost/VolunteerHub';
+mongoose.connect(mongoURI);
 db = mongoose.connection;
 
 db.once('open',function () {
@@ -13,7 +14,7 @@ db.once('open',function () {
 
 var app = express();
 // configure our server with all the middleware and routing
-var port = 8080;
+var port = process.env.PORT || 8080;
 
 require('./config/middleware.js')(app, express);
 require('./config/routes.js')(app, express);
