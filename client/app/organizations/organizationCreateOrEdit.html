@@ -1,14 +1,14 @@
 <br>
-<div id="container" class="container-fluid">
-
-  <div class="col-lg-3 col-md-3 col-sm-6">
-    <img ng-src="{{newOrg.picture}}"><br>
+<div class="col-xs-2"></div>
+<div id="container" class="col-xs-8 container-fluid">
+  <div class="col-xs-12">
+    <img ng-src="{{newOrg.picture}}" class="center-block"><br>
     <input type="button" ng-click="changeProfilePic()" class="btn btn-default center-block"
     value="Change Profile Picture"/>
   </div>
+  <div class="col-xs-12">
+    <h5>
 
-  <div class="col-lg-6 col-md-6 col-sm-6">
-    <h3>
     <div>
       <label for="name">Name</label>
       <input name='name' type="text"
@@ -68,15 +68,19 @@
       </div><br><br>
     </div>
 
-    <div class="center-block">
-      <input ng-if="routeParams.id" type="button" ng-click="save()" class="btn btn-default"
-        value="Save"/>
-      <input ng-if="!routeParams.id" type="button" ng-click="create()" class="btn btn-default"
+    <div>
+      <div class="col-xs-5"></div>
+      <input ng-if="routeParams.id" type="button" ng-click="save()" class="btn btn-default col-xs-1"
+        value="Save" style="margin-right: 2px;" />
+      <input ng-if="!routeParams.id" type="button" ng-click="create()" class="btn btn-default col-xs-1"
         value="Create"/>
-      <input type="button" ng-click="cancel()" class="btn btn-default"
+      <input type="button" ng-click="cancel()" class="btn btn-default col-xs-1"
         value="Cancel"/>
+      <div class="col-xs-5"></div>
     </div>
-    </h3>
+
+    </h5>
   </div>
 
 </div>
+<div class="col-xs-2"></div>
