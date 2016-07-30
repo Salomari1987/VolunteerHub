@@ -1,5 +1,6 @@
 angular.module('VolunteerHub.services', [])
 
+
 .factory('Opportunities', function ($http) {
 	var getOpportunities = function () {
 		return $http({
@@ -68,7 +69,7 @@ angular.module('VolunteerHub.services', [])
 .factory('Openings', function($http){
   var getAll = function (){
     return $http({
-      method:'POST',
+      method:'GET',
       url: '/api/openings'
     })
     .then(function(resp){
