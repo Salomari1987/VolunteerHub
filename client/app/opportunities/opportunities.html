@@ -1,0 +1,114 @@
+<!-- <div class="container">
+  <div class="jumbotron" >
+    <div class="row" >
+      <div class="col-xs-6 jumbotron" ng-repeat="event in data.events">
+        <img  ng-src="{{event.poster}}" 
+              style="float : right ;    margin-top: -2%" width="200px">
+            <ul>
+            	<li >
+            		<h2><a href="#/event/{{event._id}}">{{event.title}}</a></h2>
+            	</li>
+            </ul>
+            <p>Type: {{event.type}}</p>
+            <p>Start Date: {{event.startDate}}</p>
+            <p>End Date: {{event.endDate}}</p>
+            <p><a class="btn btn-primary btn-lg" href="#/event/{{event._id}}" role="button">More Details</a></p>
+      </div>
+      <div class="clear"></div>
+
+
+
+    </div>
+  </div>
+</div> -->
+<!-- <div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse1">Collapsible panel</a>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse">
+      <div class="panel-body">Panel Body</div>
+      <div class="panel-footer">Panel Footer</div>
+    </div>
+  </div>
+</div> -->
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#/opportunities">All Opportunities</a>
+  </li>
+  <li class="">
+    <a href="#/openings">All Openings</a>
+  </li>
+</ul>
+<div class="row">
+<form class="form-search" role="search">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search">
+  </div>
+</form>
+</div>
+<div class="row">
+<div id='container'>
+<!-- create multiple accordion elements for all opportunities -->
+    <div class='panel-group' id='accordion' role='tablist' aria-mutliselectable='true' > 
+      <div class='col-xs-12'>
+          <!-- Bootstrap accordion to control opportunity card expand and collepse -->
+            <div class='panel panel-default'>
+              <div class="panel-heading" role="tab" id="heading-1">
+                <h4 class="panel-title">
+                <!-- href="javascript:;" with data-target to control the element to be collapsed, using opportunities objectIds to make each element unique -->
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="javascript:;" aria-expanded="false" aria-controls="c1" class="collapsed" data-target="#c1"> <i class="glyphicon glyphicon-plus"></i> Opportunity Title </a> 
+                </h4> 
+              </div>
+              <!-- content to be expanded -->
+              <div id='c1' class='panel-collapse collapse' role='tabpanel' aria-labelledby='heading-1' aria-expanded='false'>
+                <div class='panel-body'>
+                  <div class='col-md-3'>
+                    <img src='https://www.artflakes.com/system/profiles/icons/56401/small_icon.jpg?1434623307'> 
+                  </div>
+                  <div class='col-md-6'>
+                  <p>Causes: </p><p>Type:</p><p>Skills Required:</p><p>Location:</p><p>Number of openings</p>
+                </div>
+                                  <div class='col-md-3'>
+                    <a class='btn btn-primary' role='button' href='#/opportunity/1'> View details </a>
+                    </div>
+              </div>
+            </div>
+                        <div class='panel panel-default'>
+              <div class="panel-heading" role="tab" id="heading-2">
+                <h4 class="panel-title">
+                <!-- href="javascript:;" with data-target to control the element to be collapsed, using opportunities objectIds to make each element unique -->
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="javascript:;" aria-expanded="false" aria-controls="c2" class="collapsed" data-target="#c2"> <i class="glyphicon glyphicon-plus"></i> Opportunity Title </a> 
+                </h4> 
+              </div>
+              <!-- content to be expanded -->
+              <div id='c2' class='panel-collapse collapse' role='tabpanel' aria-labelledby='heading-2' aria-expanded='false'>
+                <div class='panel-body'>
+                  <img src='https://www.artflakes.com/system/profiles/icons/56401/small_icon.jpg?1434623307'> 
+                  <p>Causes: </p><p>Type:</p><p>Skills Required:</p><p>Location:</p><p>Number of openings</p>
+                    <button class='btn btn-primary' role='button'> View details </button>
+                </div>
+              </div>
+            </div>
+                        <div class='panel panel-default'>
+              <div class="panel-heading" role="tab" id="heading-3">
+                <h4 class="panel-title">
+                <!-- href="javascript:;" with data-target to control the element to be collapsed, using opportunities objectIds to make each element unique -->
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="javascript:;" aria-expanded="false" aria-controls="c3" class="collapsed" data-target="#c3"> <i class="glyphicon glyphicon-plus"></i> Opportunity Title </a> 
+                </h4> 
+              </div>
+              <!-- content to be expanded -->
+              <div id='c3' class='panel-collapse collapse' role='tabpanel' aria-labelledby='heading-3' aria-expanded='false'>
+                <div class='panel-body'>
+                  <img src='https://www.artflakes.com/system/profiles/icons/56401/small_icon.jpg?1434623307'> 
+                  <p>Causes: </p><p>Type:</p><p>Skills Required:</p><p>Location:</p><p>Number of openings</p>
+                    <button class='btn btn-primary' role='button'> View details </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
