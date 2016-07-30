@@ -71,13 +71,15 @@
         <input type="button" value="Add" ng-click="addItem(newOpportunity.requiredSkills,newSkill)"/>
       </div><br><br>
     </div>
-    <div class="center-block">
-      <input ng-if="routeParams.oppId" type="button" ng-click="save()" class="btn btn-default"
+    <div>
+      <div class="col-xs-5"></div>
+      <input ng-if="routeParams.oppId" type="button" ng-click="save()" class="btn btn-default col-xs-1"
         value="Save"/>
-      <input ng-if="routeParams.id" type="button" ng-click="create()" class="btn btn-default"
+      <input ng-if="routeParams.id" type="button" ng-click="create()" class="btn btn-default col-xs-1"
         value="Create"/>
-        <input type="button" ng-click="cancel()" class="btn btn-default"
-        value="Cancel"/>
+        <input type="button" ng-click="cancel()" class="btn btn-default col-xs-1"
+        value="Cancel" style="margin-left: 2px;" />
+      <div class="col-xs-5"></div>
     </div>
     </h5>
   </div>
