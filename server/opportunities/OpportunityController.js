@@ -146,6 +146,16 @@ module.exports ={
 			next(error);
 		})
   	},
+  	getOpportunityByOrgId : function (req,res,next) {
+  		var id=(req.params.id).toString();
+  		findAllOpportunities({_organizer: id}) 
+  		.then (function(opportunities) {
+		  	res.status(200).send(opportunities);
+		})
+		.fail(function(error) {
+			next(error);
+		})
+  	},
   	deleteOne : function(req,res, next){
 	  	var id=(req.params.id).toString();
 	  	var orgId;
