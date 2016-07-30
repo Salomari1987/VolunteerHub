@@ -13,8 +13,7 @@ angular.module('VolunteerHub', [
   'VolunteerHub.organizationCreateEdit',
   'VolunteerHub.openings',
   'VolunteerHub.openingCreateEdit',
-  'ngRoute'//,
-  //'720kb.socialshare'
+  'ngRoute'
 ])
 .controller("HeaderController", function($scope, $location, Auth) {
 
