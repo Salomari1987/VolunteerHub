@@ -7,7 +7,7 @@
     </div>
   </form>
   </div>
-  <div class='col-xs-12' ng-repeat="user in data.users | filter:{firstName:search}">
+  <div class='col-xs-12 jumbotron container-fluid' ng-repeat="user in data.users | filter:{firstName:search}">
     <div class="row">
       <div class='col-lg-3 col-md-3 col-sm-3'>
         <img ng-src='{{user.picture}}' ng-click='redirect(user.userName)' class="userImage" style="width:200px;height:auto;cursor:pointer"> 
