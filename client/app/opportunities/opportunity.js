@@ -18,6 +18,12 @@ angular.module('VolunteerHub.opportunity', [])
 		});
 
 	};
+	$scope.apply = function(openingId){
+		Openings.applyToOpening(openingId)
+		.then(function(opening){
+			// $scope.applied=true;
+		})
+	};
 
 	$scope.initialize();
 });

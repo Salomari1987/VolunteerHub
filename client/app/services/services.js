@@ -291,7 +291,7 @@ angular.module('VolunteerHub.services', [])
       data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+      return resp.data;
     });
   };
 

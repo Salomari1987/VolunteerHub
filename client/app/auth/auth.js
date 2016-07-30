@@ -18,8 +18,9 @@ angular.module('VolunteerHub.auth', [])
 
   $scope.signup = function () {
     Auth.signup($scope.user)
-      .then(function (token) {
-        $window.localStorage.setItem('com.VolunteerHub', token);
+      .then(function (data) {
+        window.userId = data.userId
+        $window.localStorage.setItem('com.VolunteerHub', data.token);
         $window.localStorage.setItem('userId', data.userId);
         $location.path('/');
       })
