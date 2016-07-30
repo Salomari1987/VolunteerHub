@@ -162,13 +162,13 @@ module.exports = {
             res.status(500).send(error);
           } else {
             var title = savedUser.gender==='Male' ? 'Mr. ' : 'Mrs. '
-            var emailBody = 'Dear' + title;
+            var emailBody = 'Dear ' + title;
               emailBody += savedUser.lastName + ',\n\nYour Username is: ' +savedUser.userName;
               emailBody += '\nYour New Password is: '+ newPass + '\n\nRegards,\nVolunteerHub Team';   
 
             // email params
             var mailOptions = {
-              to: req.params.email.toString(),
+              to: req.params.email,
               subject: 'New Password',
               text: emailBody
             };
