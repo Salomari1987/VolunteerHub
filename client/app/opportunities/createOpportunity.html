@@ -50,7 +50,7 @@
     <div>
       <label for="causesArea">Causes Area</label>
       <ul>
-      <li ng-repeat="cause in newOpportunity.causes_area">{{cause}} <a ng-click="removeItem(newOpportunity.causes_area,cause)" style="color:red;">Remove</a></li>
+      <li ng-repeat="cause in newOpportunity.causesArea">{{cause}} <a ng-click="removeItem(newOpportunity.causesArea,cause)" style="color:red;">Remove</a></li>
       </ul>
       <div>
         <input name='causesArea' type="text"
@@ -76,7 +76,7 @@
         value="Save"/>
       <input ng-if="routeParams.id" type="button" ng-click="create()" class="btn btn-default"
         value="Create"/>
-        <input type="button" ng-click="cancel()" class="btn btn-default btn-lg"
+        <input type="button" ng-click="cancel()" class="btn btn-default"
         value="Cancel"/>
     </div>
     </h5>

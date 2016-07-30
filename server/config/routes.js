@@ -1,4 +1,4 @@
-organvar userController = require('../users/userController.js');
+var userController = require('../users/userController.js');
 var organizationController = require('../organizations/organizationController.js');
 var opportunityController = require('../opportunities/OpportunityController.js');
 var helpers = require('./helpers.js'); // our custom middleware
@@ -15,6 +15,7 @@ module.exports = function (app, express) {
   app.put('/api/user/:userName/edit', userController.editUser);
 
   //Opportunities routes
+  app.get('/api/opportunities/:id',opportunityController.getOpportunityByOrgId);
   app.get('/api/opportunities',opportunityController.allOpportunities);
   app.get('/api/opportunity/:id',opportunityController.getOpportunity);
   app.put('/api/opportunity/:id',opportunityController.editOpportunity);

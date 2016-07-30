@@ -51,12 +51,25 @@ angular.module('VolunteerHub.services', [])
 		});
   }
 
+  var getOpportunities = function(organizationId){
+    return $http({
+      method: 'GET',
+      url: '/api/opportunities/'+organizationId
+    })
+    .then(function (res) {
+      return res.data;
+    });
+  }
+
   var createOpportunity = function (newOpportunity) {
       return $http({
         method: 'PUT',
         url: '/api/organization/add/'+ newOpportunity['_organizer'],
         data: newOpportunity
       })
+      .then(function (resp) {
+        return resp;
+      });
     }
 //need fixing: how to get an event based on their id
   var getOne = function(opportunityId){
@@ -81,9 +94,10 @@ angular.module('VolunteerHub.services', [])
 
 	return {
     getAll : getAll,
-    createEvent: createEvent,
+    createOpportunity: createOpportunity,
     getOne: getOne, 
-    editOpportunity: editOpportunity
+    editOpportunity: editOpportunity,
+    getOpportunities: getOpportunities
 	};
 })
 .factory('Openings', function($http){
