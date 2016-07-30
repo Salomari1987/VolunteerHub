@@ -3,7 +3,7 @@ angular.module('VolunteerHub.opportunityCreateEdit', [])
 .controller('opportunityCreateOrEditController', function ($scope, $routeParams, $location, Opportunities) {
 	//TODO to send organization name and use a seperate function for create than edit
 	$scope.newOpportunity = {};
-
+	$scope.routeParams = $routeParams;
 	$scope.changedFlag = false;
 
 	$scope.initialize = function(){
@@ -58,9 +58,22 @@ angular.module('VolunteerHub.opportunityCreateEdit', [])
 	};
 
 	$scope.save = function(){
+		opportunityId = $routeParams.oppId;
+		$scope.newOpportunity._id = opportunityId;
 		Opportunities.editOpportunity($scope.newOpportunity)
 		.then(function(result){
 			$location.path('/opportunities/profile/'+$scope.newOpportunity._id);
+		})
+		.catch(function(error){
+			console.log(error);
+		});
+	};
+	$scope.create = function(){
+		organizationId = $routeParams.id
+		$scope.newOpportunity._organizer = organizationId;
+		Opportunities.createOpportunity($scope.newOpportunity)
+		.then(function(result){
+			$location.path('/opportunity/'+result.data._id);
 		})
 		.catch(function(error){
 			console.log(error);

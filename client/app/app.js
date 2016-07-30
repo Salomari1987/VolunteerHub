@@ -103,12 +103,12 @@ angular.module('VolunteerHub', [
       controller: 'organizationProfileController',
       authenticate: true
     })
-    .when('/opportunities/create', {
+    .when('/opportunities/create/:id', {
       templateUrl: 'app/createOpportunity/createOpportunity.html',
       controller: 'opportunityCreateOrEditController',
       authenticate: true
     })
-    .when('/opportunities/edit/:id', {
+    .when('/opportunities/edit/:oppId', {
       templateUrl: 'app/createOpportunity/createOpportunity.html',
       controller: 'opportunityCreateOrEditController',
       authenticate: true

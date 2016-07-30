@@ -50,6 +50,14 @@ angular.module('VolunteerHub.services', [])
 			return res.data;
 		});
   }
+
+  var createOpportunity = function (newOpportunity) {
+      return $http({
+        method: 'PUT',
+        url: '/api/organization/add/'+ newOpportunity['_organizer'],
+        data: newOpportunity
+      })
+    }
 //need fixing: how to get an event based on their id
   var getOne = function(opportunityId){
     return $http({

@@ -72,8 +72,10 @@
       </div><br><br>
     </div>
     <div class="center-block">
-      <input type="button" ng-click="save()" class="btn btn-default btn-lg"
+      <input ng-if="routeParams.oppId" type="button" ng-click="save()" class="btn btn-default"
         value="Save"/>
+      <input ng-if="routeParams.id" type="button" ng-click="create()" class="btn btn-default"
+        value="Create"/>
         <input type="button" ng-click="cancel()" class="btn btn-default btn-lg"
         value="Cancel"/>
     </div>
