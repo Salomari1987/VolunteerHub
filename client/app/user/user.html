@@ -27,6 +27,8 @@
     <p>Phone Number: {{user.phoneNumber}}</p>
   </div>
     
+  <input ng-if="!routeParams.userName" type="button" ng-click="edit()" class="btn btn-default" value="Edit"/>
+  
   <ul class="nav nav-tabs">
     <li class="active"><a href="/user/:id/#suggestions" data-toggle="tab" aria-expanded="true">Suggestions</a></li>
     <li class=""><a href="/user/:id/#current" data-toggle="tab" aria-expanded="false">Current Events</a></li>

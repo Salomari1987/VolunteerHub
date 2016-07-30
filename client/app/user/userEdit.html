@@ -1,0 +1,73 @@
+<div class="container">
+  <table>
+    <tr>
+      <td><img src="http://andrewbtran.github.io/JRN-418/class6/cat.jpg" class="userPic"/> <td>
+      <td class="skillTable"><table>
+    <tr>
+      <h2 class="profHeader"><strong>Skills</strong></h2></tr>
+    <tr>
+      <span ng-repeat="skill in user.skills">| {{skill}} |</span>
+    </tr>
+    <tr>
+      <h2 class="profHeader"><strong>Causes/Interests</strong></h2></tr>
+    <tr>
+      <span ng-repeat="cause in user.cause">{{cause}} </span>
+    </tr>
+    </table></td>
+      <td class="profRating">
+        <div><h2>Organizer 5/5</h2></div>
+        <div><h2>Volunteer 5/5</h2></div>
+      </td>
+    </tr>
+  </table>
+  <div>
+    <input name="firstName" type="text" ng-model="newUser.firstName" placeholder="user.firstName" value="newUser.firstName">
+    <input name="lastName" type="text" ng-model="newUser.lastName" placeholder="user.lastName" value="newUser.lastName">
+    <input name="email" type="text" ng-model="newUser.email" placeholder="user.email" value="newUser.email">
+    <input name="phoneNumber" type="text" ng-model="newUser.phoneNumber" placeholder="user.phoneNumber" value="newUser.phoneNumber">
+  </div>
+    
+  <input ng-if="!routeParams.userName" type="button" ng-click="save()" class="btn btn-default" value="Save"/>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="/user/:id/#suggestions" data-toggle="tab" aria-expanded="true">Suggestions</a></li>
+    <li class=""><a href="/user/:id/#current" data-toggle="tab" aria-expanded="false">Current Events</a></li>
+    <li class=""><a href="/user/:id/#past" data-toggle="tab" aria-expanded="false">Past Events</a></li>
+    <li class=""><a href="/user/:id/#favorites" data-toggle="tab" aria-expanded="false">Favorites</a></li>
+  </ul>
+  
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade active in" id="suggestions">
+    <ul>
+      <li ng-repeat="event in user.events" class="events">
+          {{event}}
+      </li>
+      <li>event</li><li>event</li><li>event</li>
+    </ul>
+  </div>
+  <div class="tab-pane fade" id="current">
+    <ul>
+      <li ng-repeat="event in user.events" class="events">
+          {{event}}
+      </li>
+      <li>event</li><li>event</li><li>event</li>
+    </ul>
+  </div>
+  <div class="tab-pane fade" id="past">
+    <ul>
+      <li ng-repeat="event in user.events" class="events">
+          {{event}}
+      </li>
+      <li>event</li><li>event</li><li>event</li>
+    </ul>
+  </div>
+  <div class="tab-pane fade" id="favorites">
+    <ul>
+      <li ng-repeat="event in user.events" class="events">
+          {{event}}
+      </li>
+      <li>event</li><li>event</li><li>event</li>
+    </ul>
+  </div>
+</div>
+ </div>

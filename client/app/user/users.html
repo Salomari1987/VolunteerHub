@@ -1,0 +1,30 @@
+<div class="container">
+
+  <div class="row">
+  <form class="form-search" role="search">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search" ng-model="search">
+    </div>
+  </form>
+  </div>
+  <div class='col-xs-12' ng-repeat="user in data.users | filter:{firstName:search}">
+    <div class="row">
+      <div class='col-lg-3 col-md-3 col-sm-3'>
+        <img ng-src='{{user.picture}}' style="width:200px;height:auto;"> 
+      </div>
+      <div class='col-lg-3 col-md-3 col-sm-3' style="font-size:20px;vertical-align:middle;">
+        <strong style="vertical-align:middle;">{{user.firstName}} {{user.lastName}}</strong>
+      </div>
+      <div class='col-lg-6 col-md-6 col-sm-6'>
+        <p>Skills: 
+          <ul>
+          <li ng-repeat="skill in user.skills">{{skill}}</li>
+          </ul>
+        </p>
+        <br>
+        <p>Rating: {{user.rate}}/5</p>
+      </div>
+    </div>
+  </div>
+
+</div>
