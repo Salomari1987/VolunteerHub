@@ -6,6 +6,7 @@ angular.module('VolunteerHub', [
   'VolunteerHub.opportunities',
   'VolunteerHub.user',
   'VolunteerHub.users',
+  'VolunteerHub.userEdit',
   'VolunteerHub.organizations',
   'VolunteerHub.organizationProfile',
   'VolunteerHub.organizationCreateEdit',
@@ -75,6 +76,11 @@ angular.module('VolunteerHub', [
     .when('/user/:id', {
       templateUrl: 'app/user/user.html',
       controller: 'UserCtrl',
+      authenticate: true
+    })
+    .when('/user/:userName/edit', {
+      templateUrl: 'app/user/userEdit.html',
+      controller: 'userEditController',
       authenticate: true
     })
     .when('/organizations', {
