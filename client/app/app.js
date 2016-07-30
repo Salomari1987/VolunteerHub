@@ -17,6 +17,8 @@ angular.module('VolunteerHub', [
 ])
 .controller("HeaderController", function($scope, $location, Auth) {
 
+  window.IMGUR_CLIENT_ID = process.env.imgurID;
+
   $scope.Auth = Auth.isAuth;
 
   if(Auth.isAuth){
