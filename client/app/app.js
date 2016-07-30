@@ -54,7 +54,7 @@ angular.module('VolunteerHub', [
     })
     // add routes when needed for pages
     .when('/opportunity/:id', {
-      templateUrl: 'app/opportunity/opportunity.html',
+      templateUrl: 'app/opportunities/opportunity.html',
       controller: 'OpportunityCtrl',
       authenticate: true
     })
@@ -104,12 +104,12 @@ angular.module('VolunteerHub', [
       authenticate: true
     })
     .when('/opportunities/create/:id', {
-      templateUrl: 'app/createOpportunity/createOpportunity.html',
+      templateUrl: 'app/opportunities/createOpportunity.html',
       controller: 'opportunityCreateOrEditController',
       authenticate: true
     })
     .when('/opportunities/edit/:oppId', {
-      templateUrl: 'app/createOpportunity/createOpportunity.html',
+      templateUrl: 'app/opportunities/createOpportunity.html',
       controller: 'opportunityCreateOrEditController',
       authenticate: true
     })
