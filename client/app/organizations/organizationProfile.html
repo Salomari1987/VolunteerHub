@@ -13,52 +13,42 @@
 <div id="myTabContent" class="tab-content">
   
   <div class="tab-pane fade active in container-fluid jumbotron" id="profile">
-    <div class='col-xs-2'></div>
-    <div class="col-xs-8">
-      <div class="col-xs-12">
-        <img ng-src="{{organization.picture}}" class="center-block"><br>
+    <div class="col-xs-12">
+      <div class="col-xs-4">
+        <img ng-src="{{organization.picture}}" style="width:50%" class="center-block"><br>
       </div>
-      <div class="col-xs-12">
-        <h5>
+      <div class="col-xs-4">
         <div>
-          <p>Name : {{organization.name}}</p><br><br>
+          <span><h4> Name : {{organization.name}} </h4></span><br>
         </div>
 
         <div>
-          <p>EIN : {{organization.EIN}}</p><br><br>
+          <span><h4> EIN : {{organization.EIN}} </h4></span><br>
         </div>
 
         <div>
-          <p>Mission Statement : {{organization.missionStatement}}</p><br><br>
+          <span><h4>Mission Statement : {{organization.missionStatement}} </h4></span><br>
         </div>
 
         <div>
-          <p>Causes Area :</p>
-          <ul>
-            <li ng-repeat="cause in organization.causes_area">{{cause}}</li>
-          </ul><br><br>
+          <h4>Causes Area :</h4>
+            <span ng-repeat="cause in organization.causes_area">{{cause}}<br></span>
+          <br>
         </div>
-
+        </div>
+        <div class='col-xs-4'>
         <div>
-          <p>Locations :</p>
-          <ul>
-            <li ng-repeat="location in organization.locations">{{location}}</li>
-          </ul><br><br>
+          <h4>Locations:</h4>
+            <span ng-repeat="location in organization.locations">{{location}} <br> </span><br>
         </div>
 
         <div>
           <p>Contact Info :</p>
-          <ul>
-            <li ng-repeat="key in organization.contactInfoKeys">
-              <p>{{key}} : {{organization.contactInfo[key]}}</p>
-            </li>
-          </ul><br><br>
+              <span ng-repeat="key in organization.contactInfoKeys">{{key}} : {{organization.contactInfo[key]}} <br></span>
         </div>
-        
-        </h5>
+        </div>
       </div>
     </div>
-    <div class='col-xs-2'></div>
   </div>
 
   <div class="tab-pane fade" id="opportunities">
