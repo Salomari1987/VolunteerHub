@@ -11,11 +11,11 @@ angular.module('VolunteerHub', [
   'VolunteerHub.organizationProfile',
   'VolunteerHub.organizationCreateEdit',
   'VolunteerHub.openings',
-  'ngRoute',
-  'ng',
-  'ngAria',
-  'ngAnimate',
-  'ngMaterial'
+  'ngRoute'
+  // 'ng',
+  // 'ngAria',
+  // 'ngAnimate',
+  // 'ngMaterial'
 ])
 .controller("HeaderController", function($scope, $location, Auth) {
 
@@ -73,7 +73,7 @@ angular.module('VolunteerHub', [
       controller: 'CreateEventCtrl',
       authenticate: true
     })
-    .when('/user/:id', {
+    .when('/user/:userName', {
       templateUrl: 'app/user/user.html',
       controller: 'UserCtrl',
       authenticate: true
