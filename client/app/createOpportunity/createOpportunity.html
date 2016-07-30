@@ -1,0 +1,85 @@
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#/opportunities">All Opportunities</a>
+  </li>
+  <li class="">
+    <a href="#/openings">All Openings</a>
+  </li>
+</ul>
+<br>
+<div class='col-xs-2'>
+</div>
+<div id="container" class="col-xs-8 container-fluid">
+
+  <div class="col-xs-12">
+    <img style="width:100%; height:400px; opacity:0.9" type="button" ng-src="{{newOpportunity.poster}}" ng-click="changeCover()"><br>
+<!--     <input  class="btn btn-default btn-lg center-block"
+    value="Change Cover Photo"/> -->
+  </div>
+  <div class="col-xs-12">
+    <h5>
+    <div>
+      <label for="title">Title</label>
+      <input name='title' type="text"
+      ng-model="newOpportunity.title"
+      placeholder="Enter title here" 
+      value="{newOpportunity.title}"/><br><br>
+    </div>
+    <div>
+      <label for="startDate">Start Date</label>
+      <input name='startDate' type="date"
+      ng-model="newOpportunity.startDate"
+      placeholder="Enter Start Date" 
+      value="{newOpportunity.startDate}"/><br><br>
+    </div>
+    <div>
+      <label for="endDate">End Date</label>
+      <input name='endDate' type="date"
+      ng-model="newOpportunity.endDate"
+      placeholder="Enter End Date" 
+      value="{newOpportunity.endDate}"/><br><br>
+    </div>
+    <div>
+      <label for="location">Location</label>
+      <input name='location' type="text"
+      placeholder="Add a location" 
+      ng-model="newOpportunity.location"
+      value="{newOpportunity.location}" 
+      /><br><br>
+    </div>
+    <div>
+      <label for="causesArea">Causes Area</label>
+      <ul>
+      <li ng-repeat="cause in newOpportunity.causes_area">{{cause}} <a ng-click="removeItem(newOpportunity.causes_area,cause)" style="color:red;">Remove</a></li>
+      </ul>
+      <div>
+        <input name='causesArea' type="text"
+        ng-model="newCause"
+        placeholder="Add a cause" value="" />
+        <input type="button" value="Add" ng-click="addItem(newOpportunity.causesArea,newCause)"/>
+      </div><br><br>
+    </div>
+    <div>
+      <label for="requiredSkills">Required Skills</label>
+      <ul>
+      <li ng-repeat="skill in newOpportunity.requiredSkills">{{skill}} <a ng-click="removeItem(newOpportunity.requiredSkills,skill)" style="color:red;">Remove</a></li>
+      </ul>
+      <div>
+        <input name='requiredSkills' type="text"
+        ng-model="newSkill"
+        placeholder="Add a skill" value="" />
+        <input type="button" value="Add" ng-click="addItem(newOpportunity.requiredSkills,newSkill)"/>
+      </div><br><br>
+    </div>
+    <div class="center-block">
+      <input type="button" ng-click="save()" class="btn btn-default btn-lg"
+        value="Save"/>
+        <input type="button" ng-click="cancel()" class="btn btn-default btn-lg"
+        value="Cancel"/>
+    </div>
+    </h5>
+  </div>
+
+</div>
+<div class='col-xs-2'>
+</div>

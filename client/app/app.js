@@ -1,12 +1,20 @@
 angular.module('VolunteerHub', [
   'VolunteerHub.services',
+  'VolunteerHub.opportunityCreateEdit',
   'VolunteerHub.auth',
+  'VolunteerHub.opportunity',
+  'VolunteerHub.opportunities',
   'VolunteerHub.user',
   'VolunteerHub.users',
   'VolunteerHub.organizations',
   'VolunteerHub.organizationProfile',
   'VolunteerHub.organizationCreateEdit',
-  'ngRoute'
+  'VolunteerHub.openings',
+  'ngRoute',
+  'ng',
+  'ngAria',
+  'ngAnimate',
+  'ngMaterial'
 ])
 .controller("HeaderController", function($scope, $location, Auth) {
 
@@ -42,9 +50,29 @@ angular.module('VolunteerHub', [
     .when('/users', {
       templateUrl: 'app/users/users.html',
       controller: 'usersController',
+    })
+    // add routes when needed for pages
+    .when('/opportunity/:id', {
+      templateUrl: 'app/opportunity/opportunity.html',
+      controller: 'OpportunityCtrl',
       authenticate: true
     })
-    .when('/user/:userName', {
+    .when('/opportunities', {
+      templateUrl: 'app/opportunities/opportunities.html',
+      controller: 'OpportunitiesCtrl',
+      // authenticate: true
+    })
+    .when('/openings', {
+      templateUrl: 'app/openings/openings.html',
+      controller: 'OpeningsCtrl',
+      // authenticate: true
+    })
+    .when('/createEvent', {
+      templateUrl: 'app/createEvent/createEvent.html',
+      controller: 'CreateEventCtrl',
+      authenticate: true
+    })
+    .when('/user/:id', {
       templateUrl: 'app/user/user.html',
       controller: 'UserCtrl',
       authenticate: true
@@ -52,7 +80,7 @@ angular.module('VolunteerHub', [
     .when('/organizations', {
       templateUrl: 'app/organizations/organizations.html',
       controller: 'organizationsController',
-      authenticate: true
+      // authenticate: true
     })
     .when('/organizations/edit/:id', {
       templateUrl: 'app/organizations/organizationCreateOrEdit.html',
@@ -69,7 +97,18 @@ angular.module('VolunteerHub', [
       controller: 'organizationProfileController',
       authenticate: true
     })
+    .when('/opportunities/create', {
+      templateUrl: 'app/createOpportunity/createOpportunity.html',
+      controller: 'opportunityCreateOrEditController',
+      authenticate: true
+    })
+    .when('/opportunities/edit/:id', {
+      templateUrl: 'app/createOpportunity/createOpportunity.html',
+      controller: 'opportunityCreateOrEditController',
+      authenticate: true
+    })
     .otherwise({ redirectTo: '/organizations' });
+
     $httpProvider.interceptors.push('AttachTokens');
 })
 

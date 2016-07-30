@@ -1,8 +1,44 @@
 angular.module('VolunteerHub.services', [])
 
-.factory('Users', function ($http) {
 
-  var getUser = function(userName){
+.factory('Opportunities', function ($http) {
+	var getAll = function () {
+		return $http({
+			method: 'GET',
+			url: '/api/opportunities'
+		})
+		.then(function (res) {
+			return res.data;
+		});
+  }
+  var createEvent = function (event) {
+      return $http({
+        method: 'POST',
+        url: '/api/createEvent',
+        data: event
+      })
+    }
+//need fixing: how to get an event based on their id
+  var getOne = function(opportunityId){
+    return $http({
+      method: 'GET',
+      url: '/api/opportunity/'+opportunityId
+    })
+    .then(function(resp){
+      return resp.data;
+    });
+  }
+  var editOpportunity = function(opportunity){
+    return $http({
+      method: 'PUT',
+      url: '/api/opportunity/'+opportunity['_id'],
+      data : opportunity
+    })
+    .then(function (resp){
+      return resp;
+    });
+  };
+  var getUser = function(userID){
     return $http({
       method : 'GET',
       url : '/api/user/'+userName
@@ -10,24 +46,30 @@ angular.module('VolunteerHub.services', [])
     .then(function(res){
       return res.data;
     })
-  }
-
-  var getAll = function(){
-    return $http({
-      method : 'GET',
-      url : '/api/user/'
-    })
-    .then(function(res){
-      return res.data;
-    })
-  }      
+  }  
 
 	return {
     getUser : getUser,
-    getAll : getAll
+    getAll : getAll,
+    createEvent: createEvent,
+    getOne: getOne, 
+    editOpportunity: editOpportunity
 	};
 })
-
+.factory('Openings', function($http){
+  var getAll = function (){
+    return $http({
+      method:'GET',
+      url: '/api/openings'
+    })
+    .then(function(resp){
+      return resp.data
+    })
+  }
+  return {
+    getAll:getAll
+  }
+})
 .factory('Organizations', function($http){
 
   // a function to add an organization in the database

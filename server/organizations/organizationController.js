@@ -111,9 +111,9 @@ module.exports = {
       startDate : req.body.startDate,
       endDate : req.body.endDate,
       location : req.body.location,
-      type : req.body.type,
+      causesArea : req.body.type,
       description : req.body.description,
-        skillsRequired: req.body.skillsRequired,
+      skillsRequired: req.body.skillsRequired,
       poster : req.body.poster
       }
       createOpportunity(tempOpportunity)
