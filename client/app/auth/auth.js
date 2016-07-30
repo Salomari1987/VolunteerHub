@@ -6,7 +6,7 @@ angular.module('VolunteerHub.auth', [])
   $scope.msg = '';
 
   $scope.signin = function () {
-    Auth.signin($scope.user)
+    Auth.signin({username:$scope.user.username,password:$scope.user.password})
       .then(function (data) {
         window.userId = data.userId;
         $window.localStorage.setItem('com.VolunteerHub', data.token);
