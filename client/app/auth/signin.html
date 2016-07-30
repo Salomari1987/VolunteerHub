@@ -8,7 +8,7 @@
 	      <input type="password" ng-model='user.password' class="form-control" placeholder="Password" required=""/>  
 	      <span  id="errorSpan" style=" color:red ; text-align:center ; display: none; ">error</span>
         <button class="btn btn-default btn-block"  type="submit"  name="Submit" value="Login">Sign in</button>
-      </form>   
+      </form>  
 	    <br>
       <a href="#/signup" style="color: #3e3f3a;">Don't have an account? <strong>Signup</strong> ...</a><br>
       <a href="javascript:;" data-target="#request" data-toggle="tab" aria-expanded="false" style="color: #3e3f3a;">Forgot your password? <strong>Reset</strong> ...</a><br>
@@ -19,7 +19,7 @@
             <input type="email" ng-model='user.email' class="form-control" placeholder="Please Enter Your Email" required="" autofocus="" />
             <button class="btn btn-default btn-block"  type="submit"  name="Submit" value="Forgot">Request New Password</button>
           </form>
-          <br><p>{{msg}}</p>
+          <br><p style="color: red;">{{msg}}</p>
         </div>
       </div>
     </div>     
