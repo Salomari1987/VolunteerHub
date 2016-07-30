@@ -43,9 +43,9 @@
           <li ng-repeat="skill in opportunity.skillsRequired">{{skill}}</li>
         </ul>
       </div>
-      <div class='row'>
-          <a role="button" class="class='col-xs-6' btn btn-default" href="#/opportunities/edit/{{opportunity._id}}"> <i class='glyphicon glyphicon-pencil'></i> Edit </a>
-          <a role="button" class="col-xs-6 btn btn-default"  href="#/openings/create/{{opportunity._id}}"><i class='glyphicon glyphicon-plus'></i> Create Opening </a>
+      <div class='row col-xs-12'>
+          <a role="button" class="col-xs-2 btn btn-default"  href="#/openings/create/{{opportunity._id}}"><i class='glyphicon glyphicon-plus'></i> Create Opening </a>
+          <a role="button" class="col-xs-2 btn btn-default" style="margin-left:2px;" href="#/opportunities/edit/{{opportunity._id}}"> <i class='glyphicon glyphicon-pencil'></i> Edit </a>
       </div>
       </h5>
 

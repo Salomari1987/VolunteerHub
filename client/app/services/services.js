@@ -92,7 +92,7 @@ angular.module('VolunteerHub.services', [])
     })
     .then(function(resp){
       return resp.data;
-    });
+    })
   }
   var editOpportunity = function(opportunity){
     return $http({

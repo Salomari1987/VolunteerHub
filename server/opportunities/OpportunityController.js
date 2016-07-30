@@ -140,7 +140,7 @@ module.exports ={
   		var id=(req.params.id).toString();
   		findOpportunity({_id: id}) 
   		.then (function(opportunity) {
-		  	res.status(200).send(opportunity);
+		  	res.json(opportunity);
 		})
 		.fail(function(error) {
 			next(error);
