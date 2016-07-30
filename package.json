@@ -37,6 +37,7 @@
     "sinon": "^1.17.2"
   },
   "dependencies": {
+    "nodemon":"latest",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.4.3",
     "express": "^4.4.5",
