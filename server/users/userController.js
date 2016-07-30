@@ -123,7 +123,7 @@ module.exports = {
 
   // a function that allows for the user to edit their basic info
   editUser: function(req, res, next){
-    User.findOne({_id: req.params.id.toString()}, function(err, user){
+    User.findOne({userName: req.params.userName}, function(err, user){
       if(err){
         res.status(500).send(err);
       } else if (!user){
