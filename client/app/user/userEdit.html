@@ -21,14 +21,14 @@
     </tr>
   </table>
   <div>
-    <h3>{{user.firstName}} {{user.lastName}}</h3>
-   	<p>Email: {{user.email}}</p>
-    <p>Date Of Birth: {{user.dateOfBirth}}</p>
-    <p>Phone Number: {{user.phoneNumber}}</p>
+    <input name="firstName" type="text" ng-model="newUser.firstName" placeholder="user.firstName" value="newUser.firstName">
+    <input name="lastName" type="text" ng-model="newUser.lastName" placeholder="user.lastName" value="newUser.lastName">
+    <input name="email" type="text" ng-model="newUser.email" placeholder="user.email" value="newUser.email">
+    <input name="phoneNumber" type="text" ng-model="newUser.phoneNumber" placeholder="user.phoneNumber" value="newUser.phoneNumber">
   </div>
     
-  <input ng-if="!routeParams.userName" type="button" ng-click="edit()" class="btn btn-default" value="Edit"/>
-  
+  <input ng-if="!routeParams.userName" type="button" ng-click="save()" class="btn btn-default" value="Save"/>
+
   <ul class="nav nav-tabs">
     <li class="active"><a href="/user/:id/#suggestions" data-toggle="tab" aria-expanded="true">Suggestions</a></li>
     <li class=""><a href="/user/:id/#current" data-toggle="tab" aria-expanded="false">Current Events</a></li>

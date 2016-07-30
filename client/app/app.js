@@ -6,15 +6,16 @@ angular.module('VolunteerHub', [
   'VolunteerHub.opportunities',
   'VolunteerHub.user',
   'VolunteerHub.users',
+  'VolunteerHub.userEdit',
   'VolunteerHub.organizations',
   'VolunteerHub.organizationProfile',
   'VolunteerHub.organizationCreateEdit',
   'VolunteerHub.openings',
-  'ngRoute',
-  'ng',
-  'ngAria',
-  'ngAnimate',
-  'ngMaterial'
+  'ngRoute'
+  // 'ng',
+  // 'ngAria',
+  // 'ngAnimate',
+  // 'ngMaterial'
 ])
 .controller("HeaderController", function($scope, $location, Auth) {
 
@@ -48,7 +49,7 @@ angular.module('VolunteerHub', [
       controller: 'AuthController'
     })
     .when('/users', {
-      templateUrl: 'app/users/users.html',
+      templateUrl: 'app/user/users.html',
       controller: 'usersController',
     })
     // add routes when needed for pages
@@ -72,9 +73,14 @@ angular.module('VolunteerHub', [
       controller: 'CreateEventCtrl',
       authenticate: true
     })
-    .when('/user/:id', {
+    .when('/user/:userName', {
       templateUrl: 'app/user/user.html',
       controller: 'UserCtrl',
+      authenticate: true
+    })
+    .when('/user/:userName/edit', {
+      templateUrl: 'app/user/userEdit.html',
+      controller: 'userEditController',
       authenticate: true
     })
     .when('/organizations', {

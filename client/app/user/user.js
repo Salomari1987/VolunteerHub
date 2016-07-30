@@ -16,5 +16,10 @@ angular.module('VolunteerHub.user', [])
 			console.error(error)
 		})
 	}
+
+	$scope.edit = function(){
+		$location.path('/user/'+$routeParams.userName+'/edit');
+	}
+
 	$scope.showUser();
 });
