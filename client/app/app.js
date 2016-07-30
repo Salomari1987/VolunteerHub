@@ -9,6 +9,7 @@ angular.module('VolunteerHub', [
   'VolunteerHub.organizations',
   'VolunteerHub.organizationProfile',
   'VolunteerHub.organizationCreateEdit',
+  'VolunteerHub.openings',
   'ngRoute',
   'ng',
   'ngAria',
@@ -59,6 +60,11 @@ angular.module('VolunteerHub', [
     .when('/opportunities', {
       templateUrl: 'app/opportunities/opportunities.html',
       controller: 'OpportunitiesCtrl',
+      // authenticate: true
+    })
+    .when('/openings', {
+      templateUrl: 'app/openings/openings.html',
+      controller: 'OpeningsCtrl',
       // authenticate: true
     })
     .when('/createEvent', {

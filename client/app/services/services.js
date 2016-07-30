@@ -65,7 +65,20 @@ angular.module('VolunteerHub.services', [])
     editOpportunity: editOpportunity
 	};
 })
-
+.factory('Openings', function($http){
+  var getAll = function (){
+    return $http({
+      method:'POST',
+      url: '/api/openings'
+    })
+    .then(function(resp){
+      return resp.data
+    })
+  }
+  return {
+    getAll:getAll
+  }
+})
 .factory('Organizations', function($http){
 
   // a function to add an organization in the database
