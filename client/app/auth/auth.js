@@ -9,7 +9,7 @@ angular.module('VolunteerHub.auth', [])
         window.userId = data.userId;
         $window.localStorage.setItem('com.VolunteerHub', data.token);
         $window.localStorage.setItem('userId', data.userId);
-        $location.path('/users');
+        $location.path('/');
       })
       .catch(function (error) {
         console.error(error);
@@ -21,7 +21,7 @@ angular.module('VolunteerHub.auth', [])
       .then(function (token) {
         $window.localStorage.setItem('com.VolunteerHub', token);
         $window.localStorage.setItem('userId', data.userId);
-        $location.path('/users');
+        $location.path('/');
       })
       .catch(function (error) {
         console.error(error);

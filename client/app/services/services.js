@@ -163,7 +163,7 @@ angular.module('VolunteerHub.services', [])
     $window.localStorage.removeItem('com.VolunteerHub');
     $window.localStorage.removeItem('userId');
     window.userId = null;
-    $location.path('/signin');
+    $location.path('/');
   };
 
 
