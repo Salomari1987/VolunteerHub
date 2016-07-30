@@ -101,7 +101,7 @@ module.exports = {
 					opening.numberOfVolunteers = req.body.numberOfVolunteers || opening.numberOfVolunteers;
 					opening.location = req.body.location || opening.location;
 					opening.description = req.body.description || opening.description;
-					opening.skillsrequired = req.body.skillsrequired || opening.skillsrequired;
+					opening.skillsRequired = req.body.skillsrequired || opening.skillsrequired;
 					opening.resources = req.body.resources || opening.resources;
           opening.save();
 					res.json(opening);

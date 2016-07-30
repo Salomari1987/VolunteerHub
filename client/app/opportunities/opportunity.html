@@ -40,13 +40,19 @@
       <div>
         <p>Skills:</p>
         <ul>
-          <li ng-repeat="skill in opportunity.requiredSkills">{{skill}}</li>
+          <li ng-repeat="skill in opportunity.skillsRequired">{{skill}}</li>
         </ul>
       </div>
-      
+      <div class='row'>
+          <a role="button" class="class='col-xs-6' btn btn-default" href="#/opportunities/edit/{{opportunity._id}}"> <i class='glyphicon glyphicon-pencil'></i> Edit </a>
+          <a role="button" class="col-xs-6 btn btn-default"  href="#/openings/{{opportunity._id}}"><i class='glyphicon glyphicon-plus'></i> Create Opening </a>
+      </div>
       </h5>
+
     </div>
+
   </div>
+
   </div>
   </br>
   <div class="container-fluid">
@@ -68,7 +74,7 @@
                     </div>
               </div>
             </div>
-                        <div class='panel panel-default'>
+            <div class='panel panel-default'>
               <div class="panel-heading" role="tab" id="heading-2">
                 <h4 class="panel-title">
                 <!-- href="javascript:;" with data-target to control the element to be collapsed, using opportunities objectIds to make each element unique -->

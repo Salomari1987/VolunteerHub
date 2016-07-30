@@ -62,6 +62,8 @@ angular.module('VolunteerHub.services', [])
   }
 
   var createOpportunity = function (newOpportunity) {
+        console.log('b')
+
       return $http({
         method: 'PUT',
         url: '/api/organization/add/'+ newOpportunity['_organizer'],
@@ -110,8 +112,30 @@ angular.module('VolunteerHub.services', [])
       return resp.data
     })
   }
+  var editOpening = function(opening){
+    return $http({
+      method: 'PUT',
+      url: '/api/openings/'+opening['_id'],
+      data : opening
+    })
+    .then(function (resp){
+      return resp;
+    });
+  };
+  var createOpening = function (newOpening) {
+    return $http({
+      method: 'PUT',
+      url: '/api/opportunity/addOpening/'+ newOpening['_opportunity'],
+      data: newOpportunity
+    })
+    .then(function (resp) {
+      return resp;
+    });
+  }
   return {
-    getAll:getAll
+    getAll:getAll,
+    editOpening: editOpening,
+    createOpening: createOpening
   }
 })
 .factory('Organizations', function($http){

@@ -111,7 +111,7 @@ module.exports = {
       startDate : req.body.startDate,
       endDate : req.body.endDate,
       location : req.body.location,
-      causesArea : req.body.type,
+      causesArea : req.body.causesArea,
       description : req.body.description,
       skillsRequired: req.body.skillsRequired,
       poster : req.body.poster
