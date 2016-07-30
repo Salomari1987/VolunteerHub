@@ -15,6 +15,7 @@ module.exports = function (app, express) {
   app.put('/api/user/:userName/edit', userController.editUser);
 
   //Opportunities routes
+  app.get('/api/opportunities/:id',opportunityController.getOpportunityByOrgId);
   app.get('/api/opportunities',opportunityController.allOpportunities);
   app.get('/api/opportunity/:id',opportunityController.getOpportunity);
   app.put('/api/opportunity/:id',opportunityController.editOpportunity);
