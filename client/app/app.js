@@ -2,7 +2,7 @@ angular.module('VolunteerHub', [
   'VolunteerHub.services',
   'VolunteerHub.opportunityCreateEdit',
   'VolunteerHub.auth',
-  'VolunteerHub.event',
+  'VolunteerHub.opportunity',
   'VolunteerHub.opportunities',
   'VolunteerHub.user',
   'VolunteerHub.users',
@@ -49,6 +49,11 @@ angular.module('VolunteerHub', [
     .when('/users', {
       templateUrl: 'app/users/users.html',
       controller: 'usersController',
+    })
+    // add routes when needed for pages
+    .when('/opportunity/:id', {
+      templateUrl: 'app/opportunity/opportunity.html',
+      controller: 'OpportunityCtrl',
       authenticate: true
     })
     .when('/opportunities', {
