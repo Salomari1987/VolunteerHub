@@ -161,8 +161,8 @@ module.exports = {
           if(err){
             res.status(500).send(error);
           } else {
-
-            var emailBody = 'Dear' + savedUser.gender==='Male' ? 'Mr. ' : 'Mrs. ';
+            var title = savedUser.gender==='Male' ? 'Mr. ' : 'Mrs. '
+            var emailBody = 'Dear' + title;
               emailBody += savedUser.lastName + ',\n\nYour Username is: ' +savedUser.userName;
               emailBody += '\nYour New Password is: '+ newPass + '\n\nRegards,\nVolunteerHub Team';   
 
