@@ -10,6 +10,7 @@ angular.module('VolunteerHub.opportunityCreateEdit', [])
 		if($routeParams.oppId){
 			Opportunities.getOne($routeParams.oppId)
 			.then(function(opportunity){
+				console.log(opportunity)
 				$scope.newOpportunity = opportunity;
 			})
 			.catch(function(error){
@@ -19,7 +20,7 @@ angular.module('VolunteerHub.opportunityCreateEdit', [])
 			$scope.newOpportunity = {
 				poster: 'http://www.f-covers.com/cover/autumn-trees-facebook-cover-timeline-banner-for-fb.jpg',
 				causesArea: [],
-				requiredSkills: []
+				skillsRequired: []
 			}
 		}
 	};
@@ -71,10 +72,13 @@ angular.module('VolunteerHub.opportunityCreateEdit', [])
 		});
 	};
 	$scope.create = function(){
-		organizationId = $routeParams.id
+		var  organizationId = $routeParams.id
 		$scope.newOpportunity._organizer = organizationId;
+		console.log('a')
 		Opportunities.createOpportunity($scope.newOpportunity)
 		.then(function(result){
+					console.log(result)
+
 			$location.path('/organizations/profile/'+result.data._id);
 		})
 		.catch(function(error){

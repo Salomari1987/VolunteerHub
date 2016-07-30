@@ -16,8 +16,10 @@ angular.module('VolunteerHub.openings', [])
 	};
 
 	$scope.apply = function(openingId){
-		//TODO
-		console.log(openingId);
+		Openings.applyToOpening(openingId)
+		.then(function(opening){
+			console.log(opening)
+		})
 	};
 
 	$scope.intialize();

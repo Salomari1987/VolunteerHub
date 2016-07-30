@@ -101,7 +101,7 @@ module.exports = {
 					opening.numberOfVolunteers = req.body.numberOfVolunteers || opening.numberOfVolunteers;
 					opening.location = req.body.location || opening.location;
 					opening.description = req.body.description || opening.description;
-					opening.skillsrequired = req.body.skillsrequired || opening.skillsrequired;
+					opening.skillsRequired = req.body.skillsrequired || opening.skillsrequired;
 					opening.resources = req.body.resources || opening.resources;
           opening.save();
 					res.json(opening);
@@ -112,13 +112,13 @@ module.exports = {
 
   applyToOpening: function (req,res,next){
     var openingId = req.params.id.toString();
-    var user = req.body;
     var token = req.headers['x-access-token'];
     if (!token){
       next(new Error('No token'))
     } else {
       var user = jwt.decode(token, 'secret');
-      findOneUser( { userName: user.username } )
+      console.log(user)
+      findOneUser( { _id: user._id } )
       .then( function( user ){
         if(!user){
           next(new Error('User does not exist'));

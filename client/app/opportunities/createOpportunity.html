@@ -60,15 +60,15 @@
       </div><br><br>
     </div>
     <div>
-      <label for="requiredSkills">Required Skills</label>
+      <label for="skillsRequired">Required Skills</label>
       <ul>
-      <li ng-repeat="skill in newOpportunity.requiredSkills">{{skill}} <a ng-click="removeItem(newOpportunity.requiredSkills,skill)" style="color:red;">Remove</a></li>
+      <li ng-repeat="skill in newOpportunity.skillsRequired">{{skill}} <a ng-click="removeItem(newOpportunity.skillsRequired,skill)" style="color:red;">Remove</a></li>
       </ul>
       <div>
-        <input name='requiredSkills' type="text"
+        <input name='skillsRequired' type="text"
         ng-model="newSkill"
         placeholder="Add a skill" value="" />
-        <input type="button" value="Add" ng-click="addItem(newOpportunity.requiredSkills,newSkill)"/>
+        <input type="button" value="Add" ng-click="addItem(newOpportunity.skillsRequired,newSkill)"/>
       </div><br><br>
     </div>
     <div>

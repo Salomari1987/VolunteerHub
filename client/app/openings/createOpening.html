@@ -1,0 +1,83 @@
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#/opportunities">All Opportunities</a>
+  </li>
+  <li class="">
+    <a href="#/openings">All Openings</a>
+  </li>
+</ul>
+<br>
+<div class='col-xs-2'>
+</div>
+<div id="container" class="col-xs-8 container-fluid">
+  <div class="col-xs-12">
+    <h5>
+    <div>
+      <label for="title">Title</label>
+      <input name='title' type="text"
+      ng-model="newOpening.title"
+      placeholder="Enter title here" 
+      value="{newOpening.title}"/><br><br>
+    </div>
+    <div>
+      <label for="location">Location</label>
+      <input name='location' type="text"
+      placeholder="Add a location" 
+      ng-model="newOpening.location"
+      value="{newOpening.location}" 
+      /><br><br>
+    </div>
+    <div>
+      <label for="numberOfVolunteers">numberOfVolunteers</label>
+      <input name='numberOfVolunteers' type="text"
+      placeholder="Add a numberOfVolunteers" 
+      ng-model="newOpening.numberOfVolunteers"
+      value="{newOpening.numberOfVolunteers}" 
+      /><br><br>
+    </div>
+    <div>
+      <label for="description">description</label>
+      <input name='description' type="text"
+      placeholder="Add a description" 
+      ng-model="newOpening.description"
+      value="{newOpening.description}" 
+      /><br><br>
+    </div>
+    <div>
+      <label for="resources">Causes Area</label>
+      <ul>
+      <li ng-repeat="cause in newOpening.resources">{{cause}} <a ng-click="removeItem(newOpening.resources,cause)" style="color:red;">Remove</a></li>
+      </ul>
+      <div>
+        <input name='resources' type="text"
+        ng-model="newCause"
+        placeholder="Add a cause" value="" />
+        <input type="button" value="Add" ng-click="addItem(newOpening.resources,newCause)"/>
+      </div><br><br>
+    </div>
+    <div>
+      <label for="skillsRequired">Required Skills</label>
+      <ul>
+      <li ng-repeat="skill in newOpening.skillsRequired">{{skill}} <a ng-click="removeItem(newOpening.skillsRequired,skill)" style="color:red;">Remove</a></li>
+      </ul>
+      <div>
+        <input name='skillsRequired' type="text"
+        ng-model="newSkill"
+        placeholder="Add a skill" value="" />
+        <input type="button" value="Add" ng-click="addItem(newOpening.skillsRequired,newSkill)"/>
+      </div><br><br>
+    </div>
+    <div class="center-block">
+      <input ng-if="routeParams.id" type="button" ng-click="save()" class="btn btn-default"
+        value="Save"/>
+      <input ng-if="routeParams.opId" type="button" ng-click="create()" class="btn btn-default"
+        value="Create"/>
+        <input type="button" ng-click="cancel()" class="btn btn-default"
+        value="Cancel"/>
+    </div>
+    </h5>
+  </div>
+
+</div>
+<div class='col-xs-2'>
+</div>

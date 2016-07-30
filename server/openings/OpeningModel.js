@@ -14,7 +14,7 @@ var openingSchema = new mongoose.Schema({
   numberOfVolunteers: Number,
   location : String,
   description : String,
-  skillsrequired : [String],
+  skillsRequired : [String],
   resources: [String],
   pendingApps: [{ type:mongoose.Schema.Types.ObjectId, ref:'User' }],
   volunteers : [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],

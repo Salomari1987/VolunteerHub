@@ -11,11 +11,8 @@ angular.module('VolunteerHub', [
   'VolunteerHub.organizationProfile',
   'VolunteerHub.organizationCreateEdit',
   'VolunteerHub.openings',
+  'VolunteerHub.openingCreateEdit',
   'ngRoute'
-  // 'ng',
-  // 'ngAria',
-  // 'ngAnimate',
-  // 'ngMaterial'
 ])
 .controller("HeaderController", function($scope, $location, Auth) {
 
@@ -113,6 +110,16 @@ angular.module('VolunteerHub', [
       controller: 'opportunityCreateOrEditController',
       authenticate: true
     })
+    .when('/openings/create/:opId', {
+      templateUrl: 'app/openings/createOpening.html',
+      controller: 'openingCreateOrEdit',
+      authenticate: true
+    })
+    .when('/openings/edit/:id', {
+      templateUrl: 'app/openings/createOpening.html',
+      controller: 'openingCreateOrEdit',
+      authenticate: true
+    })
     .otherwise({ redirectTo: '/organizations' });
 
     $httpProvider.interceptors.push('AttachTokens');
@@ -125,7 +132,7 @@ angular.module('VolunteerHub', [
   // then add it to the header so the server can validate the request
   var attach = {
     request: function (object) {
-      var jwt = $window.localStorage.getItem('com.shortly');
+      var jwt = $window.localStorage.getItem('com.VolunteerHub');
       if (jwt) {
         object.headers['x-access-token'] = jwt;
       }
