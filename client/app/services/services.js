@@ -1,6 +1,43 @@
 angular.module('VolunteerHub.services', [])
 
+.factory('Users', function($http){
+    
+  var getUser = function(userID){
+  return $http({
+    method : 'GET',
+    url : '/api/user/'+userName
+  })
+  .then(function(res){
+    return res.data;
+  })
 
+  var getAll = function(userName){
+  return $http({
+    method : 'GET',
+    url : '/api/user/'+userName
+  })
+  .then(function(res){
+    return res.data;
+  })
+
+  var editUser = function(user, userName){
+    return $http({
+      method : 'PUT',
+      url : '/api/user/'+userName+'/edit',
+      data: user
+    })
+    .then(function(resp){
+      return resp;
+    })
+  }     
+
+  return {
+    getUser : getUser,
+    getAll : getAll,
+    editUser : editUser
+  }
+
+})
 .factory('Opportunities', function ($http) {
 	var getAll = function () {
 		return $http({
@@ -11,13 +48,6 @@ angular.module('VolunteerHub.services', [])
 			return res.data;
 		});
   }
-  var createEvent = function (event) {
-      return $http({
-        method: 'POST',
-        url: '/api/createEvent',
-        data: event
-      })
-    }
 //need fixing: how to get an event based on their id
   var getOne = function(opportunityId){
     return $http({
@@ -38,18 +68,8 @@ angular.module('VolunteerHub.services', [])
       return resp;
     });
   };
-  var getUser = function(userID){
-    return $http({
-      method : 'GET',
-      url : '/api/user/'+userName
-    })
-    .then(function(res){
-      return res.data;
-    })
-  }  
 
 	return {
-    getUser : getUser,
     getAll : getAll,
     createEvent: createEvent,
     getOne: getOne, 
