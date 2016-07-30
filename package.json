@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "start": "./node_modules/.bin/nodemon --ignore node_modules server/server.js",
-    "postinstall": "bower install"
+    "postinstall": "npm install -g bower; bower install"
   },
   "repository": {
     "type": "git",
