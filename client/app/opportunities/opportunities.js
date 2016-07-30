@@ -6,7 +6,7 @@ angular.module('VolunteerHub.opportunities', [])
 
 	$scope.userId = window.userId;
 	$scope.data={};
-	Opportunities.getOpportunities()
+	Opportunities.getAll()
 	.then(function(opportunities){
 		$scope.data.opportunities = opportunities;
 	})

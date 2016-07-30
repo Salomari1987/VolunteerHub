@@ -2,7 +2,7 @@ angular.module('VolunteerHub.services', [])
 
 
 .factory('Opportunities', function ($http) {
-	var getOpportunities = function () {
+	var getAll = function () {
 		return $http({
 			method: 'GET',
 			url: '/api/opportunities'
@@ -46,21 +46,11 @@ angular.module('VolunteerHub.services', [])
     .then(function(res){
       return res.data;
     })
-  }
-
-  var getAll = function(){
-    return $http({
-      method : 'GET',
-      url : '/api/user/'
-    })
-    .then(function(res){
-      return res.data;
-    })
-  }      
+  }  
 
 	return {
     getUser : getUser,
-    getAll : getAll
+    getAll : getAll,
     createEvent: createEvent,
     getOne: getOne, 
     editOpportunity: editOpportunity
