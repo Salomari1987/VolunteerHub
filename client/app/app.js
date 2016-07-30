@@ -54,6 +54,11 @@ angular.module('VolunteerHub', [
       controller: 'organizationsController',
       authenticate: true
     })
+    .when('/organizations/edit/:id', {
+      templateUrl: 'app/organizations/organizationCreateOrEdit.html',
+      controller: 'organizationCreateOrEditController',
+      authenticate: true
+    })
     .when('/organizations/create', {
       templateUrl: 'app/organizations/organizationCreateOrEdit.html',
       controller: 'organizationCreateOrEditController',
