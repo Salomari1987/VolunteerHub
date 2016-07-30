@@ -67,6 +67,9 @@ angular.module('VolunteerHub.services', [])
         url: '/api/organization/add/'+ newOpportunity['_organizer'],
         data: newOpportunity
       })
+      .then(function (resp) {
+        return resp;
+      });
     }
 //need fixing: how to get an event based on their id
   var getOne = function(opportunityId){

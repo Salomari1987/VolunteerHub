@@ -150,7 +150,7 @@ module.exports ={
   		var id=(req.params.id).toString();
   		findAllOpportunities({_organizer: id}) 
   		.then (function(opportunities) {
-		  	res.status(200).send(opportunities);
+		  	res.json(opportunities);
 		})
 		.fail(function(error) {
 			next(error);
