@@ -14,7 +14,7 @@ db.once('open',function () {
 
 var app = express();
 // configure our server with all the middleware and routing
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8000;
 
 require('./config/middleware.js')(app, express);
 require('./config/routes.js')(app, express);

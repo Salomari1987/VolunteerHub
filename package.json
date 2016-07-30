@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "start": "./node_modules/.bin/nodemon --ignore node_modules server/server.js",
-    "postinstall": "npm install -g bower; bower install"
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
@@ -37,7 +37,6 @@
     "sinon": "^1.17.2"
   },
   "dependencies": {
-    "angular-socialshare": "^2.2.3",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.4.3",
     "express": "^4.4.5",
