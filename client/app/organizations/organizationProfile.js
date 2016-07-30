@@ -24,6 +24,17 @@ angular.module('VolunteerHub.organizationProfile', [])
 			console.log(error);
 		});
 	};
-
+	$scope.fetchApplicants = function (opportunityId){
+		console.log("fetch")
+		Opportunities.getOne(opportunityId)
+		.then(function(opportunity){
+			for(var i=0; i<opportunity.currOpenings; i++){
+				console.log(opportunity.currOpenings[i])
+			}
+		})
+		.catch(function(err){
+      console.log(err)
+    })
+	}
 	$scope.initialize();
 });
