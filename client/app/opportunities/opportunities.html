@@ -8,46 +8,43 @@
 </ul>
 
 <div class="row">
-<form class="form-search" role="search">
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search">
-  </div>
-</form>
+  <form class="form-search" role="search">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search">
+    </div>
+  </form>
 </div>
 
 <div class="row">
 <div id='container'>
-<!-- create multiple accordion elements for all opportunities -->
-    <div class='panel-group' id='accordion' role='tablist' aria-mutliselectable='true' > 
-      <div class='col-xs-12' ng-repeat="opportunity in data.opportunities | filter:{title:search}">
-            <div class='panel panel-default'>
-              <div class="panel-heading" role="tab" id="opportunity._id">
-                <h4 class="panel-title">
-                  <!-- href="javascript:;" with data-target to control the element to be collapsed, using opportunities objectIds to make each element unique -->
-                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="javascript:;" aria-expanded="false" aria-controls="{{opportunity._id}}" class="collapsed" data-target="#{{opportunity._id}}"> <i class="glyphicon glyphicon-plus"></i> {{opportunity.title}} </a> 
-                </h4> 
-              </div>
-              <!-- content to be expanded -->
-              <div id='{{opportunity._id}}' class='panel-collapse collapse' role='tabpanel' aria-labelledby='opportunity._id' aria-expanded='false'>
-                <div class='panel-body'>
-                  <div class='col-lg-3 col-md-3 col-sm-3'>
-                    <img ng-src='{{opportunity.poster}}' style="width:30%;"> 
-                  </div>
-                  <div class='col-lg-6 col-md-6 col-sm-6'>
-                    <p>Causes: 
-                      <ul>
-                      <li ng-repeat="cause in opportunity.causesArea">{{cause}}</li>
-                      </ul>
-                    </p>
-                    <br>
-                    <p>Rating: {{opportunity.rate}}/10</p>
-                  </div>
-                  <div class='col-lg-3 col-md-3 col-sm-3'>
-                    <a class='btn btn-default' role='button' ng-href='#/opportunity/{{opportunity._id}}'> View details </a>
-                  </div>
-                </div>
-              </div>         
+  <div class='panel-group' id='accordion' role='tablist' aria-mutliselectable='true' > 
+    <div class='col-xs-12' ng-repeat="opportunity in data.opportunities | filter:{title:search}">
+      <div class='panel panel-default'>
+        <div class="panel-heading" role="tab" id="opportunity._id">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="javascript:;" aria-expanded="false" aria-controls="{{opportunity._id}}" class="collapsed" data-target="#{{opportunity._id}}"> <i class="glyphicon glyphicon-plus"></i> {{opportunity.title}} </a> 
+          </h4> 
+        </div>
+        <div id='{{opportunity._id}}' class='panel-collapse collapse' role='tabpanel' aria-labelledby='opportunity._id' aria-expanded='false'>
+          <div class='panel-body'>
+            <div class='col-lg-3 col-md-3 col-sm-3'>
+              <img ng-src='{{opportunity.poster}}' style="width:30%;"> 
+            </div>
+            <div class='col-lg-6 col-md-6 col-sm-6'>
+              <p>Causes: 
+                <ul>
+                <li ng-repeat="cause in opportunity.causesArea">{{cause}}</li>
+                </ul>
+              </p>
+              <br>
+              <p>Rating: {{opportunity.rate}}/10</p>
+            </div>
+            <div class='col-lg-3 col-md-3 col-sm-3'>
+              <a class='btn btn-default' role='button' ng-href='#/opportunity/{{opportunity._id}}'> View details </a>
             </div>
           </div>
+        </div>         
       </div>
-    </div> 
+    </div>
+  </div>
+</div> 

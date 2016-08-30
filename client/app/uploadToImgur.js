@@ -1,10 +1,9 @@
-
-var uploadToIMGUR = function(client_id, imgData, callback) {
+var uploadToIMGUR = function(id, imgData, callback) {
 
 	$.ajax({
 		url: 'https://api.imgur.com/3/image',
 		headers: {
-			'Authorization': 'Client-ID ' + client_id,
+			'Authorization': 'Client-ID ' + id,
 			'Accept': 'application/json'
 		},
 		type: 'POST',

@@ -20,7 +20,6 @@ client/lib
 bower_components
 
 #API Keys
-client/app/config/api_keys.js
 
 # Floobits
 .floo

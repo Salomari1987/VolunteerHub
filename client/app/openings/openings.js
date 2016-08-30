@@ -1,25 +1,25 @@
 angular.module('VolunteerHub.openings', [])
-.controller('OpeningsCtrl', function ($scope, Openings,$location, Auth) {
+.controller('OpeningsCtrl', function ($scope, Openings, $location, Auth) {
 
 	$scope.userId = window.userId;
 	
-	$scope.data={};
+	$scope.data = {};
 	
-	$scope.intialize = function(){
+	$scope.intialize = function() {
 		Openings.getAll()
-		.then(function(openings){
+		.then(function(openings) {
 			$scope.data.openings = openings;
 		})
-		.catch(function(error){
-			console.error(error)
-		})
+		.catch(function(error) {
+			console.error(error);
+		});
 	};
 
-	$scope.apply = function(openingId){
+	$scope.apply = function(openingId) {
 		Openings.applyToOpening(openingId)
-		.then(function(opening){
-			console.log(opening)
-		})
+		.then(function(opening) {
+			console.log(opening);
+		});
 	};
 
 	$scope.intialize();
