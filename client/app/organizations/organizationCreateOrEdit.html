@@ -8,28 +8,24 @@
   </div>
   <div class="col-xs-12">
     <h5>
-
     <div>
       <label for="name">Name</label>
       <input name='name' type="text"
       ng-model="newOrg.name"
       placeholder="Enter your name here" value="{newOrg.name}"/><br><br>
     </div>
-
     <div>
       <label for="EIN">EIN</label>
       <input name='EIN' type="text"
       ng-model="newOrg.EIN"
       placeholder="Enter your EIN here" value="{newOrg.EIN}"/><br><br>
     </div>
-
     <div>
       <label for="missionStatement">Mission Statement</label>
       <input name='missionStatement' type="text"
       ng-model="newOrg.missionStatement"
       placeholder="Enter your mission statement here" value="{newOrg.missionStatement}"/><br><br>
     </div>
-
     <div>
       <label for="causes_area">Causes Area</label>
       <ul>
@@ -42,7 +38,6 @@
         <input type="button" value="Add" ng-click="addItem(newOrg.causes_area,newCause)"/>
       </div><br><br>
     </div>
-
     <div>
       <label for="locations">Locations</label>
       <ul>
@@ -55,7 +50,6 @@
         <input type="button" value="Add" ng-click="addItem(newOrg.locations,newLocation)"/>
       </div><br><br>
     </div>
-
     <div>
       <label for="contactInfo">Contact Info</label><br><br>
       <div ng-repeat="key in newOrg.contactInfoKeys">
@@ -67,7 +61,6 @@
           </div>
       </div><br><br>
     </div>
-
     <div>
       <div class="col-xs-5"></div>
       <input ng-if="routeParams.id" type="button" ng-click="save()" class="btn btn-default col-xs-1"
@@ -78,9 +71,7 @@
         value="Cancel" style="margin-left: 2px;" />
       <div class="col-xs-5"></div>
     </div>
-
     </h5>
   </div>
-
 </div>
 <div class="col-xs-2"></div>

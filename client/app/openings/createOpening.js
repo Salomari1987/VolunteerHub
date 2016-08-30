@@ -6,13 +6,13 @@ angular.module('VolunteerHub.openingCreateEdit', [])
 	$scope.routeParams = $routeParams;
 	$scope.changedFlag = false;
 
-	$scope.initialize = function(){
-		if($routeParams.id){
+	$scope.initialize = function() {
+		if ($routeParams.id) {
 			Openings.getOne($routeParams.id)
-			.then(function(opening){
+			.then(function(opening) {
 				$scope.newOpening = opening;
 			})
-			.catch(function(error){
+			.catch(function(error) {
 				console.log(error);
 			});
 		} else {
@@ -20,48 +20,49 @@ angular.module('VolunteerHub.openingCreateEdit', [])
 				poster: 'http://www.f-covers.com/cover/autumn-trees-facebook-cover-timeline-banner-for-fb.jpg',
 				resources: [],
 				skillsRequired: []
-			}
+			};
 		}
 	};
 
-	$scope.removeItem = function(array, item){
+	$scope.removeItem = function(array, item) {
 		$scope.changedFlag = true;
 		var index = array.indexOf(item);
-		array.splice(index,1);
+		array.splice(index, 1);
 	};
 
-	$scope.addItem = function(array, item){
+	$scope.addItem = function(array, item) {
 		$scope.changedFlag = true;
 		array.push(item);
 		item = '';
 	};
 
-	$scope.save = function(){
+	$scope.save = function() {
 		openingId = $routeParams.id;
 		$scope.newOpening._id = openingId;
 		Openings.editOpening($scope.newOpening)
-		.then(function(result){
-			$location.path('/opportunity/'+$scope.newOpening._opportunity);
+		.then(function(result) {
+			$location.path('/opportunity/' + $scope.newOpening._opportunity);
 		})
-		.catch(function(error){
-			console.log(error);
-		});
-	};
-	$scope.create = function(){
-		var  opportunityId = $routeParams.opId
-		$scope.newOpening._opportunity = opportunityId;
-		Openings.createOpening($scope.newOpening)
-		.then(function(result){
-			$location.path('/opportunity/'+$scope.newOpening._opportunity);
-		})
-		.catch(function(error){
+		.catch(function(error) {
 			console.log(error);
 		});
 	};
 
-	$scope.cancel = function(){
-		if($routeParams.id){
-			$location.path('/opportunities/profile/'+$scope.newOpening._id);
+	$scope.create = function() {
+		var opportunityId = $routeParams.opId;
+		$scope.newOpening._opportunity = opportunityId;
+		Openings.createOpening($scope.newOpening)
+		.then(function(result) {
+			$location.path('/opportunity/' + $scope.newOpening._opportunity);
+		})
+		.catch(function(error) {
+			console.log(error);
+		});
+	};
+
+	$scope.cancel = function() {
+		if ($routeParams.id) {
+			$location.path('/opportunities/profile/' + $scope.newOpening._id);
 		} else {
 			$location.path('/opportunities');
 		}
