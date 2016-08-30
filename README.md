@@ -1,12 +1,13 @@
-# Project Name
+# VolunteerHub
+A portal for connecting volunteers with NGOs.
 
-> Pithy project description
+__Deployed link__: VolunteerHub.herokuapp.com
 
 ## Team
 
-  - __Product Owner__: Salah
-  - __Scrum Master__: Saif
-  - __Development Team Members__: Bader
+  - __Product Owner__: [Salah](https://github.com/salomari1987)
+  - __Scrum Master__: [Saif](https://github.com/saifElokour)
+  - __Development Team Members__: [Bader](https://github.com/baderkhalifeh)
 
 ## Table of Contents
 
@@ -20,14 +21,33 @@
 
 ## Usage
 
-> Some usage instructions
+> Visit the site
+> Go to Volunteers Tab to checkout current volunteers
+> Go to Organizations Tab to checkout NGOs, Opportunities and Openings
+> Signup an account and add organizations, opportunities and openings
 
 ## Requirements
 
-- Node 0.10.x
+- Node 4.x.x
+- MongoDB
 
 ## Development
+### Tech Stack
+#### Frontend
 
+* Angular
+* Angular Route
+* Angular Materials
+
+#### Backend
+
+* Express
+* JWT-simple
+* Mongoose
+* Morgan
+* Nodemailer
+* Nodemailer-smto-transport
+* 
 ### Installing Dependencies
 
 From within the root directory:
@@ -35,13 +55,7 @@ From within the root directory:
 ```sh
 sudo npm install -g bower
 npm install
-bower install
 ```
-
-### Roadmap
-
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
-
 
 ## Contributing
 
