@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "start": "./node_modules/.bin/nodemon --ignore node_modules server/server.js",
-    "postinstall": "npm install -g bower; bower install"
+    "lint": "eslint ./server ./client/app",
+    "postinstall": "npm install -g bower && bower install"
   },
   "repository": {
     "type": "git",
@@ -34,7 +35,8 @@
     "karma-unicorn-reporter": "^0.1.4",
     "mocha": "^2.3.4",
     "pre-commit": "^1.1.1",
-    "sinon": "^1.17.2"
+    "sinon": "^1.17.2",
+    "eslint": "^3.2.2"
   },
   "dependencies": {
     "nodemon":"latest",

@@ -1,17 +1,17 @@
 angular.module('VolunteerHub.opportunities', [])
-.controller('OpportunitiesCtrl', function ($scope, Opportunities,$location, Auth) {
+.controller('OpportunitiesCtrl', function ($scope, Opportunities, $location, Auth) {
 
 	$scope.userId = window.userId;
 	
-	$scope.data={};
+	$scope.data = {};
 	
-	$scope.initialize = function(){
+	$scope.initialize = function() {
 		Opportunities.getAll()
-		.then(function(opportunities){
+		.then(function(opportunities) {
 			$scope.data.opportunities = opportunities;
 		})
-		.catch(function(error){
-			console.error(error)
+		.catch(function(error) {
+			console.error(error);
 		});
 	};
 

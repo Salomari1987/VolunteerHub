@@ -7,34 +7,35 @@ angular.module('VolunteerHub.organizationProfile', [])
 
 	$scope.Auth = Auth.isAuth;
 
-	$scope.initialize = function(){
+	$scope.initialize = function() {
 		Organizations.getOne($routeParams.id)
-		.then(function(organization){
+		.then(function(organization) {
 			$scope.organization = organization;
 			$scope.organization.contactInfoKeys = Object.keys($scope.organization.contactInfo);
 		})
-		.catch(function(error){
+		.catch(function(error) {
 			console.log(error);
 		});
 		Opportunities.getOpportunities($routeParams.id)
-		.then(function(opportunites){
+		.then(function(opportunites) {
 			$scope.organization.opportunites = opportunites;
 		})
-		.catch(function(error){
+		.catch(function(error) {
 			console.log(error);
 		});
 	};
-	$scope.fetchApplicants = function (opportunityId){
-		console.log("fetch")
+
+	$scope.fetchApplicants = function (opportunityId) {
 		Opportunities.getOne(opportunityId)
-		.then(function(opportunity){
-			for(var i=0; i<opportunity.currOpenings; i++){
-				console.log(opportunity.currOpenings[i])
+		.then(function(opportunity) {
+			for (var i = 0; i < opportunity.currOpenings; i++) {
+				console.log(opportunity.currOpenings[i]);
 			}
 		})
-		.catch(function(err){
-      console.log(err)
-    })
-	}
+		.catch(function(err) {
+			console.log(err);
+		});
+	};
+
 	$scope.initialize();
 });

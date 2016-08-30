@@ -6,12 +6,12 @@ angular.module('VolunteerHub.organizations', [])
 
 	$scope.userId = window.userId;
 
-	$scope.initialize = function(){
+	$scope.initialize = function() {
 		Organizations.getAll()
-		.then(function(results){
+		.then(function(results) {
 			$scope.data.organizations = results;
 		})
-		.catch(function(error){
+		.catch(function(error) {
 			console.log(error);
 		});
 	};
