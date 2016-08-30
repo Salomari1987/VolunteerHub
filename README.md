@@ -26,6 +26,11 @@ __Deployed link__: [Click here](https://VolunteerHub.herokuapp.com)
 > Go to Organizations Tab to checkout NGOs, Opportunities and Openings
 > Signup an account and add organizations, opportunities and openings
 
+### Test user
+ 
+ * Username: salah
+ * Password: 12345678
+ 
 ## Requirements
 
 - Node 4.x.x
