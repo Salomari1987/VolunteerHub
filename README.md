@@ -1,8 +1,8 @@
 # VolunteerHub
 A portal for connecting volunteers with NGOs.
 
-__Deployed link__: VolunteerHub.herokuapp.com
-
+__Deployed link__: [Click here](https://VolunteerHub.herokuapp.com)
+![alt tag](https://github.com/kleinsbottle/VolunteerHub/blob/master/screenshot/VolunteerHub.jpeg)
 ## Team
 
   - __Product Owner__: [Salah](https://github.com/salomari1987)
@@ -47,7 +47,13 @@ __Deployed link__: VolunteerHub.herokuapp.com
 * Morgan
 * Nodemailer
 * Nodemailer-smto-transport
-* 
+* Q
+* Request
+
+#### Deployment
+
+* Heroku
+
 ### Installing Dependencies
 
 From within the root directory:
